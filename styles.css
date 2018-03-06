@@ -1,0 +1,80 @@
+body {
+  font-family: Candara, Arial, Helvetica, sans-serif;
+}
+
+img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+div#tswsidecol {
+  float: right;
+  width: 20%;
+  color: white;
+  background-color: black;
+}
+
+div#tswcontent {
+  float: right;
+  width: 80%;
+  color: black;
+  background-color: black;
+}
+
+@media only screen and (max-width: 629px) {
+  div#tswsidecol { float: none; width: 100%; }
+  div#tswcontent { float: none; width: 100%; }
+}
+
+div#tswcontainer {
+  background-color: black;
+}
+
+div#tswheader {
+  color: black;
+  background-color: black;
+}
+
+#logo {
+  display: block;
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+}
+
+#site-background {
+  background-color: black;
+}
+
+#words {
+  background-color: black;
+  display: none;
+  text-overflow: ellipsis;
+}
+
+#words2 {
+  background-color: #076fbb;
+  color: white;
+}
+
+#tswcontproper {
+  color: #c1c1c1;
+  background-color: black;
+}
+
+#trial {
+  background-color: black;
+}
+
+#side-column {
+  color: white;
+  background-color: rgba(0, 118, 251, 0.01);
+}
+
+#transparenttest {
+  color: #030b7a;
+  background-color: #076fbb;
+}
+
