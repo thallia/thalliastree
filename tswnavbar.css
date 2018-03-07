@@ -1,59 +1,33 @@
-#tswcssbuttons ul {
-  margin-top: 0px;
-  margin-right: 0px;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  padding-top: 0px;
-  padding-right: 0px;
-  padding-bottom: 0px;
-  padding-left: 0px;
-  list-style-type: none;
-  list-style-position: outside;
-  list-style-image: none;
-}
+/*
+	tswtabs.css		1.1.3
+	Please use the CSS Menu Button Wizard at
+		https://www.thesitewizard.com/wizards/css-menu-buttons.shtml
+	to generate your own customized menu buttons.
+*/
 
-#tswcssbuttons li {
-  display: block;
-  list-style-type: none;
-  list-style-position: outside;
-  list-style-image: none;
-  font-family: Arial, Helvetica, sans-serif;
+#tswcsstabs ul {
+	margin: 0 ;
+	padding: 0 ;
+	list-style: none ;
+	display: inline ;
 }
-
-#tswcssbuttons li a {
-  color: #cdd9f4;
-  background-color: #052e8e;
-  border-top-width: 1px;
-  border-right-width: 1px;
-  border-bottom-width: 1px;
-  border-left-width: 1px;
-  border-top-style: outset;
-  border-right-style: outset;
-  border-bottom-style: outset;
-  border-left-style: outset;
-  border-top-color: #0842cb;
-  border-right-color: #0842cb;
-  border-bottom-color: #0842cb;
-  border-left-color: #0842cb;
-  text-decoration: none;
-  display: block;
+#tswcsstabs ul li {
+	margin: 0 ;
+	padding: 0 ;
+	display: inline ;
+	text-align: center ;
+	list-style: none ;
+	font-family: Arial, Helvetica, sans-serif ;
 }
-
-#tswcssbuttons li a:hover {
-  color: #b4c6ef;
-  background-color: #042165;
+#tswcsstabs li a {
+	color: #ffffff ;
+	background-color: #000000 ;
+	border: 1px outset #000000 ;
+	padding: 8px ;
+	text-decoration: none ;
+	display: inline ;
 }
-
-#greeting {
-  margin-right: auto;
-  margin-left: auto;
+#tswcsstabs li a:hover {
+	color: #ffffff ;
+	background-color: #0093ff ;
 }
-
-#whoami {
-  margin-right: 20%;
-  margin-left: auto;
-  padding-right: 20%;
-  width: 768px;
-  margin-top: 20px;
-}
-

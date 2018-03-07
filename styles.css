@@ -18,7 +18,7 @@ div#tswsidecol {
 div#tswcontent {
   float: right;
   width: 80%;
-  color: black;
+  color: white;
   background-color: black;
 }
 
@@ -27,54 +27,45 @@ div#tswcontent {
   div#tswcontent { float: none; width: 100%; }
 }
 
+div#tswcontproper, div#tswsideproper {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 div#tswcontainer {
+  color: ;
   background-color: black;
 }
 
 div#tswheader {
-  color: black;
+  color: white;
   background-color: black;
 }
 
-#logo {
-  display: block;
-  float: none;
+div#tswfooter {
+  clear: both;
+  color: white;
+  background-color: black;
+}
+
+#thalliastreelogo {
   margin-left: auto;
+  display: block;
   margin-right: auto;
-  background-color: white;
 }
 
-#site-background {
+#tswheader {
+  border-top-color: black;
+  border-right-color: black;
+  border-bottom-color: black;
+  border-left-color: black;
+}
+
+#background {
   background-color: black;
 }
 
-#words {
+#body-background {
   background-color: black;
-  display: none;
-  text-overflow: ellipsis;
-}
-
-#words2 {
-  background-color: #076fbb;
-  color: white;
-}
-
-#tswcontproper {
-  color: #c1c1c1;
-  background-color: black;
-}
-
-#trial {
-  background-color: black;
-}
-
-#side-column {
-  color: white;
-  background-color: rgba(0, 118, 251, 0.01);
-}
-
-#transparenttest {
-  color: #030b7a;
-  background-color: #076fbb;
 }
 
