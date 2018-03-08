@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Projects, Packages, and Progress, oh my!</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="A branch of knowledge - first post">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="width: 746px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[6.22.17]
+              Projects, Packages, and Progess, oh my!<br>
+            </span></h2>
+          <span style="font-family: Ubuntu Mono;"></span>
+          <p>&nbsp;</p>
+          <p>Good Morning, all!</p>
+          <p>It's not really morning, but I like that greeting.</p>
+          <p style="width: 745px;">This past week has been filled with crazy
+            excitement and many new things! I received two awesome packages
+            filled with electronic components such as logic gates, cords, jumper
+            wires, LEDs, RGB LEDs, resistors, and a breadboard. I couldn't wait
+            to start working with a breadboard for the first time.</p>
+          <img src="../images/first-circuit-supplies.jpg" alt="" title="first circuit supplies">
+          <p style="width: 745px;">My beginner storage is pretty good for now,
+            but I can tell I'm going to fill it pretty quick and will have to
+            upgrade to something else soon.</p>
+          <p style="width: 745px;">The first thing I did was find a guide on how
+            to set up an LED on a breadboard and found <a href="https://startingelectronics.org/beginners/start-electronics-now/tut1-breadboard-circuits/"
+              target="_blank" rel="noopener">this great article</a>. To say I
+            was ecstatic when I built my first circuit was an understatement.</p>
+          <img src="../images/first-circuit.jpg" alt="" title="first circuit!!">
+          <p style="width: 745px;">I figured you could put multiple LEDs in a
+            row, because that's just a bunch of resistors in parallel and it
+            would work, so I played around and got a happy rainbow:</p>
+          <img src="../images/first-rainbow-circuit.jpg" alt="first rainbow circuit"
+            title="first rainbow circuit"></div>
+        <div style="width: 746px;"><br>
+        </div>
+        <div style="width: 746px;">I <em>did</em> learn that breadboard wire
+          links are the same as jumper wires, they're just specially sized for
+          different purposes.<br>
+          In my package I received an RGB LED (common cathode) as well, which is
+          a Light Emitting Diode that has a Red, Green, and Blue LED in it, and
+          it can make multiple different colors depending on the intensity of
+          each LED. I had no idea how to get it to change colors, so I pulled
+          out my Raspberry Pi for the first time and started experimenting, as I
+          knew there were ways to get an RGB to work with a Pi.</div>
+        <div style="width: 746px;"><br>
+        </div>
+        <img src="../images/tv-rpi-monitor.jpg" alt="rpi tv" title="rpi tv" style="width: 746px;"></div>
+      <div><br>
+      </div>
+      <div>
+        <div style="width: 746px;"><br>
+        </div>
+        <div style="width: 746px;">&nbsp;<!-- end of content column: put your content above this line -->
+        </div>
+      </div>
+      <div id="tswfooter">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div style="width: 746px; margin-left: 279px;" id="tswcsstabs">
+          <ul>
+          </ul>
+          <p>My parents were a bit shocked when they came out and saw I had
+            turned the TV into a monitor, but I assured them it was okay and I
+            wasn't going to break the TV with my programming.</p>
+          <p>I didn't have a usb mouse to connect to my Pi, but I did have a
+            nice <a href="https://www.amazon.com/LINGBAO-JIGUANSHI-Mechanical-Backlight-Anti-ghosting/dp/B01MYGA7WQ/ref=sr_1_13?ie=UTF8&amp;qid=1497735237&amp;sr=8-13&amp;keywords=mechanical%2Bkeyboard%2Bbacklit%2Bantighosting%2Bblue%2Bswitch&amp;th=1">mechanical
+              keyboard</a> that I got to highlight the desktop apps, which,
+            fortunately, one of them was a terminal. (I <em>love</em>
+            terminals.) I got the terminal up and running, next I needed to get
+            the RGB LED hooked up to the breadboard and then connect the
+            breadboard to the GPIO pins of the Raspberry Pi.</p>
+          <p>With this picture, I got the general idea of how to set up the
+            wires in the breadboard and connect them to the Pi:</p>
+          <img src="../images/rpi-rgb-wiring.jpg" alt="Rpi RGB" title="Rpi RGB">
+          <p>I must admit, it took me way too long to figure out that I had a
+            Raspberry Pi 1, not a Raspberry Pi 2. Heh. Once I discovered that, I
+            could effectively attach my jumper wires to the appropriate GPIO
+            pins on the Pi, using this diagram:</p>
+          <img src="file:///home/thallia/thalliastree/images/rpi-1-gpio-pinout.jpg"
+            alt="rpi 1 gpio" title="Rpi 1 GPIO">
+          <ul>
+            <br>
+          </ul>
+          The code I used required me to attach my cathode (the longest pin) to
+          pin 6, GROUND. The RED pin I attached to GPIO 12, GREEN I attached to
+          GPIO 16, and BLUE to GPIO 18. Here's a picture of it all set up (from
+          two different angles).
+          <ul>
+            <br>
+            <br>
+          </ul>
+          <img src="../images/rpi-rgb-circuit-setup.jpg" alt="rpi rgb circuit" title="rpi rgb circuit">
+          <p>Once I connected the wires right, I could start finding code to get
+            this LED to work. After searching for code that worked with a Raspi
+            1, I stumbled upon this website by a guy named <b><a href="http://www.henryleach.com/2013/05/controlling-rgb-led-with-raspberry-pi.html">Henry
+                Leach</a></b>. Boy, was I glad to find his post. He showed his
+            calculations about resistors and picking the right values to get the
+            brightest colors, and then nicely shared his code that cycled
+            through a variety of colors with his LED.</p>
+          <p>I don't know anything about Python (yet), but I went with it
+            because I wanted to get this thing working. I typed in all the code
+            (which was painstaking, because I use a dvorak keyboard layout, but
+            it was in US on the Pi. That took a while...) into the terminal text
+            editor, nano. To get there, I opened a terminal and executed <code>nano
+              rgb.py</code></p>
+          <img src="../images/rgb-pi-code.jpg" alt="rgb pi code" title="rgb pi code"
+            style="width: 692px; height: 1231px;">
+          <ul>
+            <br>
+            <br>
+          </ul>
+          Once I finished typing that all out, I assumed IDLE was a Python Shell
+          of sorts, so in a terminal I executed <code>idle</code> . From my
+          experience with a Forth terminal, I knew if you wanted the code to be
+          used in that session you had to use <code>include filename.fth</code>
+          to use your code within the shell. I assumed <code>import</code> did
+          the same thing, and viola, it worked! I had some syntax errors but
+          once I fixed those and ran the program, I got a wonderful result:
+          <ul>
+            <br>
+            <br>
+          </ul>
+          <video src="../images/rgb-first-run.mp4" preload="none" controls="controls"></video>
+          <ul>
+            <br>
+            <br>
+          </ul>
+          <p>I think the lights were a bit shaky at certain colors because I
+            only had 1k Ohm resistors, so once I get my package of 30 different
+            types of resistors today in the mail I'm going to try this project
+            again to see if it makes a difference.</p>
+          <p>Now my goal is to replicate this in C code, as I'm going to learn
+            it. After that, I'm going to attempt to get the LED to change colors
+            and respond based on the waveforms of music that is playing, and
+            eventually put this tech in the laminar water fountain I'm building
+            with my friend.</p>
+          <p>I'll put a post up about the fountain soon, we just bought the
+            first installment of the supplies and materials, and once we start
+            building it I'll put up a tutorial type post.</p>
+          <p>Before I wrap up this post, in other news, I received a mandolin
+            from my Nana as an early birthday present and I couldn't be more
+            excited!</p>
+          <img src="../images/mandolin.jpg" alt="mandolin!" title="mandolin!">
+          <ul>
+            <br>
+          </ul>
+          <p>I've been teaching myself some scales, and I'm working on the <a href="https://youtu.be/w6lCwQs6_sM">Irish
+              Washerwoman</a> melody picking. I'm thinking of naming it Henry.
+            What do you all think? :)</p>
+          <p>Cheers!</p>
+          <p>{thallia}</p>
+          <ul>
+            <br>
+            <br>
+            <br>
+          </ul>
+          <ul>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li style="width: 64px; margin-left: -49px;" id="navbar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp; <b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; margin-left: 381px; width: 578px;">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

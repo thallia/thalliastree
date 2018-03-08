@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>srls</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="thallia">
+    <meta name="description" content="spaced repetition learning systems">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div>
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[6.14.17]
+              Spaced Repetition Learning Systems<br>
+            </span></h2>
+          <span style="font-family: Ubuntu Mono;"></span>
+          <p style="width: 744px;">lá maith, good day!</p>
+          <p style="width: 748px;">Spaced Repetition Learning Systems...what are
+            <em>those</em>? SRS for short, Spaced Repetition Systems are tools
+            to help you memorize anything you wish to have embedded in your
+            brain for a good long while. Be it the nouns and verbs of a new
+            language, definitions of terms from a class you are taking,
+            mathematical equations, or the periodic table of elements, this is a
+            great way to get started memorizing all those details.</p>
+          <p style="width: 746px;">When taking a new class and learning all of
+            this new material, you take notes and mentally exclaim, "I am
+            totally going to remember all this!"<br>
+            Yet, three days later, you've forgotten most of that new knowledge
+            (if you haven't made an effort to retain it). While people say
+            there's a big learning curve to new subjects, there's also a large <a
+              href="https://en.wikipedia.org/wiki/Forgetting_curve" target="_blank"
+              rel="noopener">forgetting curve</a> that happens 24-36 hours after
+            you have been presented with new information.</p>
+          <p style="width: 747px;">Spaced Repetition Systems take the efficiency
+            of memorizing via flashcards and spread the memorization out
+            effectively over shortened periods of time, allowing the information
+            to seep into your brain at a non-overwhelming speed and increase the
+            rate of retention.</p>
+          <p style="width: 748px;">I use the <a href="https://en.wikipedia.org/wiki/Leitner_system">Leitner
+              System</a>, a simple implementation of the SRS concept. I wanted
+            to get down and dirty with the project, so I built my own system out
+            of cardboard and decked it out with <a href="http://www.sheknows.com/home-and-gardening/articles/951617/what-is-washi-tape">washi
+              tape </a>when I finished, to make it look happy.</p>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 644px; margin-left: 370px;">
+          <ul>
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 64px; margin-left: -49px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp; <b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; margin-left: 381px; width: 578px;">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

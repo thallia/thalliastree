@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>QEMU Debugging and TIL</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="thallia">
+    <meta name="description" content="debugging with qemu">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div>
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[6.29.17]
+              QEMU Debugging and TIL<br>
+            </span></h2>
+          <span style="font-family: Ubuntu Mono;"></span>
+          <p>This week was <em>busy.</em></p>
+          <p style="width: 747px;">I helped co-teach an improv rehearsal while
+            my coach was away, spontaneously went to see a movie with friends,
+            finished some good books (Debugging by David Agans and How to Read A
+            Book by Mortimer J. Adler), and wrote the entirety of a rough
+            program in a day that converted numbers between base 2, 10, and 16,
+            or as their familiar names are called, binary, decimal, and
+            hexadecimal. I wrote it for the purpose of re-familiarizing myself
+            with the Forth language, since I haven't written a program with
+            Forth in a while. About a quarter of the way through, the program
+            turned out to be a funny talk-show-like system with cheesy jokes and
+            puns. You can check it out on <b><a href="https://github.com/thallia/dechexbin"
+                target="_blank" rel="noopener" style="color: #3653b9;">GitHub</a></b>.<br>
+            Forth is an awesome interactive language, you can check it out here
+            with the official online book by Leo Brodie, <b><span style="color: #3653b9;"><a
+                  href="https://www.forth.com/starting-forth/" target="_blank" rel="noopener">Starting
+                  Forth</a></span></b>. I'll write a bigger post on Forth later,
+            today I'm sharing my debugging issues and talking about a system
+            emulator called QEMU.</p>
+          <p style="width: 746px;">Once I finished my Forth conversion program,
+            I took a break, but eventually gravitated&nbsp; towards finishing an
+            old assembly program I wrote a while back that converted an array of
+            fahrenheit values to celsius. I had finished it, but unfortunately,
+            lost all my work when I accidentally wiped the contents of my
+            computer (which is a story for another time). I used QEMU to debug
+            it at the time, but I lost my debugging log along with the wipe,
+            sadly.</p>
+          <p style="width: 747px;"><b><a href="http://www.qemu.org/" style="color: #3653b9;">QEMU</a></b>
+            is a downloadable, open source, full system emulator. You can use it
+            to emulate types of processor cores/CPUs, machines, or OSs all
+            without having to own the actual device. It's handy when you don't
+            have the money to buy an actual microcontroller, and you can run it
+            straight from your terminal.</p>
+          <p style="width: 748px;">I finished rewriting my program in ARM
+            assembly and geared up to debug my messy, night-time written code,
+            until the qemu commands I had recovered suddenly failed. I was
+            executing:<br>
+            <code><br>
+            </code></p>
+          <p style="width: 748px;"><code>qemu-system-arm -machine raspi2 -cpu
+              cortex-m3 -s -S -nographic -kernel -gdb tcp::1234 f-c2.elf</code></p>
+          <p>First I got the error:</p>
+          <p style="width: 748px;"><code>qemu-system-arm: -kernel -gdb: Unknown
+              protocol 'tcp'</code><br>
+            <code>WARNING: Image format was not specified for 'f-c2.elf' and
+              probing guessed raw.<br>
+              Automatically detecting the format is dangerous for raw images,
+              write operations on block 0 will be restricted.<br>
+              Specify the 'raw' format explicitly to remove the restrictions.<br>
+              qemu: could not load kernel '-gdb'</code></p>
+          <p style="width: 748px;">I added <code>-raw</code>, but all I got
+            back with that command was a terminal prompt. I consulted my friend
+            uelen (way-len) who knows more about QEMU than I do (something I
+            hope to change in the future).</p>
+          <p style="width: 747px;">He shared that <code>-s</code> did the same
+            thing as <code>-gdb tcp::1234</code> so that was all redundant. I
+            ended up deleting <code>-raw</code> as well.<br>
+            I reformulated my qemu execution to end up with:<br>
+            <code>qemu-system-arm -machine raspi2 -cpu cortex-m3 -s -S
+              -nographic -kernel f-c2.elf</code></p>
+          <p style="width: 746px;">And it worked!<br>
+            I ran that in a terminal, and in another, I connected the trusty GDB
+            debugger to my emulated system with <code>target remote
+              localhost:1234</code>.<br>
+            GDB has been a bit of a stinker since then, and I haven't been able
+            to debug my code because it's been sending random addresses to the
+            program counter and jumping to pieces of code that don't even exist
+            (I guess this code exists, though, must've come from the 4th
+            dimension or something). I spent most of today working on it, but
+            only got so far with hardly any leads.</p>
+          <p style="width: 748px;">Somehow my program's first instruction, <code>mov
+              r0, #16</code>, loads <code>#12</code> into the link register,
+            and random addresses are put into the program counter. I made sure
+            that there were no addresses in <code>r0</code> when the program
+            started, so there's no way I could somehow be <em>moving</em>
+            anything into the PC or LR. I made sure it failed like that multiple
+            times so I can accurately state that. But as David Agans says in his
+            amazing book, <b><a href="https://www.amazon.com/Debugging-Indispensable-Software-Hardware-Problems/dp/0814474578"
+                style="color: #3653b9;">Debugging</a></b>, even "that" can
+            happen, when you know it can't.</p>
+          <p style="width: 746px;">All that to say, debugging is long and
+            challenging, especially with things you're not horribly familiar
+            with yet. After spending much of my day attempting to find out gdb's
+            mysteries, I am retiring to my happy place, reading books and
+            working with some Forth.</p>
+          <p>But before I leave, TIL! (Today I Learned)</p>
+          <p style="width: 746px;">TIL to really apply the concepts I learned in
+            Debugging by David Agans, from changing one thing at a time, to
+            keeping an audit trail, to quit thinking and just looking (I think I
+            used that rule the most).</p>
+          <p style="width: 746px;">I learned that when you get an error for the
+            504th time, it's not the end of the world.</p>
+          <p style="width: 747px;">TIL that sharing source code is really fun
+            and really freaky at the same time, because on one end you're
+            thinking, "oh my goodness griefcious they're totally going to judge
+            my code and think I'm stupid for writing it this way instead of that
+            way!" while on the other hand, you're thinking "LOOK AT THIS LITTLE
+            BABY PROGRAM I MADE ISN'T IT GREAT?" When in reality no one
+            intensively looks at it and only tries to help figure out your
+            problem. (those who <em>do</em> judge your code are either trying
+            to help you but are unintentionally coming off as stand-offish, or
+            they are just deciding to be turd blossoms.)</p>
+          <p style="width: 746px;">I learned that sometimes, it's okay to pause
+            from figuring out a problem to eat some chips and fruit while you
+            ponder your existence and if it's really worth it to figure this
+            problem out.</p>
+          <p style="width: 747px;">I learned that it's good to ask for help when
+            you have no idea where to start looking to find out why your system
+            emulator is being finicky (<b style="color: #3653b9;"><a href="https://qemu.weilnetz.de/doc/qemu-doc.html">QEMU
+                User Documentation</a></b>, I'm looking at you).</p>
+          <p style="width: 746px;">And finally, TIL that making sure you
+            recompile your altered code before running it again is a <em>really</em>
+            good idea.</p>
+          <p>Until next time, folks!</p>
+          <p>{thallia}</p>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 644px; margin-left: 370px;">
+          <ul>
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 64px; margin-left: -49px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp; <b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; margin-left: 381px; width: 578px;">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>
