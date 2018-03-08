@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laminar + Airplay</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="thallia">
+    <meta name="description" content="A branch of knowledge.">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="width: 748px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[8.18.17]
+              Laminar Pi + Airplay<br>
+            </span></h2>
+          <span style="font-family: Ubuntu Mono;"></span><span style="font-family: Ubuntu Mono;"></span>
+          <p style="width: 747px;">Now that I got the Raspberry Pi 3, I could
+            rework the tech and figure out the Airplay feature to get this
+            fountain working!</p>
+          <p style="width: 748px;">Here are the steps I used to set up my Raspi
+            (SD card),&nbsp; install Lightshow Pi, and shairport-sync (airplay
+            feature) on top of it:</p>
+          <p style="width: 746px;">I'd never reformatted an SD card before, so
+            this was quite the experience.</p>
+          <p style="width: 748px;">The first step was to find a guide, and <a href="http://qdosmsq.dunbar-it.co.uk/blog/2013/06/noobs-for-raspberry-pi/"
+              target="_blank" rel="noopener">this</a> website was very helpful.</p>
+          <p style="width: 745px;">I slipped the microSD card into my <a href="https://www.sparkfun.com/products/13004"
+              target="_blank" rel="noopener">microSD card reader</a> and plugged
+            it into my computer, which recognized the device. (yay!)</p>
+          <p style="width: 746px;">I had to find what my computer named the usb
+            microSD though, so in root permissions, I ran <code>fdisk -l</code>,
+            which gave me this:</p>
+          <img src="../images/fdisk-pi.png" alt="" title="fdisk 1" style="width: 748px;"><br>
+          <p>I knew my microSD was 16GB, so the second to last option, <code>/dev/sdb</code>,
+            was the right one.<br>
+            Next I needed to actually access it, so I did that with <code>fdisk
+              /dev/sdb</code>. That command has to be run with root permission,
+            or <code>sudo</code>.</p>
+          <p>You need to delete any existing partitions on the device if there
+            were any before doing anything else. You can do that using <code>d</code>,
+            which will automatically delete the default partition.</p>
+          <p>To list all the partitions you have, you can use <code>p</code>,
+            which is useful to check what you've deleted.</p>
+          <p>After deleting the partitions, <code>n</code> will create the new
+            partition we need! You can give it a number (1-4) based on your
+            preference (if you have a favorite number or something).<br>
+            <img src="../images/fdisk1.png" alt="" title="fdisk 2"></p>
+          <p>Using <code>p</code> after creating the partition shows me the new
+            partition at the very bottom. But uh oh, I need a FAT32 type,
+            instead of a Linux type of partition.</p>
+          <p>To change that, you use the <code>t</code> command. If you request
+            so, you can list all the different types of partitions there are to
+            choose.<br>
+            <img src="../images/fdisk2.png" alt="" title="fdisk 3"></p>
+          <p>The tutorial I used recommended W95 FAT32 (all on its own, no LBA),
+            so I executed <code>b</code>, which reformatted it. Yay!</p>
+          <p>At the end of all that, you use <code>w</code> to write all the
+            progress and finish the dealio.<br>
+            The first time I did all that, I got an error in the terminal about
+            “invalid argument, kernel is using the old partition table until you
+            reboot” or something, but after some fiddling with the commands it
+            gave me the right thing.</p>
+          <p>(EDIT [09-19-17] ~ to get rid of the error, you need to run `fdisk`
+            on the home device, not the partition. So instead of running “fdisk
+            /dev/sdb1”, you should run “fdisk /dev/sdb”, because sdb1 is a
+            partition.)&nbsp;</p>
+          <p>Next, I needed to install Raspbian, the Raspberry Pi OS. I
+            downloaded the full version of Raspbian Jessie Desktop from the <a
+              href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank"
+              rel="noopener">Raspberry Pi website</a> and unzipped it.</p>
+          <p>Next thing I did was run <code>df -h</code>, which helped me see
+            the device name of my SD card (it was still <code>/dev/sdb</code>).</p>
+          <p>Then I unmounted the SD card (so files can't be read or written in
+            the process of downloading an image) with <code>umount /dev/sdb</code>.
+            If you still have multiple partitions, you should unmount all of
+            them.</p>
+          <p>Next, use the terminal to copy the image to the SD card!</p>
+          <p><code>dd bs=1M
+              if=/home/thallia/Desktop/2017-05-17-raspbian-jessie.img
+              of=/dev/sdb</code></p>
+          <p>This command must be prefixed by <code>sudo</code> if you are not
+            logged in as root. <code>dd</code> starts the copying, <code>bs=1M</code>
+            tells the copyer what rate the memory should be transferred at.</p>
+          <p>The <code>if=</code> statement is where you put the path for where
+            the image can be found. For me, it was on my desktop. The <code>of=</code>
+            statement is the path of your SD card. It takes a few minutes for
+            the process to complete, so getting up and stretching for a few
+            minutes is a good thing to do while you wait for it to finish.</p>
+          <p>After that, your SD card should be ready to plug into your
+            Raspberry Pi to boot!</p>
+          <p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+          <p><b><a href="http://lightshowpi.org/download-and-install/" target="_blank"
+                rel="noopener">Installing LightshowPi</a></b></p>
+          <p>Because I covered most of this in another post, I'll keep it short
+            so we can get to shairport-sync.</p>
+          <p>Boot into your Raspberry Pi, open a terminal, and run <code>sudo
+              apt-get update</code> and <code>sudo apt-get upgrade</code>.
+            These shouldn't take too long.</p>
+          <p>After that, if you don't have git, install it with <code>sudo
+              apt-get install git-core</code>.</p>
+          <p>Next, clone the LightshowPi repository to your home directory.<br>
+            <code>git clone
+              https://togiles@bitbucket.org/togiles/lightshowpi.git</code></p>
+          <p>If you have a Raspberry Pi 3 (like me) or a Pi Zero, there's a
+            different repository you have to clone because of some kernel
+            issues. Here's the instruction:<br>
+            <code>git clone
+              https://broken2048@bitbucket.org/broken2048/lightshowpi-fork1.git</code></p>
+          <p>If you don't have a Pi 3 or Zero, then don't worry about that.</p>
+          <p>You'll want to make sure that you have the right branch, otherwise
+            the program won't work as well. You can do that with <code>cd
+              lightshowpi</code>, then <code>git fetch &amp;&amp; git checkout
+              stable</code>.</p>
+          <p>You should get a confirming message that you've been moved to the
+            "stable" branch.</p>
+          <p>Finally, you can install the software! <code>sudo ./install.sh</code>
+            will set you up with the goods. This process may take anywhere from
+            10 minutes to 3hrs, so be patient. After that, reboot your Pi with <code>sudo
+              reboot</code>.</p>
+          <p>On the LightshowPi website, you can find links for <a href="http://lightshowpi.org/configuring-and-testing-your-hardware/"
+              target="_blank" rel="noopener">how to set up and test your
+              hardware</a>, or you can check out my first setup here: <a href="https://www.thalliatree.net/posts/lightshowpi-early-tech-behind-laminar-fountain.html">LightShow
+              Pi ~ Early Tech Behind the Laminar Fountain</a>.<br>
+            If you have any questions about my setup or how I got the music to
+            work, feel free to contact me.</p>
+          <p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+          <p>Alrighty, now to the exciting stuff! I discovered shairport-sync
+            through the <a href="https://plus.google.com/communities/101789596301454731630"
+              target="_blank" rel="noopener">LightshowPi Google+ Community</a>,
+            which is a very helpful place if you run into trouble setting up any
+            of this stuff.</p>
+          <p><a href="https://github.com/mikebrady/shairport-sync" target="_blank"
+              rel="noopener">Here</a> you can find the GitHub repository for
+            shairport-sync and follow the instructions to set it up. I'll walk
+            you through what I did to set mine up.</p>
+          <p>First, you have to make sure you install all of the files and
+            packages needed for it to work. This includes (for my setup):</p>
+          <p><code>sudo apt-get install build-essential git xmltoman</code><br>
+            <code>sudo apt-get install autoconf automake libtool libdaemon-dev
+              libpopt-dev libconfig-dev</code><br>
+            <code>sudo apt-get install libasound2-dev</code><br>
+            <code>sudo apt-get install avahi-daemon libavahi-client-dev</code><br>
+            <code>sudo apt-get install libssl-dev</code></p>
+          <p>Next, you need to clone the repository to your Pi, using:<br>
+            <code>git clone https://github.com/mikebrady/shairport-sync.git</code></p>
+          <p>Now, <code>cd</code> into <code>shairport-sync</code> and run <code>autoconf
+              -i -f</code>. This step may take a little time.</p>
+          <p>This next part was a little tricky for me to understand what was
+            going on. We're writing the configuration file with the stuff we
+            want so shairport will work the right way. Because I'm only using
+            shairport-sync for a simple technology, I didn't have to use many
+            configurations.</p>
+          <p><code>./configure --sysconfdir=/etc --with-alsa --with-avahi
+              --with-ssl=openssl --with-systemd --with-stdout</code></p>
+          <p><code>./configure</code> is the filename, I believe, while <code>--sysconfdir=/etc</code>
+            is where the file will be within the shairport directory.<br>
+            <code>--with-alsa</code> [includes the ALSA backend module to audio
+            to be output through the Advanced Linux Sound Architecture (ALSA)
+            system directly. This is recommended for highest quality.] (taken
+            from the github description)<br>
+            <code>--with-avahi</code> [Avahi is a widely-used system-wide
+            zero-configuration networking (zeroconf) service — it may already be
+            in your system.]<br>
+            <code>--with-ssl=openssl</code> [for encryption and related
+            utilities using either OpenSSL, mbed TLS or PolarSSL.]<br>
+            <code>--with-systemd</code> this command has to do with the
+            particular system you have. You can use <code>man init</code> to
+            find out whether you need to use <code>systemd</code> or <code>systemv</code>.<br>
+            <code>--with-stdout</code> [include an optional backend module to
+            enable raw audio to be output through standard output (stdout).]</p>
+          <p>After executing that command, you can run <code>make</code>. When
+            make is finished, install shairport-sync with <code>sudo make
+              install</code>. This can take a little time as well, so get up and
+            stretch!</p>
+          <p>Now comes some more fun. We're going to edit some more
+            configuration files, first from the shairport-sync repository. Make
+            sure you <code>cd</code> into shairport-sync so you can access
+            them.</p>
+          <p>First, we're going to run <code>sudo nano /etc/shairport-sync.conf</code>.
+            There will be a <em>lot</em> of text. <em>Do not freak out like I
+              did and immediately close the document. </em></p>
+          <p>As long as you can find the <code>general</code> function at the
+            top and the <code>alsa</code> function in the middle of the file,
+            you should be fine. In the general function, you'll see a list of
+            commented out functions. You can give your Airplay feature a
+            password if you don't want anyone out of the blue using it, but I
+            didn't set that up.</p>
+          <p>At the top of the file, there's a line that looks like: <code>#
+              name "%H"</code><br>
+            You'll want to erase the hash, and fill in the quotation marks what
+            name you want to appear on the Airplay menu. I named mine "Laminar
+            Pi", for the fountain purposes.</p>
+          <p>Now go down to the <code>alsa</code> function, and find the line
+            in the file that reads <code># output device: "hw:"</code></p>
+          <p>In this line, you can choose whether you want the output sound to
+            be HDMI, or headphones. I made mine headphones, because I have a
+            3.5mm jack connected from the Pi to a portable bluetooth speaker. It
+            makes for easy sound testing. Remember to delete the hash so it's
+            used in the setup.<br>
+            That's all I modified in the shairport-sync config file, but if you
+            find yourself in a more complicated situation, the github
+            instructions have plenty of information and examples for you to
+            figure it out.</p>
+          <p>To save the config file, <code>Ctrl-x</code> will do the job, <code>y</code>
+            to agree to save the file, and enter to seal the deal.</p>
+          <p>Working with the pi, there's a special thing you can add to the
+            Raspberry Pi boot file to make the sound clearer. To get to that,
+            enter <code>sudo nano /boot/config.txt</code>.</p>
+          <p>At the very bottom of that file, add the line: <code>audio_pwn_mode=2</code></p>
+          <p><code>Ctrl-x</code> will save and get you outta there, and that
+            section of shairport-sync is finished! Only a few more steps left to
+            go.</p>
+          <p>Now, <code>cd</code> into your <code>lightshowpi</code>
+            directory, then into the <code>config</code> directory. The path
+            looks like this: <code>cd lightshowpi/config</code><br>
+            Next, run <code>sudo nano defaults.cfg</code></p>
+          <p>This is the configuration file for LightshowPi, where we can alter
+            how things will outpstrut and work together.<br>
+            If you scroll down past the information about the GPIO pins, shortly
+            after you'll come to a section about playlist modes. You can skip a
+            little farther down to the <code>stream-in</code> section.</p>
+          <p>There's a line that looks like this: <code># mode = stream-in</code><br>
+            You'll want to uncomment that (delete the hash). Go down a few lines
+            to:<br>
+            <code>stream_command_string = sudo mpg123 --stdout
+              http://193.34.51.115:80</code> And put a hash in front of it to
+            comment it out. Then go down a few more lines to:<br>
+            <code># stream_command_string = shairport-sync -v -o stdout</code><br>
+            And uncomment (delete the hash) to activate shairport-sync.</p>
+          <p>Use <code>Ctrl-x</code> to save the file and exit nano, and you
+            should be ready to start up the hardware!<br>
+            Assuming you've <a href="http://lightshowpi.org/configuring-and-testing-your-hardware/"
+              target="_blank" rel="noopener">set up and tested your hardware</a>,
+            <code>cd ..</code> out of the <code>config</code> directory, but
+            stay in the LightshowPi directory.</p>
+          <p>To start the software and give off the Airplay signal, run:<br>
+            <code>sudo python py/synchronized_lights.py</code></p>
+          <p>Hook your phone up to the Pi Airplay signal, and your lights should
+            start up to whatever sound you play through your phone!<br>
+            Please contact me if you have any questions.</p>
+          <p>Cheers!</p>
+          <p>{thallia}</p>
+        </div>
+        <div style="width: 747px;"><span style="font-family: Ubuntu Mono;"></span>
+          <p style="margin-left: -12px; width: 845px;"><span style="font-family: Ubuntu Mono;"><br>
+            </span> </p>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 251px; width: 941px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 644px;">
+          <ul id="tabbar">
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 65px; margin-left: -49px;"><b><span
+                          style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; width: 583px; margin-left: 15px;" id="footer">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

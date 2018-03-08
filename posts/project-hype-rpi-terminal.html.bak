@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Not "Soldiering", saw-der-ing</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="thallia">
+    <meta name="description" content="A branch of knowledge.">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div>
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[10.15.17]
+              not "soldiering", saw-der-ing<br>
+            </span></h2>
+          <span style="font-family: Ubuntu Mono;"></span><span style="font-family: Ubuntu Mono;"></span><br>
+          <p style="width: 746px;">Today was exciting. At my mentor fouric's
+            college, they held intro and intermediate workshops on many
+            different subjects for their students, including EagleCAD, KiCAD,
+            Raspberry Pi, Arduino, and soldering!</p>
+          <p style="width: 747px;">I just got a soldering iron for myself and
+            for an upcoming project I'm working on, but I've had no previous
+            experience in the skill. So, lo and behold, I took the intro to
+            soldering and the intermediate soldering workshop!</p>
+          <p>Here are my results:</p>
+          <p style="width: 746px;"><img src="../images/solder-1.jpeg" title="PSU soldering 1"><br>
+            This is an audio amplifier, where they taught us through-hole
+            soldering. <br>
+            <img src="../images/solder-2.jpeg" alt="" title="PSU soldering 2"><br>
+            When I finished, I tested it out and it worked perfectly!</p>
+          <p style="width: 746px;">In the afternoon, we made a tone thingy,
+            which controlled the treble and bass.</p>
+          <img src="../images/solder-3.jpeg" alt="" title="PSU soldering 3" style="width: 748px;"><br>
+          <p style="width: 747px;">This taught us about surface mount soldering.
+            Surface-mount is a pain in the butt, but it was a good workshop to
+            go through for the experience!</p>
+          <p style="width: 748px;">Now I understand more of the whole process,
+            and I can buy some accessories for my soldering iron at home.</p>
+          <p style="width: 748px;">I was really hesitant to solder at first
+            since I have asthma, but the fumes didn't bother me like I thought
+            they would. Having a fan or ventilator at your station is a good
+            idea though, so you're not inhaling the smoke.</p>
+          <p style="width: 748px;">Next time, I'll preview the new project I'm
+            going to work on and all the parts!</p>
+          <p>Until then...</p>
+          <p style="margin-left: -12px; width: 845px;"> </p>
+          <span style="font-family: Ubuntu Mono;">{thallia}</span>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 251px; width: 941px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 644px;">
+          <ul id="tabbar">
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 65px; margin-left: -49px;"><b><span
+                          style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; width: 583px; margin-left: 15px;" id="footer">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

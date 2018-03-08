@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Project Hype: Raspberry Pi Terminal</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="thallia">
+    <meta name="description" content="arkenpi">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div>
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[10.16.17]
+              Project Hype: Raspberry Pi Terminal<br>
+            </span></h2>
+          <span style="font-family: Ubuntu Mono;"></span><span style="font-family: Ubuntu Mono;"></span><br>
+          <p style="width: 746px;">Over the past week or so, I've been ordering
+            and collecting parts for two projects I've been itching to build
+            since I went to my local <a href="https://en.wikipedia.org/wiki/BarCamp">barcamp</a>.
+            And now that I've learned to solder, I can dive in head first.</p>
+          <p style="width: 747px;">The first project I'm going to complete is a
+            <a href="https://makezine.com/projects/build-raspberry-pi-powered-linux-laptop-that-fits-your-pocket/?"
+              target="_blank" rel="noopener">Raspberry Pi powered Linux laptop</a>.
+            This is a tiny, nintendo DS sized laptop that mainly runs terminal
+            commands and code, but you can run video and audio on it and it'll
+            work just as well!</p>
+          <p>Here are the supplies, and the supply list:<span id="selectionBoundary_1508202225322_20702988613140594"
+              class="rangySelectionBoundary" style="line-height: 0; display: none;"></span>&nbsp;</p>
+          <p style="width: 746px;"><img src="../images/arkenpi1.jpg" title="arkenpi supplies"><br>
+          </p>
+          <ul>
+            <li style="width: 747px;"><a href="https://www.arrow.com/en/products/raspberrypi3/raspberry-pi-foundation"
+                target="_blank" rel="noopener">Raspberry Pi 3 Model B</a> (I
+              decided to go with something a little newer than the Pi2)</li>
+            <li>MicroSD card (you'll need 8GB or more) for the Pi</li>
+            <li style="width: 746px;"><a href="https://www.adafruit.com/product/2097"
+                target="_blank" rel="noopener">Adafruit PiTFT 3.5" touchscreen
+                480x320</a> (this was actually supposed to go to the original Pi
+              models, but I don't see why it wouldn't work with the Pi3. It's
+              bigger, too!)</li>
+            <li><a href="https://www.arrow.com/en/products/258/adafruit-industries"
+                target="_blank" rel="noopener">Lithium-Ion Poly battery</a> (I
+              chose 1200mAh for larger capacity)</li>
+            <li><a href="https://www.amazon.com/Bluetooth-Keyboard-Wireless-Playstation-Smartphones/dp/B00H88HC4Y/ref=sr_1_14?"
+                target="_blank" rel="noopener">Wireless keyboard</a></li>
+            <li><a href="http://www.ebay.com/itm/3V-Out-5V-to-12V-In-AMS1117-3-0-Step-Down-Linear-Voltage-Regulator-Module-/391834247531?"
+                target="_blank" rel="noopener">5.5V to 3.3V step down converter</a></li>
+            <li><a href="https://www.arrow.com/en/products/2465/adafruit-industries"
+                target="_blank" rel="noopener">Adafruit Powerboost 1000c</a></li>
+            <li><a href="https://www.sparkfun.com/products/9011" target="_blank"
+                rel="noopener">Female USB connectors</a></li>
+            <li>Audio/Video 3.5mm jack</li>
+            <li><a href="https://www.sparkfun.com/products/14330" target="_blank"
+                rel="noopener">Power switch (a little switch to turn on the
+                power)</a></li>
+            <li><a href="https://www.sparkfun.com/products/102">Backlight switch
+                for the keyboard</a></li>
+            <li><a href="https://www.amazon.com/Edimax-EW-7811Un-150Mbps-Raspberry-Supports/dp/B003MTTJOY/"
+                target="_blank" rel="noopener">WiFi USB adapter</a></li>
+            <li>Case</li>
+          </ul>
+          <p style="width: 746px;">All of these came out to approximately ~$140,
+            which my grandma generously helped me pay for. We bought from ebay,
+            Amazon, Sparkfun, and Arrow. I had little to no knowledge about many
+            of the things used in this project, so I'll go over each item before
+            writing out my to-do list.</p>
+          <p style="width: 747px;">The Raspberry Pi and I have had plenty of
+            previous experience with each other, it's the little computer
+            powering the whole thing.<br>
+            The Adafruit PiTFT is a little touchscreen perfect for the size of
+            computer I'm building.<br>
+            The Lithium Ion Polymer battery was a confusing buy, since I'd never
+            heard of the term mAh before. mAh stands for milliamp hours, which
+            measures the amount of coloumbs (electrical charge) stored inside of
+            it. (if you do the math like I had to, it helps make sense.)<br>
+            The wireless keyboard I got off of Amazon for about $10, it has
+            bluetooth capability, but says it only works with certain operating
+            systems. We'll see about that.<br>
+            The 5.5V to 3.3V step down converter was probably the hardest thing
+            I had to find, but I got a good deal on <a href="http://www.ebay.com/itm/3V-Out-5V-to-12V-In-AMS1117-3-0-Step-Down-Linear-Voltage-Regulator-Module-/391834247531?"
+              target="_blank" rel="noopener">eBay</a> for one thanks to my
+            friend Gector.<br>
+            The Adafruit Powerboost 1000c is I think what helps recharge the
+            battery that powers the RPi and the keyboard.It's super tiny, and
+            actually really cute.</p>
+          <p style="width: 748px;">I got most of the other stuff off of
+            Sparkfun, two little 3-pin switches, the female USB connectors, the
+            audio/video jack, and the wifi dongle.</p>
+          <p style="width: 748px;">As for the case, in the tutorial this guy
+            uses cheap HDD cases. I could not find any that fit to my liking,
+            they were all either the wrong size or shape, or they came from
+            China and I was too impatient to purchase one from there. That's
+            when I was struck by a brilliant idea. Why not 3D print the case? (I
+            know, great idea.)</p>
+          <p style="width: 747px;">I attempted to teach myself Sketchup, but
+            quickly realized that I was too inexperienced to try and model
+            something myself. Gector offered to help, and he made an <em>awesome</em>
+            case for me that I'm getting 3D printed by one of my other friends.</p>
+          <p>Here's a preview of the case before I print it!</p>
+          <p style="width: 746px;"><br>
+            <img src="../images/arkenpi2.png" title="arkenpi case"></p>
+          <p style="width: 748px;">Once I get it all 3D printed I'll post more
+            pictures with the dimensions.</p>
+          <p style="width: 748px;">According to the tutorial, my next steps are
+            to desolder all the components off of the RPi, Adafruit PiTFT, and
+            wire everything up to the keyboard and battery. I gotta solder new
+            wires onto the USB, Audio/Video, and HDMI ports, and get the MicroSD
+            of the RPi set up.</p>
+          <p style="width: 747px;">I definitely have my work cut out for me, but
+            once this project is physically done, I want to write an OS
+            (operating system) for the Raspberry Pi specifically to accompany
+            this project.</p>
+          <p>I'll update soon as I start working on this!</p>
+          <p style="width: 746px;"></p>
+          <p style="margin-left: -12px; width: 845px;"> </p>
+          <span style="font-family: Ubuntu Mono;">{thallia}</span>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 251px; width: 941px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 644px;">
+          <ul id="tabbar">
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 65px; margin-left: -49px;"><b><span
+                          style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; width: 583px; margin-left: 15px;" id="footer">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

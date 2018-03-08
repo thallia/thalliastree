@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>thallia's tree</title>
+    <title>Projects, Packages, and Progress, oh my!</title>
     <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="all" href="styles.css">
@@ -21,44 +21,120 @@
         <div>
           <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
           </span></div>
-        <div>
+        <div style="width: 745px;">
           <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">A
               branch of knowledge.</span></h2>
-          <span style="font-family: Ubuntu Mono;"> </span> <span style="font-family: Ubuntu Mono;">
-          </span>
-          <p style="margin-left: 8px; width: 841px; height: 21px;"><span style="font-family: Ubuntu Mono;"><b>W</b><b>elcome
-                to my blog! In short, I really, really, <i>really</i> like <br>
-                learning things, and this blog is where I document those
-                learnings.&nbsp;</b> <br>
-            </span> </p>
-          <span style="font-family: Ubuntu Mono;"> </span>
-          <p style="margin-left: -110px; width: 1078px;"><span style="font-family: Ubuntu Mono;"><br>
-            </span> </p>
-          <span style="font-family: Ubuntu Mono;"> </span>
-          <p id="body-background" style="margin-left: -12px; width: 845px;"><span
-              style="font-family: Ubuntu Mono;"><b>&nbsp; Give my <a href="https://www.thalliatree.net/sitemap.html">Post
-                  Archive</a> page a look to see what I'm up to!</b></span></p>
-          <span style="font-family: Ubuntu Mono;"> </span>
-          <p style="margin-left: -12px; width: 845px;"><span style="font-family: Ubuntu Mono;"><br>
-            </span> </p>
-          <span style="font-family: Ubuntu Mono;"> </span>
-          <h2 style=" margin-left: 7px; width: 826px;"><span style="font-family: Ubuntu Mono;">Recent
-              Posts:</span></h2>
-          <span style="font-family: Ubuntu Mono;"> </span>
-          <p><span style="font-family: Ubuntu Mono;"><b>* Setting Up A Web
-                Server on FreeBSD 12.0-CURRENT | here<br>
-              </b></span></p>
-          <span style="font-family: Ubuntu Mono;"> </span>
-          <p><span style="font-family: Ubuntu Mono;"><b>* i3wm Setting Up
-                Backlight + Sound keybindings | here<br>
-              </b></span></p>
-          <span style="font-family: Ubuntu Mono;"> </span>
-          <p><span style="font-family: Ubuntu Mono;"><b>* Difference Between a
-                Dictionary, an Array, a Record, and a Map | here<br>
-              </b></span></p>
-          <span style="font-family: Ubuntu Mono;"> </span>
-          <p><b><span style="font-family: Ubuntu Mono;">* Programming Paradigms
-                | What Are They and How Do They Work? | here</span><br>
+          <span style="font-family: Ubuntu Mono;"></span><span style="font-family: Ubuntu Mono;"></span>
+          <p>Good Morning, all!</p>
+          <p>It's not really morning, but I like that greeting.</p>
+          <p style="width: 747px;">This past week has been filled with crazy
+            excitement and many new things! I received two awesome packages
+            filled with electronic components such as logic gates, cords, jumper
+            wires, LEDs, RGB LEDs, resistors, and a breadboard. I couldn't wait
+            to start working with a breadboard for the first time.</p>
+          <img src="../images/first-circuit-supplies.jpg" alt="" title="first circuit supplies"><br>
+          <span style="font-family: Ubuntu Mono;"></span>
+          <p style="margin-left: -12px; width: 845px;"><br>
+          </p>
+          <p>My beginner storage is pretty good for now, but I can tell I'm
+            going to fill it pretty quick and will have to upgrade to something
+            else soon.</p>
+          <p>The first thing I did was find a guide on how to set up an LED on a
+            breadboard and found <a href="https://startingelectronics.org/beginners/start-electronics-now/tut1-breadboard-circuits/"
+              target="_blank" rel="noopener">this great article</a>. To say I
+            was ecstatic when I built my first circuit was an understatement.<br>
+            <img src="../images/first-circuit.jpg" alt="" title="first circuit"><br>
+            I figured you could put multiple LEDs in a row, because that's just
+            a bunch of resistors in parallel and it would work, so I played
+            around and got a happy rainbow:</p>
+          <img src="file:///home/thallia/thalliastree/images/first-rainbow-circuit.jpg"
+            alt="" title="first rainbow circuit"><br>
+          I <em>did</em> learn that breadboard wire links are the same as
+          jumper wires, they're just specially sized for different purposes.<br>
+          In my package I received an RGB LED (common cathode) as well, which is
+          a Light Emitting Diode that has a Red, Green, and Blue LED in it, and
+          it can make multiple different colors depending on the intensity of
+          each LED. I had no idea how to get it to change colors, so I pulled
+          out my Raspberry Pi for the first time and started experimenting, as I
+          knew there were ways to get an RGB to work with a Pi.</div>
+        <div style="width: 745px;"><img src="file:///home/thallia/thalliastree/images/tv-rpi-monitor.jpg"
+            alt="" title="tv rpi monitor"><br>
+          <p>My parents were a bit shocked when they came out and saw I had
+            turned the TV into a monitor, but I assured them it was okay and I
+            wasn't going to break the TV with my programming.</p>
+          <p>I didn't have a usb mouse to connect to my Pi, but I did have a
+            nice <a href="https://www.amazon.com/LINGBAO-JIGUANSHI-Mechanical-Backlight-Anti-ghosting/dp/B01MYGA7WQ/ref=sr_1_13?ie=UTF8&amp;qid=1497735237&amp;sr=8-13&amp;keywords=mechanical%2Bkeyboard%2Bbacklit%2Bantighosting%2Bblue%2Bswitch&amp;th=1">mechanical
+              keyboard</a> that I got to highlight the desktop apps, which,
+            fortunately, one of them was a terminal. (I <em>love</em>
+            terminals.) I got the terminal up and running, next I needed to get
+            the RGB LED hooked up to the breadboard and then connect the
+            breadboard to the GPIO pins of the Raspberry Pi.</p>
+          <p>With this picture, I got the general idea of how to set up the
+            wires in the breadboard and connect them to the Pi:<br>
+            <img src="../images/rpi-rgb-wiring.jpg" alt="" title="rpi rgb wiring"><br>
+            I must admit, it took me way too long to figure out that I had a
+            Raspberry Pi 1, not a Raspberry Pi 2. Heh. Once I discovered that, I
+            could effectively attach my jumper wires to the appropriate GPIO
+            pins on the Pi, using this diagram:</p>
+          <img src="../images/rpi-1-gpio-pinout.jpg" alt="" title="rpi 1 gpio pinout"></div>
+        <div style="width: 745px;">
+          <p style="margin-left: -12px; width: 845px;">The code I used required
+            me to attach my cathode (the longest pin) to pin 6, GROUND. The RED
+            pin I attached to GPIO 12, GREEN I attached to GPIO 16, and BLUE to
+            GPIO 18. Here's a picture of it all set up (from two different
+            angles).</p>
+          <img src="../images/rpi-rgb-circuit-setup.jpg" alt="" title="rpi rgb circuit setup"></div>
+        <div style="width: 745px;">
+          <p>Once I connected the wires right, I could start finding code to get
+            this LED to work. After searching for code that worked with a Raspi
+            1, I stumbled upon this website by a guy named <b><a href="http://www.henryleach.com/2013/05/controlling-rgb-led-with-raspberry-pi.html">Henry
+                Leach</a></b>. Boy, was I glad to find his post. He showed his
+            calculations about resistors and picking the right values to get the
+            brightest colors, and then nicely shared his code that cycled
+            through a variety of colors with his LED.</p>
+          <p>I don't know anything about Python (yet), but I went with it
+            because I wanted to get this thing working. I typed in all the code
+            (which was painstaking, because I use a dvorak keyboard layout, but
+            it was in US on the Pi. That took a while...) into the terminal text
+            editor, nano. To get there, I opened a terminal and executed <code>nano
+              rgb.py<br>
+            </code></p>
+          <img src="../images/rgb-pi-code.jpg" alt="" title="rpi rgb code"></div>
+        <div style="width: 745px;">Once I finished typing that all out, I
+          assumed IDLE was a Python Shell, so in a terminal I executed <code>idle</code>
+          . From my experience with a Forth terminal, I knew if you wanted the
+          code to be used in that session you had to use <code>include
+            filename.fth</code> to use your code within the shell. I assumed <code>import</code>
+          did the same thing, and viola, it worked! I had some syntax errors but
+          once I fixed those and ran the program, I got a wonderful result:<br>
+          <video src="../images/rgb-first-run.mp4" preload="none" controls="controls"></video></div>
+        <div style="width: 745px;">
+          <p>I think the lights were a bit shaky at certain colors because I
+            only had 1k Ohm resistors, so once I get my package of 30 different
+            types of resistors today in the mail I'm going to try this project
+            again to see if it makes a difference.</p>
+          <p>Now my goal is to replicate this in C code, as I'm going to learn
+            it. After that, I'm going to attempt to get the LED to change colors
+            and respond based on the waveforms of music that is playing, and
+            eventually put this tech in the laminar water fountain I'm building
+            with my friend.</p>
+          <p>I'll put a post up about the fountain soon, we just bought the
+            first installment of the supplies and materials, and once we start
+            building it I'll put up a tutorial type post.</p>
+          <p>Before I wrap up this post, in other news, I received a mandolin
+            from my Nana as an early birthday present and I couldn't be more
+            excited!<br>
+            <br>
+            <img src="../images/mandolin.jpg" alt="" title="mandolin"></p>
+        </div>
+        <p>I've been teaching myself some scales, and I'm working on the <b><a
+              href="https://youtu.be/w6lCwQs6_sM">Irish Washerwoman</a></b>
+          melody picking. I'm thinking of naming it Henry. What do you all
+          think? :)</p>
+        <p>Cheers!<br>
+          {thallia<span style="font-family: Ubuntu Mono;">}</span></p>
+        <div style="width: 745px;">
+          <p><b><span style="font-family: Ubuntu Mono;"></span><br>
             </b> </p>
           <p>&nbsp;</p>
           <!-- end of content column: put your content above this line --> </div>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>The Art of Debugging | A Kind of Book Review</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="thallia">
+    <meta name="description" content="book">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div>
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[11.27.17]
+              The Art of Debugging | A Kind of Book Review<br>
+            </span></h2>
+          <span style="font-family: Ubuntu Mono;"></span><span style="font-family: Ubuntu Mono;"></span></div>
+        <div style="width: 747px;">
+          <p>Over the summer I read the book Debugging: The 9 Indispensable
+            Rules For Finding the Most Elusive Software and Hardware Problems by
+            David Agans.</p>
+          <p>The rules and processes he demonstrates in the book are thorough,
+            solid, and extremely helpful when it comes to issues I've faced in
+            my projects, programming, and understanding of how a computer works
+            (even when I'm only reasoning through things in my head I've used
+            these rules!).</p>
+          <p>These rules can not only be applied to computers, but attempting to
+            figure any kind of problem in general.</p>
+          <p><span style="text-decoration: underline;"><strong>Rule 1:
+                Understand the System</strong></span></p>
+          <p>Before you attempt troubleshooting, if you understand the system
+            and how it's supposed to work, reading the manual and figuring out
+            the way all the pieces connect will aid you in the long run when you
+            run into trouble. It'll give you a good road map to follow if you
+            get lost in bugs or issues.</p>
+          <p><span style="text-decoration: underline;"><strong>Rule 2: Making It
+                Fail</strong></span></p>
+          <p>By far the best rule I've used. Stimulate the failure, don't
+            simulate it. As David Agans says, "Know that 'that' can happen." By
+            making something fail over and over again, in different ways,
+            perhaps generating new errors, it gives you a better feel for what's
+            going on in the system.</p>
+          <p><span style="text-decoration: underline;"><strong>Rule 3: Quit
+                Thinking and LOOK.</strong></span></p>
+          <p>Don't keep hypothesizing, look at the internals about what's<em>
+              actually</em> going on. If you can literally "see" what's going
+            on, it'll help you narrow down the possibilities.</p>
+          <p><span style="text-decoration: underline;"><strong>Rule 4: Divide
+                and Conquer</strong></span></p>
+          <p>Find the range at which the bug is occurring, find the patterns,
+            and allow that to help you narrow the search. As David Agans puts
+            it, "If there's goo, the pipe is upstream. If there's no goo, the
+            pipe is downstream."</p>
+          <p><span style="text-decoration: underline;"><strong>Rule 5: Change
+                ONE Thing At A Time</strong></span></p>
+          <p>Another one of my favorite rules. I used this tactic in building my
+            mini computer when I had to figure out which signals were coming off
+            of which GPIO pins to turn on the touchscreen. If you change one
+            thing, it'll aid in ruling out what's <em>not</em> causing the
+            issue and help you find what <em>is.</em></p>
+          <p><span style="text-decoration: underline;"><strong>Rule 6: Keep An
+                Audit Trail</strong></span></p>
+          <p>This one is incredibly important. Sometimes you can't stay up until
+            3am attempting to fix a bug, and when you wake up in the morning or
+            come back after school, you forgot what you tried the previous day.
+            Simply keeping a file in the project folder of your computer or
+            writing things down on sticky notes can boost your productivity
+            because you're able to remember the smaller details of the steps you
+            took.</p>
+          <p><span style="text-decoration: underline;"><strong>Rule 7: Check The
+                Plug</strong></span></p>
+          <p>If you got this far and still haven't figured it out, go back to
+            the basics. Is it plugged in the right way? Did you make sure to
+            recompile it before running? Start at the beginning and make sure
+            all your assumptions are correct.</p>
+          <p><span style="text-decoration: underline;"><strong>Rule 8: Get A
+                Fresh View</strong></span></p>
+          <p>Getting an outside view on an issue or error can be a lifesaver.
+            Don't be too proud to ask for fresh insights or ask someone with
+            more experience, they've all been where you have. "Bugs happen. Take
+            pride in getting rid of them, not getting rid of them by yourself."
+            ~David Agans<br>
+            When doing so, provide symptoms of what's going on, don't give
+            someone else your theory of why it's happening. Not only will you
+            learn what's going on better, but it'll give better information to
+            the person you're asking to help you.</p>
+          <p><span style="text-decoration: underline;"><strong>Rule 9: If You
+                Didn't Fix It, It Ain't Fixed</strong></span></p>
+          <p>A bug never decides to flit away on its own. If it randomly
+            disappears, something else is likely wrong. Make sure it's fixed by
+            stimulating the failure, and if it isn't fixed, head back to the
+            drawing board.</p>
+          <p>Don't forget to take brain breaks, debugging can be ugly and
+            annoying.</p>
+          <p>I really enjoyed David Agan's book, there's <em>much </em>more
+            content than anything I just shared. I highly recommend reading it,
+            whether your a programmer, engineer, DIY-ist, even someone who just
+            enjoys problem solving.</p>
+          <p>happy debugging!</p>
+          <p>{thallia}</p>
+          <span style="font-family: Ubuntu Mono;"></span>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 251px; width: 941px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 644px;">
+          <ul id="tabbar">
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 65px; margin-left: -49px;"><b><span
+                          style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; width: 583px; margin-left: 15px;" id="footer">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>4x4x4 Rainbow LED Cube | Hardware</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="thallia">
+    <meta name="description" content="project rainbow">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div>
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[11.5.17]
+              4x4x4 Rainbow LED Cube | Hardware<br>
+            </span></h2>
+          <span style="font-family: Ubuntu Mono;"></span><span style="font-family: Ubuntu Mono;"></span></div>
+        <div>
+          <p>Materials:</p>
+          <ul>
+            <li>64 LEDs - 3mm</li>
+            <li style="width: 746px;">Resistors (you can calculate the amount of
+              resistance you need, I used 200ohm)</li>
+            <li>a through-hole generic PCB board</li>
+            <li style="width: 745px;">Wooden board (not huge, just big enough to
+              stick the LEDs in to solder the layers)</li>
+            <li>Hookup wire</li>
+            <li>Male-to-male jumper wires</li>
+            <li>Craft wire (I used 0.8mm)</li>
+            <li>Jumper wires</li>
+            <li style="width: 746px;">Elegoo Uno (I bought the Elegoo knockoff
+              of an Arduino since I didn't have a ton of money, it works exactly
+              the same!)</li>
+            <li>A LOT of solder</li>
+          </ul>
+          <p>Tools:</p>
+          <ul>
+            <li>Soldering station</li>
+            <li>Drill (with 3mm OR 1/8in drill bit)</li>
+            <li>Wire cutters and strippers</li>
+            <li>Round nose pliers</li>
+            <li>crocodile clips (very, <em>very</em> useful)</li>
+          </ul>
+          <p>&nbsp;</p>
+          <p style="width: 748px;">Step 1: Measure out equidistant holes in your
+            wooden board. It's really important that they're as equal as you can
+            get it, or else your LEDs are going to stand all wonky, and it'll be
+            hard to solder them all together.<br>
+            <br>
+            <img src="../images/cube-1.jpg" title="project cube"></p>
+          <p>I measured the holes about 1/2in apart.</p>
+          <p>Step 2: Drill the holes!</p>
+          <img src="../images/cube-2.jpg" alt="" title="project cube" style="width: 748px;"><br>
+          <p style="width: 746px;">It helps to have an LED right next to you to
+            make sure it'll fit nicely in each hole.</p>
+          <p style="width: 748px;">Step 3: Solder the LED strips.<br>
+            Take all the LEDs and bend the cathode (the short, negative lead) in
+            such a way that it doesn't touch the anode (the longer lead), and
+            make sure when you fit them into the holes on your wooden board that
+            the cathodes overlap each other so you can solder them together,
+            like so:</p>
+          <img src="../images/cube-3.jpg" alt="" title="project cube" style="width: 746px;"><br>
+          <br>
+          <p style="width: 748px;">Once you solder all the strips, lay them out
+            in each set of holes, (with all the cathodes pointing the same way),
+            and....</p>
+          <p style="width: 748px;">Step 4: Cut some craft wire and solder it
+            across the LED strips to make it a square!<br>
+            <img src="../images/cube-5.jpg" alt="" title="cube"></p>
+          <p></p>
+          <p style="width: 748px;">At this point I recommend using a 9V battery
+            with a resistor on the positive (red) lead, and with the black lead
+            touching the craft wire, go through and test all the LEDs to see if
+            any burnt out or aren't working. Trust me, it'll save a LOT of time
+            if you have to replace one now rather than later.</p>
+          <p style="width: 748px;">Step 5: Solder the layers!<br>
+            Line the layers up on top of each other (one at a time), and
+            remember that you're *only soldering the leads pointing up*.<br>
+            <img src="../images/cube-6.jpg" alt="" title="cube"></p>
+          <p></p>
+          <p style="width: 751px;">If you're having a bit of trouble keeping the
+            cube upright or the layers stable, the crocodile clips come in handy
+            to steady the design.</p>
+          <img src="../images/cube-7.jpg" alt="" title="cube" style="width: 746px;"><br>
+          <p style="width: 747px;">The above picture was actually a mistake, I
+            accidentally flipped the layer around the wrong way and had to
+            desolder it because all the cathodes weren't pointing the right way.
+            (The cathodes being the shorter leads that you bent earlier) I
+            wanted to show an example of the crocodile clips, though.</p>
+          <p>Once that's completed, you can turn the cube right side up!</p>
+          <img src="../images/cube-8.jpg" alt="" title="cube" style="width: 748px;"><br>
+          <p style="width: 746px;">You can trim all the excess <em>craft</em>
+            wire off. As for the cathodes sticking out on the sides, I cut them
+            in a stepping-stone fashion like <a href="http://www.makeuseof.com/tag/how-to-make-a-pulsating-arduino-led-cube-that-looks-like-it-came-from-the-future/"
+              target="_blank" rel="noopener">this tutorial said</a>, which will
+            make things easier once we hook the LEDs up to a PCB.</p>
+          <p>Step 6: Get the right PCB<br>
+            <img src="../images/cube-9.jpg" alt="" title="cube" style="width: 747px;"></p>
+          <p style="width: 748px;">I bought this PCB kit for...about $11, I
+            think. It was a really good deal, these PCBs seem to work very
+            nicely. They weren't as big as they needed to be, though, so I hot
+            glued two of them together.</p>
+          <p style="width: 746px;">This was probably the trickiest part of the
+            whole project: getting 16 LED leads into tiny holes all at the same
+            time. Round nose pliers were my best friend when I did it. Once you
+            get them all in, solder all the joints at the bottom so all your
+            hard work will stay in place!<br>
+            <br>
+            <img src="../images/cube-10.jpg" alt="" title="cube"></p>
+          <p>Step 7: Put the resistors in.</p>
+          <p style="width: 746px;">Round nose pliers were super handy for this
+            step as well. I chopped the leads of the resistors to be tinier than
+            usual, then with some pliers I stuck them in the holes and soldered
+            them in.<br>
+            <img src="../images/cube-11.jpg" alt="" title="cube" style="width: 747px;"><br>
+            <img src="../images/cube-12.jpg" alt="" title="cube" style="width: 747px;"><br>
+            With the leftover resistor leads I used them as mini hookup wire to
+            connect the resistors to the LEDs on the bottom of the board.<br>
+            <img src="../images/cube-13.jpg" alt="" title="cube"><br>
+            Step 8: Cut up some more craft wire and solder it to the negative
+            stepping-stone leads, and wire them down to the PCB. <br>
+            <img src="../images/cube-14.jpg" alt="" title="cube"><br>
+            <img src="../images/cube-15.jpg" alt="" title="cube"><br>
+            Step 9: Get some hookup wire, strip the ends, and pull them all
+            towards the oval pads to connect to the jumper wire GPIO thingies.<br>
+            <img src="../images/cube-16.jpg" alt="" title="cube"><br>
+            I would recommend starting with the smaller hookup wires, I found it
+            hard to solder around the bigger ones already in place without
+            almost melting the insulation stuff. <br>
+            <img src="../images/cube-17.jpg" alt="" title="cube"><br>
+            Step 10: Solder the jumper wires to the board!<br>
+            <img src="../images/cube-18.jpg" alt="" title="cube"></p>
+          <p style="width: 746px;">As you can see, I color coded the wires based
+            on which resistor it was connected to. That way, I'll have an easier
+            time connecting the jumper wires to the GPIO pins on the Uno.</p>
+          <p style="width: 747px;">I still have to get some small wire or just
+            use solder to connect the hookup wire to the actual resistors and
+            GPIOs, so the signals will actually flow through the circuit. But
+            otherwise, the big job is finished.</p>
+          <p style="width: 747px;">And that's it! I followed this tutorial the
+            whole time: <a href="http://www.makeuseof.com/tag/how-to-make-a-pulsating-arduino-led-cube-that-looks-like-it-came-from-the-future/">http://www.makeuseof.com/tag/how-to-make-a-pulsating-arduino-led-cube-that-looks-like-it-came-from-the-future/</a></p>
+          <p style="width: 748px;">Next time, I'll put up a post on the Uno,
+            loading the code, and getting it all to run.</p>
+          <p>{thallia}</p>
+          <span style="font-family: Ubuntu Mono;"></span>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 251px; width: 941px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 644px;">
+          <ul id="tabbar">
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 65px; margin-left: -49px;"><b><span
+                          style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; width: 583px; margin-left: 15px;" id="footer">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>iPod 3rd Generation Jailbreak</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="thallia">
+    <meta name="description" content="A branch of knowledge.">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div>
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[10.6.17]
+              iPod Touch 3rd Generation Jailbreak<br>
+            </span></h2>
+          <span style="font-family: Ubuntu Mono;"></span><span style="font-family: Ubuntu Mono;"></span><br>
+          <p style="width: 746px;">I was originally going to trade in my old
+            iPod 3G, but none of the places I wanted to take it would give me
+            good money for it (which is entirely understandable, it's a
+            ridiculously old model and hardly works anymore). I was going to
+            take it apart to see the guts and glory, until my friend suggested
+            that I load Linux onto it!</p>
+          <p style="width: 747px;">Now, finding a resource to do so is really
+            hard, and I haven't found one that works so far. But I have
+            successfully jailbroken the iPod, which is super cool in and of
+            itself.</p>
+          <p style="width: 746px;">Before this, I'd never heard of jailbreaking.
+            It's a way of removing software restrictions that Apple places on
+            the device, so you can do things you wouldn't usually be able to do
+            on an un-jailbroken device. It gives you root access to the OS files
+            and you can download things that you couldn't normally get on the
+            App Store.</p>
+          <p style="width: 744px;">I followed <a href="http://www.iphonehacks.com/2012/06/jailbreak-ios-5-1-1-ipod-touch-4g-ipod-touch-3g-redsn0w-untethered.html"
+              target="_blank" rel="noopener">this tutorial</a>, but thought I'd
+            go through it here as documentation as well.</p>
+          <p style="width: 748px;">First, you plug the iPod into your computer.
+            If you have data on it that you want to save, make sure to back it
+            up. I did this all on OSX (reasons below).</p>
+          <p style="width: 747px;">Here are all the disclaimers and warnings
+            from that tutorial:</p>
+          <ul>
+            <li style="width: 745px;"><strong>This guide is meant for iPod touch
+                users</strong>. iPad users can check out <a href="http://www.iphonehacks.com/2012/06/jailbreak-ios-5-1-1-new-ipad-3-ipad-2-ipad-1-users-redsn0w-untethered.html">this
+                guide</a>.</li>
+            <li>Redsn0w 0.9.12b2 supports untethered&nbsp;jailbreak.</li>
+            <li style="width: 744px;">Redsn0w 0.9.12b2 supports iPod touch 4G,
+              iPod touch 3G running on iOS 5.1.1.</li>
+            <li style="width: 748px;">Please ensure your iPod touch is on iOS
+              5.1.1 (Settings –&gt; General –&gt; About –&gt; Version should be
+              5.1.1)&nbsp;before proceeding.</li>
+            <li style="width: 750px;">Please note that&nbsp;<a href="http://www.iphonehacks.com/jailbreak_iphone">jailbreaking
+                your iPod touch</a>&nbsp;may void your warranty and hence
+              proceed with&nbsp;<a href="http://www.iphonehacks.com/2010/04/apple-cautions-users-against-jailbreaking-iphone-os.html">caution</a>&nbsp;and
+              at your own risk.</li>
+            <li>Please do not forget to backup your iPod touch before you
+              proceed.</li>
+            <li>Please ensure you are running latest version of iTunes.</li>
+          </ul>
+          <p style="width: 747px;">You can download the zip file from
+            http://www.iphonehacks.com/download-redsn0w.</p>
+          <p style="width: 748px;">I thought it was a super sketch website at
+            first and was skeptical of whether or not to download it, but I
+            decided otherwise. After unzipping it, double click on the
+            application. It looks something like this:</p>
+          <p style="width: 746px;"><img src="../images/ipodjail1.jpg" title="ipod 3rdgen jailbreak"></p>
+          <br>
+          <p style="width: 748px;">If the iPod is connected, you should see that
+            redsnow recognizes it at the bottom. Click on "jailbreak and install
+            cydia", and the process should complete in little time!</p>
+          <p style="width: 746px;">Make sure to wait for the iPod to reboot
+            before unplugging it. Then search for Cydia to appear in the apps
+            (you can use search to find it), then wait a little longer for a
+            second reboot before unplugging and using. You should be all set!</p>
+          <p style="margin-left: -12px; width: 845px;"> </p>
+          <span style="font-family: Ubuntu Mono;">{thallia}</span>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 251px; width: 941px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 644px;">
+          <ul id="tabbar">
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 65px; margin-left: -49px;"><b><span
+                          style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; width: 583px; margin-left: 15px;" id="footer">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

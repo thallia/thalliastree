@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Raspberry Pi IRC Server</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="irc server">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="width: 746px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[12.2.17]
+              Raspberry Pi IRC Server <br>
+            </span></h2>
+          <span style="font-family: Ubuntu Mono;"></span>
+          <p style="width: 746px;">As UTW is growing, we're getting closer and
+            closer to using a better platform for chatting (we've been using
+            Discord up to this point, which has been fantastic). To get practice
+            in networking ideas and to use my old Raspberry Pi B+, I decided to
+            set up a small IRC server.</p>
+          <p style="width: 746px;">I found this tutorial at Pi My Life Up: <a href="https://pimylifeup.com/raspberry-pi-irc-server/">https://pimylifeup.com/raspberry-pi-irc-server/</a></p>
+          <p style="width: 749px;">It covered the basics, but not <em>all</em>
+            of them, so I thought I'd make a tutorial and document what I've
+            done as well.</p>
+          <p>As always, I started with <code>sudo apt-get update</code> and <code>sudo
+              apt-get upgrade</code>.</p>
+          <p style="width: 748px;">Next, I installed a software called <a href="http://www.ircd-hybrid.org/">Ircd-Hybrid</a>,
+            “A lightweight, high-performance internet relay chat daemon".
+            Perfect for the raspberry pi!</p>
+          <p style="width: 746px;">The next step requires you to make a
+            password, and have something to copy/paste it, or have something to
+            write it down.<br>
+            Using <code>/usr/bin/mkpasswd password</code>, replace "password"
+            with your preferred and secret password, hit enter, and it should
+            return an encrypted, scrambled version of your password. COPY AND
+            SAVE THIS, we'll need it later!</p>
+          <p style="width: 746px;">Next you have to configure what you actually
+            want your server to do, say, be named, etc. To access the
+            configuration file, run:</p>
+          <p><code>sudo nano /etc/ircd-hybrid/ircd.conf</code></p>
+          <p style="width: 746px;">There's a <em>lot</em> to look at in this
+            config. It overwhelmed me at first, but as long as you take it one
+            block at a time, it's fairly easy to understand.</p>
+          <p>In the first block, <strong>serverinfo {</strong>, find the first
+            line:</p>
+          <p><code>name = "hybrid8.debian.local";</code></p>
+          <p>And change it to:</p>
+          <p><code>name = "underthewire.irc";</code></p>
+          <p style="width: 746px;">In my case, I changed the name to Under the
+            Wire, since that's the name of our group. You can change it to
+            whatever name you wish :)</p>
+          <p>Next, find:</p>
+          <p><code>description = "ircd-hybrid 8.1-debian";</code></p>
+          <p>And change it to be similar to this:</p>
+          <p><code>description = "Raspberry Pi UTW IRC Server";</code></p>
+          <p style="width: 748px;">This is the description of what the server
+            is, and it'll display this when you connect to the server in your
+            IRC client (I use weechat).</p>
+          <p>Find:</p>
+          <p><code>network_name = "debian";<br>
+              network_desc = "This is My Network";</code></p>
+          <p>Replace with:</p>
+          <p><code>network_name = "underthewire";<br>
+              network_desc = "This is the unofficial test run UTW IRC Server";</code></p>
+          <p>This describes the network that your server is going to run on.</p>
+          <p style="width: 746px;">Now skip down past the <code>admin</code>, <code>log</code>,
+            and <code>class</code> blocks until you find the <code>listen</code>
+            block.</p>
+          <p>In <code>listen</code>, change the <code>host</code> line to your
+            local IP address.</p>
+          <p>Next, find the <code>auth</code> block.<br>
+            in:<br>
+            <code>user = "*@127.0.0.1";</code></p>
+          <p>You can replace it with:<br>
+            <code>user = "*@*";</code><br>
+            to allow all IP addresses to be able to access the server.</p>
+          <p>Within the <code>operator</code> block, find:</p>
+          <p><code>user = "*@192.0.2.240/28";</code></p>
+          <p>and change it to:</p>
+          <p><code>user = "*@*";</code></p>
+          <p>Finally, find the <code>password</code> line.</p>
+          <p><code>password = "xxxxxxxxxxxxx";</code></p>
+          <p style="width: 746px;">Replace the <code>x</code>s with the
+            encrypted password that you generated for your server near the
+            beginning of this post.</p>
+          <p style="width: 746px;">You should be done now, so <code>Ctrl-x</code>
+            your way out, <code>y</code> to save the changes.</p>
+          <p style="width: 747px;">Now we'll edit the MOTD file, which will
+            appear to the users once they connect to your server!<br>
+            Using <code>sudo nano /etc/ircd-hybrid/ircd.motd</code> to get
+            there. You can delete all the contents of the file and write your
+            own messages, or keep the Debian Swirl and write over the words, or
+            leave it as is.</p>
+          <p style="width: 747px;">I kept the debian swirl and wrote down the
+            rules and inside jokes of our group. :)</p>
+          <p style="width: 748px;">After saving and exiting, run <code>sudo
+              /etc/init.d/ircd-hybrid restart</code> to restart the server and
+            implement all your changes.</p>
+          <p style="width: 747px;">Connecting to the server was the challenging
+            part, but it's fairly simple once you understand how to port forward
+            from your router.<br>
+            Since <em>I</em> am on my network, I hypothesized that I can't
+            connect to the server from the public IP since I'm already <em>in</em>
+            the network. But I'd still have to port forward so other people can
+            join with my public IP.</p>
+          <p style="width: 747px;">My ISP (internet service provider) is
+            Xfinity/Comcast, so with a few screenshots I'll demonstrate how to
+            port forward on their website.</p>
+          <p style="width: 747px;">First, you have to find your local IP
+            address, in which mine was <code>10.0.0.1</code>. If you enter your
+            local IP into your browser like so:</p>
+          <p><code>10.0.0.1</code></p>
+          <p style="width: 745px;">It should take you to the router gateway.
+            You'll be asked to login. The username default for Comcast/Xfinity
+            is <code>admin</code>, and the default password is <code>password</code>.
+            It took me <em>way</em> too long to figure that out...but once I
+            did, I changed the default password.</p>
+          <p style="width: 746px;">After you've logged in, it should look
+            something like this on the top lefthand side:</p>
+          <img src="../images/ircserver1.png" alt="" title="irc server"><br>
+          <p style="width: 746px;">Click on Advanced, and the drop down menu
+            will have a Port Forwarding option.</p>
+          <p>That will take you to a screen that looks like this:<br>
+            <img src="../images/ircserver2.png" alt="" title="irc server" style="width: 746px;"><br>
+            Make sure you've clicked on <code>Enable</code>.<br>
+            After that, click on <code>Add Service</code>, which will load a
+            scary screen like this:<br>
+            <img src="../images/ircserver3.png" alt="" title="ircserver" style="width: 747px;"></p>
+          <p>For <code>Common services</code> there are many options depending
+            on what your network can do, but I left it as other for my goal.</p>
+          <p>The <code>Service Name</code> is where you enter a name or label
+            for whatever this port forward will be used for. I wrote <code>Raspberry
+              Pi UTW IRC</code>.</p>
+          <p>The <code>Service Type</code> I left as TCP/UDP, because I didn't
+            know for sure which one it would need. If you know for sure, you can
+            choose that specific option.</p>
+          <p>In <code>Server IPv4 Address</code> you place the IP address that
+            points to the device the server is on. If you have a UNIX-based
+            system, you can enter <code>hostname -I</code> into the terminal
+            and it should return its IP address.</p>
+          <p>I skipped over the Ipv6, and in the start port, <code>6667</code>
+            and end port I put <code>6667</code>. That seemed to be the most
+            default IRC port that I saw. Once done, click <code>save</code>,
+            and you should be done! If the changes don't take effect
+            immediately, a router reboot wouldn't hurt anything.</p>
+          <p>Finally, we can try connecting!</p>
+          <p>I use weechat as my IRC client. Connecting with that (as me), I
+            ran:</p>
+          <p><code>/server add nameoftheircserver local-ipaddress-of-device</code><br>
+            It looked like this for me:<br>
+            <code>/server add underthewire 10.0.0.xxx</code><br>
+            (where the x's were numbers)</p>
+          <p>Then:<br>
+            <code>/connect underthewire</code><br>
+            And it should run!</p>
+          <p>Now if you wanted to allow other people to access the IRC server,
+            the syntax looks exactly the same, but they put your <em>public</em>
+            IP address in place of the local IP. You can find your public IP
+            address at ipchicken.com</p>
+          <p>And that's it! Super easy, I finished it in 2hrs with researching
+            included. Thanks to uelen, fouric, and Gector in UTW for answering
+            my questions as I was going through this project.</p>
+          <p>As for next steps, I'm going to put an SSL certificate on the
+            server to make it secure, and hopefully upgrade or remake a new
+            server once I understand more how the process works. :)</p>
+          <p> {thallia}</p>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 300px; width: 772px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 799px; margin-left: 5px;">
+          <ul>
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 64px; margin-left: -49px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp; <b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; margin-left: 5px; width: 619px;">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>
