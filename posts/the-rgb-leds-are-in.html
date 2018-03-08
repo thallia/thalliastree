@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>the RGB LEDs are In!</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="all" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="A branch of knowledge.">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div>
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[7.29.17]
+              the RGB LEDs are IN!<br>
+            </span></h2>
+          <span style="font-family: Ubuntu Mono;"></span><span style="font-family: Ubuntu Mono;"></span><span
+            style="font-family: Ubuntu Mono;"></span>
+          <p style="margin-left: -12px; width: 845px;"><br>
+          </p>
+          <p style="width: 746px;">The second to last step of getting the tech
+            for my laminar fountain is complete!</p>
+          <p style="width: 746px;">I ordered a pack of <a href="https://www.amazon.com/gp/product/B01C19ENDM/ref=oh_aui_detailpage_o00_s00?ie=UTF8&amp;psc=1"
+              target="_blank" rel="noopener">100 RGB LEDs</a>, super bright (not
+            to mention cheap), from Amazon, and they came yesterday. Very good
+            quality materials. I tore apart my old wiring setup and got these
+            new LEDs ready for action.</p>
+          <p style="width: 748px;">I stuck four of 'em into a breadboard and
+            then calculated the resistance for each color using the voltage drop
+            information from the sticker on the bag. The red LED had a drop of
+            2.0-2.2V, and the green/blue LEDs had a drop of 3.0-3.2V.</p>
+          <p style="width: 746px;">With this info, you can calculate the
+            strength of resistor that you need. You take the input voltage of
+            your device (in my case, 5V) and subtract the voltage drop from the
+            initial voltage. 5V - 2.2V = 2.8V. Now I take the kind of current
+            that runs through them, 20mA, and divide 2.8V by 20mA (or 0.02A),
+            which results in 140 Ohms. I didn't have a 140 Ohm Resistor, but I
+            did have a 150 Ohm, so I used that from my <a href="//www.amazon.com/dp/B016NXK6QK/ref=cm_sw_r_cp_api_a-xFzbEF7HZ4V">handy
+              resistor pack</a> I got from amazon for $8.</p>
+          <p style="width: 749px;">Doing the same calculations with the
+            Green/Blue LEDs, I got 90 Ohms, which I used 100 Ohm resistors for.</p>
+          <p style="width: 749px;">With all the resistors hooked up and the
+            jumper wires attached, this is what my setup looked like:</p>
+          <img src="../images/rgb-leds-are-in.jpg" alt="" title="RGB leds are in"
+            style="width: 746px;"></div>
+        <div>
+          <p>It's basically a jungle of wires.</p>
+          <p>Here's the GPIO pins I hooked each one up to:</p>
+          <p>(RGB 1 - upper right) red=pin0, green=pin2, blue=pin 4<br>
+            (RGB 2 - lower left) red=pin1, green=pin3, blue=pin<br>
+            (RGB 3 - lower right) red=pin6, green=pin0, blue=pin<br>
+            (RGB 4 - lower left) red=pin7, green=pin1, blue=pin3</p>
+          <p>The result was strikingly happy! Check it out:</p>
+          <p><a href="https://youtu.be/M_qwLlry4Yc" target="_blank" rel="noopener">I
+              Won't Let You Down - OKGO</a></p>
+          <p><a href="https://youtu.be/BRwoWGSZPjA" target="_blank" rel="noopener">My
+              Type - Saint Motel</a></p>
+          <p style="width: 746px;">I did have a bit of trouble with the sound
+            portion of it all, somehow I configured the music to be
+            ear-blastingly loud, and my little tiny iHome speaker didn't have
+            any volume control. So after blowing up my ears multiple times
+            trying to figure out what went weird, all I did was enter <code>alsamixer</code>
+            into my terminal, and there were sound controls right there for me.
+            Woohoo! Just a few up/down keystrokes and the sound was ready to go.</p>
+          <p style="width: 746px;">For the fountain, it's also very inconvenient
+            that if I want any of this to work, I have to download the music I
+            want to hear onto the raspi via flash drive. My friend and I decided
+            that was dumb, so I researched how to get music by either bluetooth
+            or some sort of airplay function. I discovered a fantastic program
+            called <a href="https://github.com/mikebrady/shairport-sync" target="_blank"
+              rel="noopener">shairport-sync</a>, which works like any airplay
+            device. It'll broadcast an airplay-like signal to your apple devices
+            that allows your phone, ipad, or computer to access and live-stream
+            media through.</p>
+          <p style="width: 746px;">Sadly, though, my raspberry pi is a bit too
+            old to support the software. I was able to get it installed
+            perfectly and my phone all connected, but when I attempted to play a
+            song, the lights lit up once and nothing came out of the speaker.
+            After figuring out that my hardware was the problem, my friend
+            offered to pay for a new Raspberry Pi 3 that'll support the function
+            much better. That's coming soon, so I get to reinstall and figure
+            this all out on a new Raspi! Until then, I've made good progress.</p>
+          <p style="width: 746px;">After we figure out the new raspi, I'll order
+            some insulated wire and get that hooked up to each LED that'll sit
+            inside the fountain to make pretty colored water.</p>
+          <p>Bye for now!</p>
+          <p style="margin-left: -1px; width: 747px;"> </p>
+          <span style="font-family: Ubuntu Mono;"></span><span style="font-family: Ubuntu Mono;">{thallia}</span><b><br>
+          </b>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 251px; width: 941px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 644px;">
+          <ul id="tabbar">
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 65px; margin-left: -49px;"><b><span
+                          style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; width: 583px; margin-left: 15px;" id="footer">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

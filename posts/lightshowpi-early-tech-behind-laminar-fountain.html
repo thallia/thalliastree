@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Lightshow Pi ~ Early Tech Behind the Laminar Fountain</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="all" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="project laminar">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="width: 745px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[7.24.17]
+              Lightshow Pi ~ Early Tech Behind the Laminar Fountain<br>
+            </span></h2>
+          <span style="font-family: Ubuntu Mono;"></span><span style="font-family: Ubuntu Mono;"></span><span
+            style="font-family: Ubuntu Mono;"></span>
+          <p style="margin-left: -12px; width: 845px;"><br>
+          </p>
+          <p style="width: 746px;">Today was awesome. I made huge progress in
+            the tech side of the laminar fountain project.</p>
+          <p style="width: 746px;">I found a software called <b><a href="http://lightshowpi.org/">LightShow
+                Pi</a></b>, which was originally created for Christmas light
+            shows, but many people have used it for smaller projects of their
+            own.</p>
+          <p style="width: 746px;">The first step after getting an LED to flash
+            with the Pi was to install the software. First I had to update all
+            the packages 'n stuff on my system with <code>sudo apt-get update</code>
+            and <code>sudo apt-get upgrade</code>. That took around
+            thirty-minutes to fully install.</p>
+          <p>Next I cloned the LightShow Pi repository off of GitHub: <code>cd
+              ~<br>
+              git clone https://togiles@bitbucket.org/togiles/lightshowpi.git<br>
+            </code><br>
+            And change to the stable branch of code: <code></code><code>cd
+              lightshowpi<br>
+              git fetch &amp;&amp; git checkout stable</code></p>
+          <p style="width: 746px;">Once completed, you install the stuff! Just
+            make sure you're in the "lightshowpi" directory. Then you can run: <code>sudo
+              ./install.sh</code>.</p>
+          <p style="width: 746px;">This part tripped me up, because it took over
+            two hours. Everything installed fine until it started running the
+            line <code>Installing rpi-audio-levels...</code>. My Pi got really
+            hot and stuck, so I rebooted and tried to reinstall, but it kept
+            getting stuck.</p>
+          <p style="width: 746px;">I left it for about 2hrs (with many checks in
+            between) before seeing that it had finished. Then I rebooted as the
+            instructions said.</p>
+          <p style="width: 746px;">After that, the next step would be to build
+            the actual LED setup on my breadboard. Initially I tried following <b><a
+                href="https://docs.google.com/document/d/1x97JIu5xVInZMutTNeaHlnQuyoLHjf3h-ugIo64pGfI/edit"
+                target="_blank" rel="noopener">this link</a></b>, but only for a
+            generic idea of how to wire the breadboard. I didn't have a breakout
+            board, so I went back to basics and made a simple circuit like the
+            one in my last post, but with eight LEDs instead of just one.</p>
+          <img src="../images/laminar-led-1.jpg" alt="" title="laminar led 1"><br>
+          Next I attached the pins of the Raspberry Pi (3.3V and Ground) to the
+          breadboard:</div>
+        <div style="width: 745px;"><img src="file:///home/thallia/thalliastree/images/laminar-led-2.jpg"
+            alt="" title="laminar led 2"></div>
+        <div style="width: 745px;">Next step was to figure out what GPIO pins
+          the Pi was using for the project, the google doc said GPIOs 0-7. <b><a
+              href="http://pi4j.com/pins/model-b-rev1.html">I used this chart to
+              locate them.<br>
+            </a></b></div>
+        <img src="../images/laminar-led-3.jpg" alt="" title="laminar led 3" style="width: 747px;"><br>
+        <img src="../images/laminar-led-4.jpg" alt="" title="laminar led 4" style="width: 746px;"><br>
+        <p style="width: 746px;">Lovely mess, ain't it? The pins are attached to
+          their respective LED, and each LED is also connected to ground.</p>
+        <p style="width: 746px;">Finally, I could plug it all in and test this
+          thang! To test it and make sure you have all the right channels, you
+          run <code>sudo python py/hardware_controller.py --state=flash</code></p>
+        <p>Each LED blinked twice, and I knew I had the right setup.</p>
+        <p style="width: 748px;">To play music, there were a few more steps I
+          had to take. First, to make sure I had audio output, I connected my
+          audio jack to a portable speaker I had (that's the blue thing). Next I
+          had to actually find the music. Using a Lexar USB, I pulled some mp3
+          files from my music collection and put them on the USB, which I
+          connected to the Pi. Then using the command:</p>
+        <p style="width: 748px;"><code>sudo python py/synchronized_lights.py
+            --file=/home/pi/Desktop/Music/singles/shelter.mp3</code></p>
+        <p style="width: 746px;">With <code>--file=</code>, you continue the
+          command with the file path of where your music is located.</p>
+        <p style="width: 749px;">After all that work, I got this wonderful
+          result. <b><a href="https://youtu.be/oHTUvcA52Bo">https://youtu.be/oHTUvcA52Bo</a></b></p>
+        <p>Next step, to try it with RGB LEDs. </p>
+        <p>Until next time!</p>
+        <br>
+        <br>
+        <br>
+      </div>
+      <div>
+        <div style="width: 745px;">
+          <p style="width: 746px;"></p>
+          <p style="margin-left: -12px; width: 845px;"> </p>
+          <span style="font-family: Ubuntu Mono;"> </span>
+          <h2 style=" margin-left: 7px; width: 826px;"><span style="font-family: Ubuntu Mono;">Recent
+              Posts:</span></h2>
+          <span style="font-family: Ubuntu Mono;"> </span>
+          <p><span style="font-family: Ubuntu Mono;"><b>* Setting Up A Web
+                Server on FreeBSD 12.0-CURRENT | here<br>
+              </b></span></p>
+          <span style="font-family: Ubuntu Mono;"> </span>
+          <p><span style="font-family: Ubuntu Mono;"><b>* i3wm Setting Up
+                Backlight + Sound keybindings | here<br>
+              </b></span></p>
+          <span style="font-family: Ubuntu Mono;"> </span>
+          <p><span style="font-family: Ubuntu Mono;"><b>* Difference Between a
+                Dictionary, an Array, a Record, and a Map | here<br>
+              </b></span></p>
+          <span style="font-family: Ubuntu Mono;"> </span>
+          <p><b><span style="font-family: Ubuntu Mono;">* Programming Paradigms
+                | What Are They and How Do They Work? | here</span><br>
+            </b> </p>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 251px; width: 941px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 644px;">
+          <ul id="tabbar">
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 65px; margin-left: -49px;"><b><span
+                          style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; width: 583px; margin-left: 15px;" id="footer">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>
