@@ -21,8 +21,8 @@
         <div>
           <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
           </span></div>
-        <div>
-          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[6.14.17]
+        <div style="width: 747px;">
+          <h2 style="margin-left: 3px; width: 824px;"><span style="font-family: Ubuntu Mono;">[6.14.17]
               Spaced Repetition Learning Systems<br>
             </span></h2>
           <span style="font-family: Ubuntu Mono;"></span>
@@ -53,7 +53,51 @@
             to get down and dirty with the project, so I built my own system out
             of cardboard and decked it out with <a href="http://www.sheknows.com/home-and-gardening/articles/951617/what-is-washi-tape">washi
               tape </a>when I finished, to make it look happy.</p>
-          <p>&nbsp;</p>
+          <img src="../images/srls-leitner.jpg" alt="leitner system" title="leitner system"
+            style="width: 746px;">
+          <p>Not too shabby, eh?</p>
+          <p>It's pretty shabby.</p>
+          <p>In case you don't like the idea of making your own Leitner system,
+            there is an online version by the name of <a href="https://apps.ankiweb.net/">Anki</a>
+            that works just as well.</p>
+          <p>As you can see, I marked each compartment with a "c1, c2, c3,
+            ...cN", giving me seven mini-boxes. In a Spaced Repetition System,
+            you start out with all your flash cards in the first compartment.
+            Those cards you review <em>every day</em>. When you get a
+            definition or concept right, you're allowed to move that flashcard
+            to the next compartment, where you review those card every <em>three
+              days</em>. If and when you get them right again, you move those
+            cards to the next section, where you review them every <em>five
+              days</em>. If you get a concept or definition wrong, though, you
+            have to move the card back to the previous compartment.<br>
+            When you finally get to the end of the compartments and have
+            reviewed those cards at least 5 times, they can be put into the
+            retired deck to be reviewed once a month.</p>
+          <p>Here's a visual:</p>
+          <img src="../images/vocabulary-leitner-system.jpg" alt="wiki-leitner"
+            title="wiki-leitner"></div>
+        <div style="width: 747px;">&nbsp;</div>
+        <div style="width: 747px;">I initially used the Leitner System for
+          simple definitions and words with a one sentence answer. As I began to
+          realize its efficiency, I added more complicated subjects onto my
+          flashcards: concepts that required me to explain them out loud like I
+          was teaching this new idea to a five year old. This extended my
+          ability not only to remember the concepts, but pushed me to create new
+          ways to explain and understand what information I was conveying.
+          <p>I have successfully memorized over 400 definitions, concepts, and
+            programming instructions with the Leitner System. It only takes me,
+            at most, five to ten minutes a day to complete. This is extremely
+            useful when you're venturing into a new and daunting field that
+            requires you to remember hundreds of definitions on the spot, such
+            as biology or engineering. The Leitner System and SRSs are an
+            incredible tool to help learn a new language, memorize some babe's
+            phone number, self-teach programming concepts or terms, remember
+            dates for history finals, teach yourself guitar chords, there are no
+            limits. <em>Anything</em> can be put into this, and, if you put in
+            enough effort, you'll have a bunch of neat things embedded in your
+            mind for any situation you find yourself in.</p>
+          <p>Happy learning!<br>
+            {thallia}</p>
           <!-- end of content column: put your content above this line --> </div>
       </div>
       <div id="tswfooter">
