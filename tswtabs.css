@@ -1,8 +1,8 @@
 #tswcsstabs ul {
   margin-top: 0px;
-  margin-right: 0px;
+  margin-right: auto !important;
   margin-bottom: 0px;
-  margin-left: 0px;
+  margin-left: auto !important;
   padding-top: 0px;
   padding-right: 0px;
   padding-bottom: 0px;
@@ -34,16 +34,16 @@
   color: white;
   background-color: black;
   border-top-width: 1px;
-  border-top-style: outset;
-  border-top-color: black;
   border-right-width: 1px;
-  border-right-style: outset;
-  border-right-color: black;
   border-bottom-width: 1px;
-  border-bottom-style: outset;
-  border-bottom-color: black;
   border-left-width: 1px;
+  border-top-style: outset;
+  border-right-style: outset;
+  border-bottom-style: outset;
   border-left-style: outset;
+  border-top-color: black;
+  border-right-color: black;
+  border-bottom-color: black;
   border-left-color: black;
   padding-top: 8px;
   padding-right: 8px;
@@ -67,5 +67,30 @@
   font-size: 110%;
   font-weight: normal;
   text-align: left;
+}
+
+#tabbar {
+  display: inline !important;
+}
+
+#footer {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#tswcsstabs {
+  margin-left: auto;
+  margin-right: auto;
+  display: inline;
+}
+
+#footertabs {
+  display: inline !important;
+}
+
+#test {
+  margin-right: auto;
+  margin-left: auto;
 }
 
