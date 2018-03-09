@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>ESP32 with Blynk | Lighting and LED Over Wifi</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="led wifi">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="width: 746px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[12.3.17]
+              ESP32 With Blynk | Lighting an LED over Wifi<br>
+            </span></h2>
+          <span style="font-family: Ubuntu Mono;"></span>
+          <p>Recently, my friend Gector lent me a new microcontroller called the
+            ESP32. They are fairly new to the market and have super cool wifi,
+            bluetooth, and networking capabilities! Since I've been in the area
+            of networking projects for the past few days, I thought I'd play
+            around with one.</p>
+          <p>To set it up, I followed <a href="https://learn.sparkfun.com/tutorials/esp32-thing-hookup-guide#arduino-example-wifi"
+              target="_blank" rel="noopener">Sparkfun's tutorial</a>.</p>
+          <p>First, make sure you have the Arduino IDE installed on your OS.</p>
+          <p>Next, make a directory in your filesystem where you want all the
+            ESP32 stuff to go.<br>
+            Then run all these lovely instructions from this <a href="https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/debian_ubuntu.md"
+              target="_blank" rel="noopener">github documentation</a>:<br>
+            <code>sudo usermod -a -G dialout $USER &amp;&amp; \<br>
+              sudo apt-get install git &amp;&amp; \<br>
+              wget https://bootstrap.pypa.io/get-pip.py &amp;&amp; \<br>
+              sudo python get-pip.py &amp;&amp; \<br>
+              sudo pip install pyserial &amp;&amp; \<br>
+              mkdir -p ~/Arduino/hardware/espressif &amp;&amp; \<br>
+              cd ~/Arduino/hardware/espressif &amp;&amp; \<br>
+              git clone https://github.com/espressif/arduino-esp32.git esp32
+              &amp;&amp; \<br>
+              cd esp32 &amp;&amp; \<br>
+              git submodule update --init --recursive &amp;&amp; \<br>
+              cd tools &amp;&amp; \<br>
+              python get.py</code></p>
+          <p>Since I didn't have Arduino.app installed in /Applications/ on my
+            computer, I didn't have to change some other aspects of my
+            installation. But if you do have that setup, don't forget to run
+            this:<br>
+            <code> cd /Applications/Arduino_*/Contents/java/hardware/<br>
+              mkdir -p espressif &amp;&amp; \<br>
+              cd espressif &amp;&amp; \<br>
+              git clone https://github.com/espressif/arduino-esp32.git esp32
+              &amp;&amp; \<br>
+              cd esp32 &amp;&amp; \<br>
+              git submodule update --init --recursive &amp;&amp; \<br>
+              cd tools &amp;&amp; \<br>
+              python get.py</code></p>
+          <p>Once done, <code> cd /esp32/tools</code> and run <code>python
+              get.py</code>.</p>
+          <p>Now you can connect your ESP32 to your computer!<br>
+            In the Arduino IDE, under <code>Tools</code>, select <code>ESP32
+              Dev Module</code> as your board. Make sure you have the right <code>Port</code>
+            selected, too.<br>
+            My setup looks like this:</p>
+        </div>
+        <div style="width: 746px;"><img src="../images/esp32-blynk.png" title="esp32 arduino"><br>
+          <p>Once finished, I installed the <a href="https://www.blynk.cc/" target="_blank"
+              rel="noopener">Blynk</a> app on my iPhone. Sign up with an email
+            and password, and create a <code>New Project</code>.</p>
+          <p>Give your project a name, choose the <code>ESP32</code> as the
+            device and <code>WiFi</code> as the connection type. Tap create
+            project when you're finished!<br>
+            This will direct you to a black screen. Tap anywhere to add a
+            "widget", where you'll select the <code>Button</code> option. It'll
+            add the button to your screen. Tap on it to edit the settings.</p>
+          <p>In settings, in the empty <code>PIN</code> field, put Digital
+            GP21. Save/Exit the settings, and you're almost finished.</p>
+          <p>Before we can see any action, we've got to download the Blynk
+            Arduino Library.<br>
+            On the <a href="https://github.com/blynkkk/blynk-library" target="_blank"
+              rel="noopener">Blynk Github Page</a>, you can clone the repo into
+            your Arduino folder, or you can download the ZIP file and extract it
+            into the Arduino folder.</p>
+          <p>In the Arduino IDE, go to <code>Sketch &gt; Include Library &gt;
+              Blynk</code> and the library should be imported.</p>
+          <p>After that, download the sample code found in this tutorial:
+            http://www.instructables.com/id/Use-ESP32-to-Control-LED-With-Blynk-Via-WiFi/</p>
+          <p>Then replace "Your auth token" with the authorization code sent to
+            you in your email for the project in this code block:<br>
+            <code>// You should get Auth Token in the Blynk App.<br>
+              // Go to the Project Settings (nut icon).<br>
+              char auth[] = "Your Auth Code Here";<br>
+            </code></p>
+          <p>And again in this line farther down in the file:<br>
+            <code>Blynk.begin("Your Auth Code Here", ssid, pass);<br>
+            </code></p>
+          <p>Near the beginning of the file, add your Network WIFI name and
+            password where it says:<br>
+            <code> char ssid[] = "Network name";<br>
+              char pass[] = "Network password";<br>
+            </code></p>
+          <p>Save the file and load it into the Arduino IDE as a sketch, but
+            don't run it yet.</p>
+          <p>Make sure your ESP32 is plugged into the computer. Now stick it
+            into a breadboard and find an LED. Plug the LED's long (anode) led
+            into Pin 21 of the ESP32, and the short (cathode) leg into pin GND.
+            There are GPIO charts you can find on the interwebs if there aren't
+            any names on your board.</p>
+          <p>The moment of truth comes...upload the code onto the ESP32 and open
+            the Serial Monitor (<code>Tools &gt; Serial Monitor</code>). If all
+            goes well, your board should connect to your wifi and say something
+            that looks like this:</p>
+          <p><code>rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)<br>
+              configsip: 0, SPIWP:0xee<br>
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00<br>
+              mode:DIO, clock div:1<br>
+              load:0x3fff0018,len:4<br>
+              load:0x3fff001c,len:956<br>
+              load:0x40078000,len:0<br>
+              load:0x40078000,len:13076<br>
+              entry 0x40078ad0<br>
+              Connecting to HOME-D7EF-2.4<br>
+              ..WiFi connected<br>
+              [1075] Connecting to HOME-D7EF-2.4<br>
+              [1075] Connected to WiFi<br>
+              [1075] IP: 10.0.0.175<br>
+              [1075]<br>
+              ___ __ __<br>
+              / _ )/ /_ _____ / /__<br>
+              / _ / / // / _ \/ '_/<br>
+              /____/_/\_, /_//_/_/\_\<br>
+              /___/ v0.5.0-beta on ESP32</code></p>
+          <p>[5001] Connecting to blynk-cloud.com:8442<br>
+            [5241] Ready (ping: 116ms).</p>
+          <p>If you run into trouble, don't worry. If it can't upload the code
+            due to permissions issues, open a terminal and run:<br>
+            <code>sudo chmod 666 /path/to/port</code></p>
+          <p>If you get an error about an invalid auth code like I did, make
+            sure all your devices are on the same network as the ESP32, generate
+            a new auth code, and double check your setup.<br>
+            If you're still having issues, take a look at Sparkfun's tutorial I
+            mentioned at the beginning of this article. They have a few
+            resources I may not have mentioned.</p>
+          <p>In the Blynk app press the <code>Play</code> triangle in the top
+            right hand corner. It should tell you whether or not the WiFi LED is
+            connected or not, and once it is, go ahead and press your button,
+            and the LED will light up!</p>
+          <p>So much excitement for something so small and cute, but it's sure
+            fun to play with.</p>
+          <p>{thallia}</p>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 300px; width: 772px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 799px; margin-left: 5px;">
+          <ul>
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 64px; margin-left: -49px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp; <b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; margin-left: 5px; width: 619px;">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

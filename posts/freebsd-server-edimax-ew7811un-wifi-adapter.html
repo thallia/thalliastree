@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Edimax EW-7811Un Wifi Adapter on FreeBSD Server</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="led wifi">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="width: 746px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[12.5.17]
+Edimax
+              EW-7811Un Wifi Adapter on FreeBSD Server<br>
+            </span></h2>
+          <span style="font-family: Ubuntu Mono;"></span> </div>
+        <div style="width: 746px;">Servers are <i>awesome</i>. They're like
+          huge hunks of metal and machinery that can perform duties like the big
+          supercomputers they are.<br>
+          <br>
+          I acquired a massive, old, and clunky Dell server from one of the UTW
+          dudes, of which I have now named Big Bertha. She's a feisty one, I
+          tell ya.<br>
+          <br>
+          Because I want to have her running 24/7 in my garage or closet, I had
+          to get a WiFi adapter working so she could run without ethernet.<br>
+          <br>
+          Through a post on the FreeBSD forums, I determined the driver that
+          worked alongside the Edimax 7811Un adapter was <code>urtwn0</code>. I
+          believe you can also run these in the terminal if you're still not
+          sure, and it'll return a driver:<br>
+          For FreeBSD 10 and under:<br>
+          <code>ifconfig | grep -B3 -i wireless</code><br>
+          <br>
+          For FreeBSD 11 and higher:<br>
+          <code>sysctl net.wlan.devices</code><br>
+          <br>
+          Once determined, it was a matter of putting some lines in config
+          files.<br>
+          <br>
+          In <code>/etc/wpa_supplicant.conf</code>, put in:<br>
+          <br>
+          <code>network={<br>
+            ssid="myssid"<br>
+            psk="mypsk"<br>
+            }</code><br>
+          <br>
+          Where <code>myssid</code> is the name of your network, and <code>mypsk</code>
+          is the password.<br>
+          <br>
+          In <code>/etc/rc.conf</code>, put:<br>
+          <br>
+          <code>wlans_urtwn0="YES"<br>
+            ifconfig_wlan0="WPA SYNCDHCP"</code><br>
+          <br>
+          Where <code>urtwn0</code> is the replaced by the driver that works
+          with your server.<br>
+          <br>
+          Finally, put the code below in <code>/boot/loader.conf</code>:<br>
+          <br>
+          <code>if_urtwn_load="YES"</code><br>
+          <br>
+          And because I knew the edimax adapter used a Realtek chip, I added
+          this to the same loader file:<br>
+          <code><br>
+            legal.realtek.license_ack=1</code><br>
+          <br>
+          After that, reboot your server OR run <code>service netif restart</code>.<br>
+          If everything works correctly, you should be able to ping <code>google.com</code>
+          or <code>ping 8.8.8.8</code> and get responses back.<br>
+          <br>
+          {thallia}<br>
+          &nbsp;
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 300px; width: 772px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 799px; margin-left: 5px;">
+          <ul>
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 64px; margin-left: -49px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp; <b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; margin-left: 5px; width: 619px;">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

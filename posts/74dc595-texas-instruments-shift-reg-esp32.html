@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>74HC595 Texas Instruments Shift Registers with ESP32</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="led wifi">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="width: 746px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[12.24.17]
+74HC595
+              Texas Instruments Shift Registers with ESP32<br>
+            </span></h2>
+          <span style="font-family: Ubuntu Mono;"></span> </div>
+        <div style="width: 746px;">Servers are <i>awesome</i>. They're like
+          huge hunks of metal and machinery that can perform duties like the big
+          supercomputers they are.</div>
+        <img src="../images/shiftreg-1.jpg" alt="" title="shift reg" style="width: 746px;">
+        <div style="width: 746px;"><br>
+        </div>
+        <div style="width: 746px;">Texas Instruments 74HC595, ready for duty.<br>
+          <br>
+          These shift registers are adorable, cool, and perfect for my next
+          project.<br>
+          Gector gifted me two of them to play with, so I set up a simple shift
+          register experiment - LEDs!<br>
+          <br>
+          With the datasheet, a helpful article from Arduino, and my ESP32, it
+          took around 30 minutes to try it out.<br>
+          <br>
+          Starting with an empty breadboard, the shift registers, and the ESP32:<br>
+          <img src="../images/shiftreg-2.jpg" alt="" title="shift reg"><br>
+          <p>We're gonna connect the ESP32's 3.3V and GND pins to the
+            appropriate sides of the breadboard. On the ESP32, those'll be the
+            top right and left pins by the processor. I used<a href="https://raw.githubusercontent.com/gojimmypi/ESP32/master/images/myESP32%20DevKitC%20pinout.png">
+              this </a>diagram to help me determine for sure.</p>
+          <p>Then we'll start getting the shift register hooked up to the
+            important things.</p>
+          <p>First things first is <em>power.<br>
+            </em><img title="" src="https://www.arduino.cc/en/uploads/Tutorial/595_pin_diagram.png"
+              alt=""></p>
+          <p>With a jumper wire, connect the 3.3V power to pin 16 - Vcc. With
+            another jumper wire, connect Pin 8 - GND to ground.</p>
+          <p>We can skip pin 15 for now, Q0, since that's an output pin. Pin 14
+            is the serial data input, where we'll connect the switch, but I'm
+            going to do that later on.</p>
+          <p>Pin 13 is Output Enable. If I remember correctly from my PSU
+            microprocessors textbook, the line overtop the letters on the
+            diagram means the input is inverted. On the Arduino pin chart I
+            linked earlier, OE pin is constantly active low when the shift
+            register is powered on. This means if we connect pin 13 to ground,
+            the signal will invert, and the pin will be active high and enable
+            the outputs to go to the LEDs that we'll hookup later. Therefore,
+            lets connect pin 13 to its respective GND.<br>
+            <img src="../images/shiftreg-4.jpg" alt="" title="shift reg"></p>
+          <p>Pin 12 ST_CP and Pin 11 SH_CP are fun. Pin 12, ST_CP is the shift
+            register clock pin. Pin 11 is the shift register <em>latch</em>
+            pin. These pins allow the shift register to <em>latch</em> the
+            input data into the system, and via <em>clock signal, </em>shift
+            them down the output registers. Because the input for both clock and
+            latch are coming from the same pin on the ESP32, I'm going to tie
+            the two pins together.</p>
+          <p>Next, connect GPIO 24 (IO4) of the ESP32 above the tied pins.<br>
+            <img src="../images/shiftreg-5.jpg" alt="" title="shift reg"></p>
+          <p>MR stands for Master Reclear, and this pin is also set to active
+            low, but when there's an input, it's inverted. We're going to hook
+            this pin up to 3.3V, so the signal will continue to act as active
+            low.</p>
+          <p>Boom! That's all you need to hook up to the shift register, aside
+            from the switch and the LEDs.</p>
+          <p>For this example, I'm going to be using common cathode RGB LEDs,
+            but that can be easily replaced with a few regular LEDs.</p>
+          <p>Tie the cathode to ground and place the anodes into the first three
+            pins on the opposite side of the shift register.</p>
+          <p>Find out what resistors you need, if any, and place those between
+            the pins and the anodes.<br>
+            <img src="../images/shiftreg-6.jpg" alt="" title="shift reg"></p>
+          <p>Now we can set up the switch. Because I didn't have a legit button
+            or switch on hand, I made one out of jumper wires.</p>
+          <p>Stick a 330Ohm resistor into Pin 14, the Serial Data pin, and pull
+            it out beyond the shift register. With a jumper wire, connect the
+            "empty" end of the resistor to Ground. Grab another jumper wire and
+            plug it into the 3.3V, but let it hang freely and don't connect it
+            to anything yet.<br>
+            <img src="../images/shiftreg-7.jpg" alt="" title="shift reg"></p>
+          <p>Finally, load <a href="https://github.com/thallia/BinaryWatch/blob/master/clockcycle.ino"
+              target="_blank" rel="noopener">this code from my GitHub</a> (code
+            cred: CaptainGector) onto your Arduino or ESP32, and plug it all in.</p>
+          <p>Nothing should happen yet. Take the free hanging jumper wire and
+            touch it to the front part of the resistor plugged into the pin. If
+            everything is correctly plugged in, the LEDs should light up in
+            order and turn off in order. Yay!!<br>
+            <video src="../images/shiftreg.mp4" preload="none" controls="controls"></video></p>
+          <p> </p>
+        </div>
+        <div style="width: 746px;">
+          <p>Keep in mind, I'm only utilizing 3 out of the 8 available outputs
+            on this thing. If you want to maximize your output to 16 or even 24
+            outputs, you can add one or two more shift registers very easily by
+            setting up the power and LEDs the same way, and linking Pin 9 (Q7')
+            of the first register to the Pin 3 (DS) of the second shift
+            register, and so on.</p>
+          <p>With this technology I'm hoping to set up a binary wristwatch
+            wearable. I've bought most of the parts already, next step is to
+            learn all the code and use the ESP32 to grab accurate time from the
+            internet, then get a mock setup working on my breadboards.</p>
+          <p>Stay tuned!</p>
+          {thallia}<br>
+          &nbsp;
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 300px; width: 772px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 799px; margin-left: 5px;">
+          <ul>
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 64px; margin-left: -49px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp; <b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; margin-left: 5px; width: 619px;">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>
