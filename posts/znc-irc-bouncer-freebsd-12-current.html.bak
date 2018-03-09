@@ -13,7 +13,7 @@
   </head>
   <body style="background-color: black;">
     <div id="tswcontainer" style="width: 1531px;">
-      <div id="tswheader" style="width: 1284px; margin-left: 82px;">
+      <div id="tswheader" style="width: 1506px; margin-left: -3px;">
         <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
           target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
             title="home logo" id="thalliastreelogo"></a>
