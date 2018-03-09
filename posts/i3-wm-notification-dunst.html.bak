@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>i3 Window Manager and Notification Daemon Dunst</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="A branch of knowledge - first post">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="width: 747px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[2.2.18]
+              Prepping the ATmega328P<span style="font-family: &quot;FreeMono&quot;;">
+                | Binary Watch</span><br>
+            </span></h2>
+          <p>I haven't been doing a ton of super nerd things lately because of
+            school and work, so I decided to play around with setting up the i3
+            window manager; one, because I wanted to learn a new way to navigate
+            my computer, and two, because I've been bugged to try it one too
+            many times. XD</p>
+          <p>So! I installed i3 with:</p>
+          <p><code>sudo apt-get install i3</code></p>
+          <p>Then restarted my computer. When logging back in, there should be a
+            little gear icon that shows up right by the "login" button. Click on
+            the gear and <code>i3</code> should be an option to choose from.</p>
+          <p>A window should pop up asking what you want your $mod key to be.
+            the $mod key is the key that will start <em>all</em> of your
+            keybindings. i3 window manager is all about keybindings, so if you
+            want a fun learning curve and hate using the mouse, this is the
+            window manager for you!</p>
+          <p>At first I was terrified because I couldn't figure out how to get a
+            terminal set up. Then my friend advised the keybinding, <code>$mod+enter</code>.
+            I had chosen the Win key as my $mod key, so it was <code>win+enter</code>.
+            :)</p>
+          <p>Once I had my terminal up and running, I had to fix the scaling on
+            my mac with its fancy HiDPI screen. But other than that, the next
+            step was to jump into the config file. The config syntax wasn't hard
+            to learn, and you can find my config file here:<br>
+            <a href="https://github.com/thallia/dotconfig/i3/config" target="_blank"
+              rel="noopener">https://github.com/thallia/dotconfig/i3/config</a></p>
+          <p>As long as you can get a terminal and start working with the config
+            (in spacemacs, emacs, vim, nano, whatever!) you're basically using
+            i3, you just have to keep remembering the keybindings to get where
+            you want to go.</p>
+          <p>Configuring all the colors is so much fun. I ended up making a
+            keybinding cheat sheet while I'm in the works of getting them all
+            memorized.</p>
+          <img src="../images/i3-cheatsheet.jpg" style="width: 746px; height: 861px;"></div>
+        <div style="width: 747px;">
+          <p>I've found so far that in some cases I like working in tiled setup
+            (when working on coding projects) and fullscreen+tabbed in
+            day-to-day usage. :)</p>
+          <p>If you have trouble maneuvering around and starting programs, I'd
+            recommend installing rofi and binding it to a comfortable keybinding
+            position (mine is Control+space). Rofi is like dmenu, but much
+            prettier. It'll pop up and allow you to execute programs like
+            firefox, screenshot, and more, all without touching the mouse, which
+            I appreciate.</p>
+          <p>I wasn't fond of the notifications in i3, so I took to the
+            interwebs and found <a href="https://github.com/dunst-project/dunst"
+              target="_blank" rel="noopener">Dunst</a>. Dunst is a cool little
+            notification daemon that you can use to replace the default i3
+            daemon, plus it's configurable! *laughs maniacally*</p>
+          <p>You can get dunst by:</p>
+          <p><code>git clone https://github.com/dunst-project/dunst.git</code><br>
+            <code>cd dunst</code><br>
+            <code>make</code><br>
+            <code>sudo make install</code></p>
+          <p>And that should be the end of that. I <em>highly</em> recommend
+            installing all the dependencies before trying to <code>make</code>,
+            or else you'll get some nasty errors.</p>
+          <p>The next step is to switch the i3 notification daemon from the
+            default to Dunst.<br>
+            <code>cd</code> into <code>/usr/share/dbus-1/services/</code>, then
+            find a file that looks similar to <code>org.freedesktop.Notifications</code>
+            and <code>sudo vim</code> into it.</p>
+          <p>After <code>Exec</code>, replace <code>Exec=/usr/lib/xfce4/notifyd/xfce4-notifyd</code>
+            with:<br>
+            <code>Exec=/usr/bin/dunst</code>.</p>
+          <p>Save and quit!</p>
+          <p>Once completed, <code>sudo mv /path/to/dunst/folder /usr/share/</code></p>
+          <p>Then copy over the config file:<br>
+            <code>sudo cp /usr/share/dunst/dunstrc
+              /home/username/.config/dunst/dunstrc</code>.</p>
+          <p>Now you can configure everything to your heart's content! <a href="https://linuxconfig.org/get-better-notifications-in-your-wm-with-dunst"
+              target="_blank" rel="noopener">Here's</a> a good article to get
+            you in on the basics, and here's my dunst config file:</p>
+          <p>https://github.com/thallia/dotconfig/dunst/dunstrc</p>
+          <p>Happy configging!</p>
+        </div>
+        <div style="width: 747px;">
+          <p></p>
+          <p> {thallia}</p>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 300px; width: 772px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 738px; margin-left: -1px;">
+          <ul>
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 64px; margin-left: -49px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp; <b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; margin-left: 5px; width: 619px;">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

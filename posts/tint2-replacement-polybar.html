@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>a branch of knowledge</title>
+    <title>tint2 replacement | polybar</title>
     <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="tswtabs.css">
@@ -22,62 +22,55 @@
         <div>
           <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
           </span></div>
-        <div>
-          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[6.12.17]
-              a branch of knowledge<br>
+        <div style="width: 747px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[2.2.18]
+              tint2 replacement | polybar<br>
             </span></h2>
-          <span style="font-family: Ubuntu Mono;"></span>
-          <p style="width: 815px;">céad míle fáilte,&nbsp; a hundred thousand
-            welcomes!</p>
-          <p style="width: 746px;">I am thallia, a young and aspiring engineer.
-            Electrical engineering and computer engineering have been my focus
-            for almost a year now, alongside programming, mathematics, science,
-            and a little dabble of natural medicine.</p>
-          <p style="width: 747px;">Soon I will be shipped off to college to
-            pursue my career in electrical engineering--with that I want to
-            further the research and technology to aid in naturopathic and other
-            natural medical care.</p>
-          <p style="width: 747px;">The reason I chose to start a blog is due
-            partially from influence of my mentor. I am a part of a team called
-            <em>Under the Wire</em>, a small group of individuals with a passion
-            for learning and, hopefully someday, we want to reinvent technology.</p>
-          <p style="width: 746px;">One of the concepts provided to us by our
-            mentor is called <em>infinity learning</em>. A bit dramatic, I
-            know, that's what makes it fun. The concept of infinity learning is,
-            ideally, where you are able to train yourself to remember the
-            majority of anything you ever learn. A tool helpful to accomplish
-            this is a blog.</p>
-          <p style="width: 747px;">The blogging format gives you a place to,
-            "review, clarify, and document your experiences and learnings"
-            (fouric, 2017). As you learn concepts, run into problems, or
-            discover new things, a skilled way of making sure you understand it
-            completely and correctly is to teach it to someone else; in this
-            case, write it out and explain it to others reading the blog. When
-            you have a limited understanding of a concept, sharing it with
-            someone else requires you to have a fuller knowledge of whatever
-            you're trying to teach them, therefore pushing you to understand a
-            concept to its full potential.</p>
-          <p style="width: 745px;">Using a blog format also gives you a copy of
-            what you know, a frame of reference for if you forget a concept or
-            piece of knowledge in the future.</p>
-          <p style="width: 746px;">With that in mind, this blog is where I'll be
-            posting things that I learn, projects that I'm working on, or
-            problems I run into in the process of learning. I hope some of these
-            posts will teach you a thing or two, provide you with things to
-            think on, or serve as entertainment in general.</p>
-          <p style="width: 747px;">If you ever have any questions or comments,
-            feel free to contact me! My contact information is located in the
-            Contact page, found on the navigation bar at the bottom of my site.
-            If you want to read more about who I am and how I got interested in
-            these subjects, visit my Who Am I page. :)</p>
-          <p>Thank you for stopping by!<br>
-            {thallia}</p>
+          <p>tint2 is a taskbar that you can configure your window manager,
+            typically with openbox, to have a bar at the top of your screen that
+            displays info&nbsp; about tabs, battery, and date and time for you.</p>
+          <p>While tint2 is great and all...it is by no means pretty. It's janky
+            to set up, and looks pretty janky too, which is a no no for me.</p>
+          <p>My friend mentioned he had set up polybar, and I remembered I had
+            had it bookmarked for the longest time to get it set up, so I
+            decided to give it a shot!</p>
+          <p>First, I cloned the repository onto my computer:</p>
+          <p><code>git clone --branch 3.1.0 --recursive
+              https://github.com/jaagr/polybar</code></p>
+          <p>And, following the instructions,</p>
+          <p><code>mkdir polybar/build</code><br>
+            <code> cd polybar/build</code></p>
+          <p>Once here, I recommend installing all the dependencies first to
+            make sure you don't get a bunch of errors in a row.</p>
+          <p><code>sudo apt install cmake cmake-data libcairo2-dev libxcb1-dev
+              libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev
+              libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config
+              python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev
+              libpulse-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev
+              libxcb-cursor-dev</code></p>
+          <p>That should do the trick, and supply you with support for allllll
+            the features!</p>
+          <p>Once that's done, <code>cmake ..</code> in the build folder, then
+            <code>sudo make install</code>.</p>
+          <p>And boom, you're done!<br>
+            To configure polybar, create a <code>config</code> file in <code>~/.config/polybar/</code>.</p>
+          <p>After that, you can configure polybar with the modules and colors
+            you'd like to your heart's content! Here's my config file:
+            https://github.com/thallia/dotconfig/polybar/config</p>
+          <p>and what it looks like:</p>
+          <img src="../images/polybar.png" style="width: 746px; height: 21px;"></div>
+        <div style="width: 747px;"><br>
+        </div>
+        <div style="width: 747px;">to test out your config, you can execute <code>polybar
+            example</code>.
+          <p></p>
+          <p> {thallia}</p>
           <p>&nbsp;</p>
           <!-- end of content column: put your content above this line --> </div>
       </div>
       <div id="tswfooter" style="margin-left: 300px; width: 772px;">
         <!-- start of footer section: insert your copyright notice, etc, here -->
-        <div id="tswcsstabs" style="width: 644px; margin-left: 370px;">
+        <div id="tswcsstabs" style="width: 738px; margin-left: -1px;">
           <ul>
             <li><br>
             </li>

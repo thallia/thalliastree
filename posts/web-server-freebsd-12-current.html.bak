@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Mock Up PCB | Binary Watch</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="A branch of knowledge - first post">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="width: 747px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[2.4.18]
+              Mock Up PCB | Binary Watch<br>
+            </span></h2>
+          <p>I soldered deep into the night....and all throughout today.<br>
+            After hours of writing and testing code, fiddling with hardware, and
+            scraping through error after error, I can present to you the first
+            mock up through-hole PCB!</p>
+          <p>I designed the schematic on EasyEDA:</p>
+          <p><img src="../images/mock-pcb-1.png" alt=""><br>
+          </p>
+          <p>And followed the setup from there. I'll redo the schematic on
+            EagleCAD because I was using EasyEDA mainly for the learning
+            experience of using a different software. I could stand to make it a
+            bit easier to look at, too.</p>
+          <p>Getting all my tools and supplies out, I pumped this guy out after
+            a few hours:</p>
+          <img src="../images/mock-pcb-2.jpg" alt=""><br>
+          <img src="../images/mock-pcb-3.jpg" alt=""><br>
+          <p>The connections on the back are a little gross, but I was excited
+            to get it done! As you can see, I hadn't had room to stick a coin
+            cell battery holder, let alone the battery itself on the back, so
+            made a smaller PCB that acted as the power source.This was slightly
+            tricky, as I had to figure out what was GND and what was the power,
+            and where I was supposed to connect all the wires to.</p>
+          <p>Top:<br>
+            <img src="../images/mock-pcb-4.jpg" alt=""></p>
+          <p>Bottom:</p>
+          <p><img src="../images/mock-pcb-5.jpg" alt=""><br>
+            <img src="../images/mock-pcb-6.jpg" alt=""></p>
+          <p>Once everything was Vcc'ed and GNDed, I plugged the
+            microcontroller, shift registers, and battery in....<br>
+            <img src="../images/mock-pcb-7.jpg" alt=""><br>
+            <br>
+            and boom!</p>
+          <p><img src="../images/mock-pcb-8.jpg" alt=""><br>
+            <img src="../images/mock-pcb-9.jpg" alt=""></p>
+          <p>The coin cell battery powered it quite well, and I believe once I
+            start using the deep sleep modules, it'll be even more efficient. I
+            will have to test how much current the microcontrollers, shift
+            registers, and LEDs are drawing to make sure, of course.<br>
+            The wiring was a little iffy, if I shifted the wires by accident the
+            program would restart. I wasn't too worried about that, because it
+            worked all at once the first time I plugged it in and didn't touch
+            it. A little wire debugging wouldn't hurt in the future, but I'm
+            happy for now.</p>
+          <p>I'm so proud of how far I've come and everything I've learned so
+            far. There's nothing like a project to teach you so many new things
+            and hone your skills. Here's to more advancements soon!</p>
+          <p>Again, you can find the ATmega pinouts and my circuit design in
+            this blog post: <a href="https://thalliatree.wordpress.com/2018/02/04/prepping-the-atmega328p-bootloader-burn-fuse-byte-programming-and-hardware-test-binary-watch/">Prepping
+              the ATmega328P: bootloader burn, fuse-byte programming, and
+              hardware test | binary watch</a>, as well as have access to all my
+            resources on my <a href="https://github.com/thallia/BinaryWatch" target="_blank"
+              rel="noopener">github repository.</a></p>
+          <p>Next steps will require making&nbsp; a new schematic that's easier
+            to read, start working with the low power modules, and sketch out
+            some experimental PCB design.</p>
+        </div>
+        <div style="width: 747px;">
+          <p></p>
+          <p> {thallia}</p>
+          &nbsp;
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 300px; width: 772px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 738px; margin-left: -1px;">
+          <ul>
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 64px; margin-left: -49px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp; <b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; margin-left: 5px; width: 619px;">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

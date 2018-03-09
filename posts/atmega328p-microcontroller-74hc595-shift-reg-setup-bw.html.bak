@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>ArkenPi | Origins</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="A branch of knowledge - first post">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="width: 747px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[12.1.17]
+              ArkenPi | Origins (hardware)<br>
+            </span></h2>
+          <span style="font-family: Ubuntu Mono;"></span><br>
+          <p><strong><span style="text-decoration: underline;">Final list of
+                materials:</span></strong></p>
+          <ul>
+            <li>Raspberry Pi 3 Model B</li>
+            <li>MicroSD Card (32GB)</li>
+            <li>Adafruit PiTFT 3.5" PLUS Touchscreen</li>
+            <li>Lithium-Ion Polymer Battery (1200mAh)</li>
+            <li>Wireless Bluetooth Keyboard</li>
+            <li>5.5V to 3.3V step down converter</li>
+            <li>Adafruit Powerboost 1000c</li>
+            <li>Female USB Connectors</li>
+            <li>Male USB Connectors</li>
+            <li>MicroUSB POWER ONLY Cord (short)</li>
+            <li>Power switch</li>
+            <li>Wifi Adapter (optional)</li>
+            <li>2x 3mm LEDs</li>
+            <li>2x 200ohm resistors</li>
+            <li>A 3D Printed case OR hack your own out of hard drive cases</li>
+          </ul>
+          <p><strong><span style="text-decoration: underline;">Tools:</span></strong></p>
+          <ul>
+            <li>soldering station</li>
+            <li>pliers (round nose)</li>
+            <li>tweezers</li>
+            <li>knife</li>
+            <li>wire cutters</li>
+            <li>solder</li>
+            <li>hookup wire (stranded recommended)</li>
+            <li>electrical tape</li>
+            <li>hot glue gun + glue</li>
+            <li>(opt) helping hands</li>
+            <li>patience</li>
+          </ul>
+          <hr>
+          <p>Before assembling anything, I had to get the Pi3 to boot with the
+            Adafruit PiTFT plus, which was a pain in the butt. The adafruit
+            website declared,</p>
+          <p>"The display uses the hardware SPI pins (SCK, MOSI, MISO, CE0, CE1)
+            as well as GPIO #25 and #24. GPIO #18 can be used to PWM dim the
+            backlight if you like. All other GPIO are unused."</p>
+          <p>I found that to be false info. I scratched my head trying to figure
+            out how to find which pins were being used and which ones weren't,
+            and I came up with the brilliant and monotonous idea of connecting
+            40 jumper wires from the PiTFT to the Pi 3. I disconnected each pin
+            one at a time to see if it would boot correctly, then removed the
+            jumper wire if it wasn't needed. In thirty minutes, I had the right
+            pins to get the Pi to boot onto the TFT.</p>
+          <p><img class="transparent shrinkToFit" src="https://openclipart.org/image/2400px/svg_to_png/280972/gpiopinsv3withpi.png"
+              alt="https://openclipart.org/image/2400px/svg_to_png/280972/gpiopinsv3withpi.png"
+              width="939" height="672"><br>
+          </p>
+          <p>Using the chart above helped a lot (credit to whoever's chart it
+            is), and here are the GPIO pin numbers I came up with, and their
+            functions:</p>
+          <p><code> pin 1 - 3.3V PWR</code></p>
+          <p><code>pin 2 - 5V PWR</code></p>
+          <p><code>pin 9 - GND</code></p>
+          <p><code>pin 18 - GPIO24 (GPIO_GEN5)</code></p>
+          <p><code>pin 19 - GPIO10 (SPI0_MOSI)</code></p>
+          <p><code>pin 21 - GPIO9 (SPI0_MISO)</code></p>
+          <p><code>pin 22 - GPIO25 (GPIO_GEN6)</code></p>
+          <p><code>pin 23 - GPIO11 (SPI0-_CLK)</code></p>
+          <p><code>pin 24 - GPIO8 (SPI_CE0_N)</code></p>
+          <p><code>pin 26 - GPIO7 (SPI_CE1_N)</code></p>
+          <p><code>pin 27 - ID_SD (I2C EEPROM)</code></p>
+          <p><code>pin 28 - ID_SC (I2C EEPROM)<br>
+              <br>
+            </code><strong><span style="text-decoration: underline;">Assembly:</span></strong></p>
+          <img src="../images/arkenpi-3d-case.jpg" alt="">
+          <p>I had to wait three to four days for the case to finish drying, but
+            boy, was it worth it!</p>
+          <p>I started by desoldering the Li-Po battery from the inside of the
+            bluetooth keyboard, attaching to the leads the 5.5V to 3.3V step
+            down converter.<br>
+            <img src="../images/arkenpi-step-down.jpg" alt=""></p>
+          <p>The <em>Vout</em> of the step down I soldered go to the 5V and GND
+            through-holes on the Adafruit Powerboost 1000c.</p>
+          <p>I left the original USB port on the adafruit powerboost and
+            permanently soldered it to the board.</p>
+          <img src="../images/arkenpi-powerboost.jpg" alt="">
+          <p>I figured it would be easier to use a well off microUSB cord than
+            to play around with making my own with hookup wire. Fortunately, I
+            had an older (and shorter) microUSB cord that was just for power,
+            not data transfer, so I used that. I wasn't able to fit the microUSB
+            cord through the holes in the case, so I stripped off the plastic
+            cover to reveal the wires, and I soldered those onto the Pi. I
+            checked with a multimeter which pads were 5V and GND, so I knew
+            where to solder.</p>
+          <p><img src="../images/arkenpi-powercord.jpg" alt=""></p>
+          <p><img src="../images/arkenpi-powerpi.jpg" alt=""><br>
+          </p>
+          <p>In the end, I decided to forget attempting to get 12 hookup wires
+            through the holes in the case, and I resoldered a 2x20 GPIO header
+            onto the Pi and connected the PiTFT on top of those (like it was
+            intended to be used).</p>
+          <p>In the case, I drilled two holes for a power light and a low
+            battery light. All of these I soldered from the adafruit powerboost,
+            so I rigged up my 3mm LEDs.<br>
+            <img src="../images/arkenpi-led.jpg" alt=""></p>
+          <p>I wrapped a 200ohm resistor around the stripped wire, soldered the
+            two joints, then trimmed the wires.</p>
+          <p>I accidentally burned out an LED before realizing that the resistor
+            was in parallel, therefore not allowing the full resistance to get
+            to the LED. I trimmed the wire after that. (below)</p>
+          <img src="../images/arkenpi-led-2.jpg" alt=""><br>
+          My solder joints are pretty ugly, I know. But I promise I made them
+          nicer! I also covered that part of the wire in electrical tape.</div>
+        <div style="width: 747px;"><img src="../images/arkenpi-led-3.jpg" alt=""><br>
+          <p>Next was to solder hookup wire to the male USBs:</p>
+          <p><img src="../images/arkenpi-usb.jpg" alt=""><br>
+            I made each one a different length, since the female USBs were
+            different lengths away.</p>
+          <p><img src="../images/arkenpi-usb-1.jpg" alt=""></p>
+          <p>Hot gluing the solder joints was a life saver for me, because if
+            you bent the connections/wires too much the joints would break off.</p>
+          <img src="../images/arkenpi-usb-2.jpg" alt="">
+          <p>After putting each USB in, I had to bend and twist the wires so the
+            Raspberry Pi and PiTFT still fit snugly in the case, with the wires
+            bent around it.</p>
+          <p><img src="../images/arkenpi-usb-3.jpg" alt=""></p>
+          <p>I soldered the 3 green wires to the Vs, EN, and GND through-holes
+            and connected them to the power switch (not shown). The USB cable
+            soldered to the pi I plugged into the socket, and in the top right
+            hand corner I used a multimeter to find the polarities of the Low
+            Battery LED pads, and soldered one of the 3mm LEDs to that.</p>
+          <p>Under that swarm of wires I placed the LiPo battery and taped it to
+            the bottom with electrical tape.</p>
+          <p>Soon after, all I had to do was plug in the LiPo to the Powerboost
+            1000c, put the bevels in place, and watch the magic happen (the tape
+            is on the top because I haven't decided on a good way to secure the
+            bevel yet).</p>
+          <img src="../images/arkenpi-final.jpg" alt="">
+          <p></p>
+          <p><img src="../images/arkenpi-final-2.jpg" alt=""><br>
+          </p>
+          <p>Viola!! My very own portable linux computer. SO EXCITED!!</p>
+          <p>And yes, that <em>is</em> Doctor Strange as my background. ;)</p>
+          <p>I'm feeling very accomplished about this, and I hope this
+            walk-through has entertained you or inspired you to make one of your
+            own.<br>
+            If you have any questions about things I did, don't hesitate to
+            contact me!</p>
+          <p>Until next time.</p>
+          <p> {thallia}</p>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 300px; width: 772px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 749px; margin-left: 0px;">
+          <ul>
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 64px; margin-left: -49px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp; <b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; margin-left: 5px; width: 619px;">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

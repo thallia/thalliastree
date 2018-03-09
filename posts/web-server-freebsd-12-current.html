@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Setting Up A Web Server on FreeBSD 12.0-CURRENT</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="A branch of knowledge - first post">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="width: 747px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[3.4.18]
+              Setting Up A Webserver on FreeBSD 12.0-CURRENT<br>
+            </span></h2>
+          <p>A project I've been meaning to accomplish before college is setting
+            up a web server on my home server to host my blog. Now that I
+            successfully got the wifi and ZNC working, I can get into some more
+            exciting things!</p>
+          <p>My first task was to find out how to get a web server running on
+            FreeBSD 12.0-CURRENT. This was pretty easy.</p>
+          <p>(make sure you have root permissions before proceeding)<br>
+            <code>portsnap extract</code><br>
+            <code>portsnap fetch update</code><br>
+            <code>cd /usr/ports/www/apache24/</code><br>
+            <code>sudo make install clean</code></p>
+          <p>You'll have to wait a while after that last command, so be patient.
+            This should get apache24 installed on your server. Often it may stop
+            and ask you a few questions while installing, hit OK or Y to
+            continue with the settings. Seriously, it took around an hour on my
+            computer, so find something entertaining to learn or do while you
+            wait!</p>
+          <p>Once that's finished, <code>sudo vim /etc/rc.conf</code> and add
+            the line <code>apache24_enable="YES"</code>. Save and quit.</p>
+          <p>Next, <code>cp /usr/local/etc/apache24/httpd.conf
+              /root/httpd.conf.bak</code><br>
+            Then, <code>sudo vim /usr/local/etc/apache24/httpd.conf</code></p>
+          <p>Make ServerAdmin the email address you would like the server to
+            send emails to if it encounters errors, and the ServerName as your
+            IP address:port:</p>
+          <p><code>ServerAdmin you@emailaddress.com</code><br>
+            <code>ServerName Ip.Addr.Number:80</code></p>
+          <p>After setting that up, I thought it wise to set up security type
+            things before I put any data onto the domain I bought. From research
+            and talking with UTW, setting up HTTPS seemed like the best idea.</p>
+          <p>Before I get that set up, though, I needed to get my domain to stop
+            pointing at NameCheap's servers and point to my server.</p>
+          <p>I went into NameCheap, found my domain, clicked on <code>Advanced
+              DNS</code> and under the first option, <code>Host Records</code>
+            you add 2 new A records.<br>
+            One should have the host as <code>@</code> and your IP address
+            following that, and the second one should have the host as <code>www</code>
+            with your IP address.<br>
+            Make sure to delete the CNAME record that directs it to namecheap,
+            as well.</p>
+          <p><img src="../images/webserver-freebsd-12.png"><br>
+          </p>
+          <p>(pardon my terrible mouse-handwriting.)</p>
+          <p>Next is setting up the SSL/TTS security stuff. We're going to make
+            a few directories, first.</p>
+          <p><code>mkdir /usr/local/etc/apache24/sites-available</code><br>
+            <code>mkdir /usr/local/etc/apache24/sites-enabled</code></p>
+          <p>Then we're going to add a line into our configuration file:</p>
+          <p><code>sudo vim /usr/local/etc/apache24/httpd.conf</code></p>
+          <p>and add <code>IncludeOptional etc/apache24/sites-enabled/*.conf</code>
+            underneath the ServerName line.</p>
+          <p>Now we need to enable the TLS module for Apache,</p>
+          <p><code>sudo vim /usr/local/etc/apache24/modules.d/020_mod_ssl.conf</code></p>
+          <p>and add these lines:</p>
+          <p><code>Listen 443<br>
+              SSLProtocol ALL -SSLv2 -SSLv3<br>
+              SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5<br>
+              SSLPassPhraseDialog builtin<br>
+              SSLSessionCacheTimeout 300</code></p>
+          <p>Save and quit, now head back to <code>/usr/local/etc/apache24/httpd.conf</code>
+            and <em>uncomment </em>the line <code></code><code>LoadModule
+              ssl_module libexec/apache24/mod_ssl.so</code>.</p>
+          <p>Now we need to create a TLS configuration file:</p>
+          <p><code>sudo vim
+              /usr/local/etc/apache24/sites-available/bsd.lan-ssl.conf</code></p>
+          <p>And add:</p>
+          <img src="file:///home/thallia/thalliastree/images/webserver-freebsd-12-cert.png"
+            alt="">
+          <p>Don't forget to update the places that say <code>yourdomain.com</code>
+            with your actual domain name.</p>
+          <p>Finally, we can move on to Let's Encrypt! <code>cd</code> into <code>/usr/ports/security/py-certbot</code>
+            and <code>sudo make install clean</code>. After it compiles, run <code>sudo
+              pkg install py27-certbot py27-acme</code>.</p>
+          <p>Once complete, you can use this command to generate your
+            certificate!</p>
+          <p><code>certbot certonly --webroot -w /usr/local/www/apache24/data/
+              -d yourdomain.com -d www.yourdomain.com</code></p>
+          <p>When generating my certbot certification, I ran into an error:</p>
+          <p><code> Detail: No valid IP addresses found for yourdomain.net </code></p>
+          <p>To fix the first one, I had to change a record from A + DNS to a
+            singular A record. Next, I made sure to port forward ports 80 and
+            443 on my router.</p>
+          <p>If you're not sure how to port forward, find your local IP address
+            and enter it into your browser. That should take you to your ISPs
+            home page, where you can log in. From there, click around in
+            settings until you find Port Forwarding options, and set up
+            forwarding for HTTP(port 80) and HTTPS (port 443).</p>
+          <p>I also ran into the error that says, <code>Error getting
+              validation data</code>. This was fixed by making sure the CNAME
+            record in namecheap's domain records was deleted.</p>
+          <p>Now we need to update the certificates in the configuration file.</p>
+          <p><code>sudo vim
+              /usr/local/etc/apache24/sites-available/bsd.lan-ssl.conf</code>
+            and add these certificate lines:</p>
+          <p><code>SSLCertificateFile
+              "/usr/local/etc/letsencrypt/live/yourdomain.com/cert.pem"</code><br>
+            <code>SSLCertificateKeyFile
+              "/usr/local/etc/letsencrypt/live/yourdomain.com/privkey.pem"</code><br>
+            <code>SSLCertificateChainFile
+              "/usr/local/etc/letsencrypt/live/yourdomain.com/fullchain.pem"</code></p>
+          <p>I got a few errors with these too, so make sure you have the right
+            directories when you put them in the configuration file.</p>
+          <p>Then we'll create a symlink for the sites-enabled directory, so TLS
+            can find your cert files.</p>
+          <p><code>ln -sf
+              /usr/local/etc/apache24/sites-available/bsd.lan-ssl.conf
+              /usr/local/etc/apache24/sites-enabled/</code></p>
+          <p>Make sure there are no syntax errors:</p>
+          <p><code>apachectl -t</code></p>
+          <p>then sudo restart apache!</p>
+          <p><code>sudo service apache24 restart</code></p>
+          <p>Now to see if it actually worked. Run <code>sockstat -4 | grep
+              httpd</code>, which should output something like this:</p>
+          <img src="../images/webserver-freebsd-12-test.png" alt="">
+          <p></p>
+          <p>If that is what your output looks like, then time to celebrate!</p>
+          <p>My only error so far is that I cannot load my webpage from within
+            my home network. I can access it outside of my home wifi network and
+            others can access it as well, but other than that I have no access.
+            Which is rather strange, but I'll figure that out soon.</p>
+          <p>Next steps: find out how to get my blog on this thing.</p>
+          <p></p>
+        </div>
+        <div style="width: 747px;">
+          <p></p>
+          <p> {thallia}</p>
+          &nbsp;
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 300px; width: 772px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 738px; margin-left: -1px;">
+          <ul>
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 64px; margin-left: -49px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp; <b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; margin-left: 5px; width: 619px;">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

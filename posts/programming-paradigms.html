@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Programming Paradigms | What Are They and How Do They Work?</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="A branch of knowledge - first post">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="width: 747px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[2.24.18]
+              Programming Paradigms<br>
+            </span></h2>
+          <p>(disclaimer: this is a beginner's explanation and understanding of
+            these programming paradigms. if there are any errors or confusion,
+            please let me know and I will edit or correct those to become more
+            understandable. this is intended to be a basic overview.)</p>
+          <p>In my quest of self taught programming, I figured I've reached the
+            point of needing to really understand what an object is, as well as
+            the difference between the big types of programming:</p>
+          <ul>
+            <li>Object Oriented Programming (OOP)</li>
+            <li>Functional Programming (FP)</li>
+            <li>Structured Programming (SP)</li>
+            <li>Imperative Programming (IP)</li>
+            <li>Procedural Programming (PP)</li>
+            <li>Declarative Programming (DP)</li>
+          </ul>
+          <p>How do these all relate? What are the pros and cons of using each
+            one? I decided to go on a researching rampage.</p>
+          <p>Let's clarify some terms. What is a paradigm?</p>
+          <ul>
+            <li><abbr title="partOfSpeech">n.</abbr> A set of assumptions,
+              concepts, values, and practices that constitutes a way of viewing
+              reality for the community that shares them, especially in an
+              intellectual discipline.</li>
+            <li><abbr title="partOfSpeech">n.</abbr> A system of assumptions,
+              concepts, values, and practices that constitutes a way of viewing
+              reality.</li>
+            <li><abbr title="partOfSpeech">n.</abbr> A conceptual framework—an
+              established thought process.</li>
+          </ul>
+          <p>So in our case, a paradigm is a way of looking at programming:
+            understand the underlying framework of the language's ideas that
+            make it work the way it does and implementing programs through the
+            filter of that structure.</p>
+          <p>As <a href="https://en.wikipedia.org/wiki/Programming_paradigm">wikipedia</a>
+            says, "a programming paradigm is a way to classify a programming
+            language based on the features it possesses.", filtering the
+            abilities through a set of ideas to classify it. Programming
+            languages can share qualities/features that tie into multiple
+            paradigms, so there isn't one strict classification for each
+            language.</p>
+          <p>"Some paradigms are concerned mainly with implications for the
+            execution model of the language, such as allowing side effects, or
+            whether the sequence of operations is defined by the execution
+            model. Other paradigms are concerned mainly with the way that code
+            is organized, such as grouping a code into units along with the
+            state that is modified by the code. Yet others are concerned mainly
+            with the style of syntax and grammar." ~ wiki</p>
+          <hr>
+          <p><strong><span style="text-decoration: underline;">Structured
+                Programming </span></strong></p>
+          <p>Structured programming focuses specifically on&nbsp;<em>program
+              organization.&nbsp;</em>The programs are typically executed in the
+            exact format it is laid out in, from beginning to end, using
+            statements. There are four terms usually associated with structured
+            programming:</p>
+          <p><strong>Sequence</strong>: The order in which to execute the
+            program, often a linear format of statements.</p>
+          <p><strong>Selection:</strong> Based on the state of the program
+            (local and global changes), statements are executed (Statements such
+            as if/then/else/else-if).</p>
+          <p><strong>Iteration</strong>: Iteration in the sense of SP has to do
+            with a statement repeating or being executed until the desired
+            program state is reached. (for/do, while, etc).</p>
+          <p><strong>Recursion</strong>: The program repeatedly calls itself
+            until the desired state of the program is reached or something
+            external terminates it.</p>
+          <p>Structured programming can be implemented in any language. It is
+            often used for small, clear programs like OS system interrupts or
+            external interrupts.</p>
+          <hr>
+          <p><strong><span style="text-decoration: underline;">Procedural
+                Programming</span></strong></p>
+          <p>Procedural programming is defined by a concept called "procedure
+            calling". This is similar to functions, but the term focuses on
+            different features.</p>
+          <p>Procedures can be functions, routines, subroutines, and more. It's
+            an overarching term for "a thing that does a series of other little
+            things, kept in a box that you can call and open, filter a thing
+            through, then close and put away".</p>
+          <p>Some programming languages classified as "procedural" are C,
+            Fortran, Go, and BASIC. Hardware is designed to support these
+            languages with the stack register(s) (a register that holds all the
+            calls, pointers, and organizes the program) to make sure that things
+            are called correctly, and return successfully before moving onto the
+            next procedure.</p>
+          <hr>
+          <p><strong><span style="text-decoration: underline;">Imperative
+                Programming</span></strong></p>
+          <p>Considering a language as imperative is classified as programming
+            with statements to change the state of the program. It's focus is to
+            describe <em>with the commands</em> how the program works. It is
+            concerned with the process of getting to the output, not necessarily
+            the output itself.</p>
+          <p>The idea is similar to imperative statements in the English
+            language: if you say something imperatively, it is a command,
+            something that implies you want a thing done. Translating this to
+            programmer terms, you're literally commanding the computer to do
+            things.</p>
+          <p>To quote <a href="https://en.wikipedia.org/wiki/Imperative_programming">wikipedia</a>,
+            "imperative programs consist of <em>commands</em> for the computer
+            to perform".</p>
+          <p>Imperative programming is linear, which means you tell the computer
+            every. little. step. you. want. it. to. take, and that's how it will
+            be executed. You focus directly on how you're instructing the
+            computer to do things. Lower level code in C or Assembly is
+            considered imperative programming.</p>
+          <p>Contrary to usage, procedural programming and imperative
+            programming do not reference the same thing. While <em>imperative
+              programming</em> focuses on <em>how</em> you're telling the
+            program what to do, the structure you're writing it in, <em>procedural
+              programming</em> is focused on the idea of <em>calling</em> those
+            procedural "boxes" and executing them.<br>
+            Procedural programming is a sub-classification of imperative
+            programming, because you'll likely use the imperative code to <em>write</em>
+            the procedures you want to call. "[T]he use of procedures has a
+            dramatic effect on how imperative programs appear and how they are
+            constructed." ~ <a href="https://en.wikipedia.org/wiki/Imperative_programming">wiki</a></p>
+          <hr>
+          <p><strong><span style="text-decoration: underline;">Declarative
+                Programming</span></strong></p>
+          <p>Declarative programming is the opposite of imperative programming,
+            it is defined as "anything <em>not</em> imperative". The languages
+            considered as so typically associate with mathematical logic, rather
+            than explicitly listing the steps you want the computer to perform.
+            The languages defined as declarative often have the ability to
+            support no side effects (modifying things like variables outside of
+            the function's scope, which depends on program state).</p>
+          <hr>
+          <p><strong><span style="text-decoration: underline;">Functional
+                Programming</span></strong></p>
+          <p>Functional programming is a sub-classification of declarative
+            programming. It is a style of programming that "treats computation
+            as the evaluation of mathematical functions (expressions) and avoids
+            changing-state [side effects] and mutable data." ~ <a href="https://en.wikipedia.org/wiki/Functional_programming"
+              target="_blank" rel="noopener">wiki</a></p>
+          <p>Imagine we have <code>function</code>, and we passed it <code>(x)</code>.
+            Calling <code>function</code> twice with the same input value for <code>(x)</code>
+            will result in the same return value of <code>f(x)</code><em>each
+              time</em>, as opposed to having the output possibly change
+            depending on a program's state (due to a local or global variable).</p>
+          <p>This makes it much much easier to predict the outcome or behavior
+            of a program, because you have more clarity on the flow of the data,
+            you know what to expect.</p>
+          <p>Functional programming is used in programs where you have a fixed
+            set of data, but need to add new operations every once in a while to
+            process it differently. Languages like Haskell, Common Lisp, Scheme,
+            Clojure, and Erlang all support functional programming.</p>
+          <p>Functional programming has some powerful implementations, like pure
+            functions and high order functions. I don't understand them well
+            enough to explain them here, so go and do some research for
+            yourself!</p>
+          <hr>
+          <p><strong><span style="text-decoration: underline;">Object Oriented
+                Programming</span></strong></p>
+          <p>Lets clarify what an object is: Objects are a thing that have a <em>state</em>
+            and a <em>behavior.</em> If you take a look at literal objects
+            around you:</p>
+          <p>Phone:<br>
+            My phone's state's can be On or Off, bright or dim, silent or
+            ringing.<br>
+            My phones behavior can increase volume, decrease volume, web surf,
+            search, play music, pause music, send call, hang-up call (etc).</p>
+          <p>Lamp:<br>
+            Lamp's state: On, Off<br>
+            Lamp's behavior: turn on, turn off, (maybe even explode!)</p>
+          <p>Pencil:<br>
+            State: mechanical (or wood), lead (vs ink), erase, don't erase<br>
+            Behavior: write, delete/erase, refill, click</p>
+          <p>An object in programming stores its <em>states</em> in fields (the
+            storage of the data) and displays its <em>behavior</em> with
+            methods or functions (the activity that will be performed on the
+            data it receives).</p>
+          <p>Object Oriented programming focuses on data, where you have fixed
+            methods/operations that you pass new data to. Programs with OOP are
+            rooted in the creation and interaction of objects themselves as they
+            sift through the ever-changing data passed to them.</p>
+          <p>Languages that support OOP or are designed specifically for OOP:
+            Java, C++, C#, Python, PHP, Ruby, Perl, Swift, Dart, Scala, Common
+            Lisp, and SmallTalk.</p>
+          <p>Objects are extremely useful if implemented correctly. You can
+            imagine objects as the nuts and bolts that, when built, work
+            together as a machine. If the machine breaks, you replace one part,
+            not the whole machine.</p>
+          <p>Object oriented programming has one more term that is worth
+            mentioning, called data-encapsulation. Think of objects like the
+            human body and it's makeup. There are all the internal organs
+            inside, but we can't access them unless we do specific things. Say
+            we wanted to access the stomach, to do so, we would eat food. We
+            inputted the food, it goes through the stomach, is processed, and
+            I'm sure you can imagine what the output is.</p>
+          <p>Did we see on the inside everything that was happening to the food?
+            Nope! We passed an argument, and got a value returned. Data
+            encapsulation is the idea of hiding the <em>state of the data</em>
+            until it is <em>returned</em> by the object.</p>
+          <hr>
+          <p>I hope this was educational to you, as it was to me! Now I fully
+            understand more what people mean when they reference these terms,
+            and hopefully I can start implementing these ideas into my own
+            programs.</p>
+          <p>If you have any questions, don't hesitate to contact me and ask
+            more. Corrections and clarifications are welcome!</p>
+        </div>
+        <div style="width: 747px;">
+          <p></p>
+          <p> {thallia}</p>
+          &nbsp;
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 300px; width: 772px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 738px; margin-left: -1px;">
+          <ul>
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 64px; margin-left: -49px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp; <b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; margin-left: 5px; width: 619px;">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

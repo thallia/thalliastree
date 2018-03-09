@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>ATmega328P Microcontroller and 74HC595 Shift Register Setup | Binary
+      Watch</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="A branch of knowledge - first post">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="width: 747px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[1.25.18]
+              ATmega328P Microcontroller + 74HC595 Shift Register <br>
+            </span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Setup | Binary Watch</h2>
+          <span style="font-family: Ubuntu Mono;"></span><br>
+          <p>I was researching the other day on the ESP-WROOM-32 module I had
+            bought off of eBay for my binary watch and found this lovely PDF
+            about <a href="http://espressif.com/sites/default/files/documentation/esp32_hardware_design_guidelines_en.pdf"
+              target="_blank" rel="noopener">hardware design guidelines</a>.</p>
+          <p>After looking further into it, it's a PDF about all the things you
+            have to include when designing a board with it! Ack! Huge facepalm
+            moment.</p>
+          <p>I went back to the drawing board and researched people who have
+            designed and created their own and decided to switch the brains of
+            the watch to the <a href="http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-42735-8-bit-AVR-Microcontroller-ATmega328-328P_Datasheet.pdf"
+              target="_blank" rel="noopener">ATmega328P</a>, the main
+            microprocessor of the Arduino. This means I can program the new
+            ATMegas on a breadboard with the Arduino Uno. Super sweet, and
+            handy.</p>
+          <p>I was looking for a microcontroller with a deep sleep or ultra
+            low-power mode so the CR1225 battery wouldn't be completely drained
+            after one day. I was considering using the <a href="https://www.microchip.com/wwwproducts/en/PIC18F24J11"
+              target="_blank" rel="noopener">PIC18F24J11</a> because of its
+            specific design <em>for</em> low power feature, but decided against
+            it since I have a bit of a deadline for the schematic of this
+            project. Not to mention I already know how to program an ATmega328P,
+            and it would take a bit to learn how to program a different kind of
+            microcontroller.</p>
+          <p>With all that, I ordered the ATmega's, got them from DigiKey in 3
+            days (really fast, I'm definitely buying parts from them again!),
+            burned the bootloader and code with <a href="https://www.arduino.cc/en/Tutorial/ArduinoToBreadboard"
+              target="_blank" rel="noopener">Arduino as ISP</a>, and set to work
+            on figuring out the I/O pins.</p>
+          <p>First I had to remember what pins I used to get the program to work
+            on the ESP32, and what those pins were so I could identify them on
+            the ATmega. These were the pins on the ESP32 that I tested and
+            confirmed work with the code I linked in <a href="https://thalliatree.wordpress.com/2018/01/01/project-hype-binary-wristwatch/">Project
+              Hype: Binary Wristwatch.</a></p>
+          <p><code>IO2/GPIO2</code> - <code>Output Enable</code> (pin 13 SR)</p>
+          <p><code>IO4/GPIO4</code> - <code>SH_CP</code> (pin 11 SR)</p>
+          <p><code>IO5/GPIO5</code> - <code>DS or Serial Data Input</code> (
+            pin 14 SR)</p>
+          <p><code>RXD0/GPIO3</code> - <code>ST_CP</code> (pin 12 SR)</p>
+          <p><code>IO13</code> - <code>Button 1 (hrs)</code></p>
+          <p><code>IO12</code> - <code>Button 2 (mins)</code></p>
+          <p><a href="https://www.arduino.cc/en/Hacking/PinMapping168" target="_blank"
+              rel="noopener">This</a> was an extremely helpful digital I/O chart
+            that helped me identify the ATmega pins from the ESP32 guidelines.</p>
+          <p>{[EDIT (feb 3rd, 2018): These are not the correct pin numbers, but
+            i'm keeping them here for debugging purposes! If you would like to
+            see the <em>correct</em> way to set the circuit up, please read the
+            end of: <a href="https://thalliatree.wordpress.com/2018/02/04/prepping-the-atmega328p-bootloader-burn-fuse-byte-programming-and-hardware-test-binary-watch/">Prepping
+              the ATmega328P: bootloader burn, fuse-byte programming, and
+              hardware test | binary watch</a>]}</p>
+          <p>Thanks to the chart and a pinout of the ESP32, I knew which pins to
+            connect to which shift registers. (<code>ATmega</code> connected to
+            <code>shift register pin</code>)</p>
+          <p><code>Physical pin 6 (PCINT20/XCK/T0) PD4</code> connected to Pin
+            11 (latch, or <code>SH_CP</code>)</p>
+          <p><code>Physical Pin 2 (PCINT16/RXD) PD0]</code> connected to Pin 12
+            (clock, or <code>ST_CP</code>)</p>
+          <p><code>Physical Pin 4 (PCINT18/INT0) PD2]</code> connected to Pin 13
+            (Output Enable, <code>OE</code>)</p>
+          <p><code>Physical Pin 11 (PCINT21/OC0B/T1) PD5</code> connected to Pin
+            14 (Serial Data Input)</p>
+          <p><img class="transparent shrinkToFit" src="../images/atmega-1.jpg" width="939"
+              height="672"><br>
+          </p>
+          <p>The appropriate pins on the shift registers and microcontrollers
+            are connected to <code>​Vcc</code> or <code>GND</code>. You can
+            tie Pins 11, 12, and 13 on the shift registers, as well. Finally,
+            make sure that pin 9 on shift register 1 is connected to pin 14 of
+            shift register 2. (You can kind of see it in my diagram.)</p>
+          <p>Alright! Next step...testing this baby out.</p>
+          <img src="../images/atmega-1.jpg"><br>
+          <p><img src="../images/atmega-2.jpg"></p>
+          <img src="../images/atmega-3.jpg">
+          <p><img src="../images/atmega-4.jpg"></p>
+          <p><img src="../images/atmega-5.jpg"><br>
+          </p>
+          <p><img src="../images/atmega-6.jpg"></p>
+          And finally...adding power!<img src="../images/atmega-7.jpg"><br>
+          <p>The LEDs on the left represent minutes, and the LEDs on the right
+            represent minutes. Though they lit up, they didn't change every 60
+            seconds as programmed. This likely means that the clock pin isn't
+            being utilized. I unplugged the jumper wire connecting RXD0 and pin
+            12 (ST_CP) and all of a sudden the LEDs started blinking
+            irregularly. I moved around some wires and LEDs were going bonkers.</p>
+          <p>Putting pressure on certain parts of the microcontroller and shift
+            registers makes the LEDs react, which is downright weird.</p>
+          <p>I scrapped the ATmega for the moment and used my Arduino Uno to
+            test out the hardware side of the shift registers and code.</p>
+        </div>
+        <div style="width: 747px;"><img src="../images/atmega-8.jpg"><br>
+          <p>Plugging it all together resulted in a cycle through of all the
+            LEDs like normal, so it must be the pins that I'm utilizing on the
+            ATmega328P. Which is cool! I wasn't entirely certain of my pinout
+            correct-ness to begin with.</p>
+          <p>Now that I've cornered the problem, I can find out more about how
+            the pin-out works with the ATmega and understand more of the
+            internals going on, then figure out the right ones.</p>
+          <p> {thallia}</p>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 300px; width: 772px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 749px; margin-left: 0px;">
+          <ul>
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 64px; margin-left: -49px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp; <b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; margin-left: 5px; width: 619px;">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

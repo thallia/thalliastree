@@ -22,62 +22,49 @@
         <div>
           <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
           </span></div>
-        <div>
-          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[6.12.17]
-              a branch of knowledge<br>
+        <div style="width: 747px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[1.28.18]
+Code
+              Part 1 | Binary Watch<br>
             </span></h2>
-          <span style="font-family: Ubuntu Mono;"></span>
-          <p style="width: 815px;">céad míle fáilte,&nbsp; a hundred thousand
-            welcomes!</p>
-          <p style="width: 746px;">I am thallia, a young and aspiring engineer.
-            Electrical engineering and computer engineering have been my focus
-            for almost a year now, alongside programming, mathematics, science,
-            and a little dabble of natural medicine.</p>
-          <p style="width: 747px;">Soon I will be shipped off to college to
-            pursue my career in electrical engineering--with that I want to
-            further the research and technology to aid in naturopathic and other
-            natural medical care.</p>
-          <p style="width: 747px;">The reason I chose to start a blog is due
-            partially from influence of my mentor. I am a part of a team called
-            <em>Under the Wire</em>, a small group of individuals with a passion
-            for learning and, hopefully someday, we want to reinvent technology.</p>
-          <p style="width: 746px;">One of the concepts provided to us by our
-            mentor is called <em>infinity learning</em>. A bit dramatic, I
-            know, that's what makes it fun. The concept of infinity learning is,
-            ideally, where you are able to train yourself to remember the
-            majority of anything you ever learn. A tool helpful to accomplish
-            this is a blog.</p>
-          <p style="width: 747px;">The blogging format gives you a place to,
-            "review, clarify, and document your experiences and learnings"
-            (fouric, 2017). As you learn concepts, run into problems, or
-            discover new things, a skilled way of making sure you understand it
-            completely and correctly is to teach it to someone else; in this
-            case, write it out and explain it to others reading the blog. When
-            you have a limited understanding of a concept, sharing it with
-            someone else requires you to have a fuller knowledge of whatever
-            you're trying to teach them, therefore pushing you to understand a
-            concept to its full potential.</p>
-          <p style="width: 745px;">Using a blog format also gives you a copy of
-            what you know, a frame of reference for if you forget a concept or
-            piece of knowledge in the future.</p>
-          <p style="width: 746px;">With that in mind, this blog is where I'll be
-            posting things that I learn, projects that I'm working on, or
-            problems I run into in the process of learning. I hope some of these
-            posts will teach you a thing or two, provide you with things to
-            think on, or serve as entertainment in general.</p>
-          <p style="width: 747px;">If you ever have any questions or comments,
-            feel free to contact me! My contact information is located in the
-            Contact page, found on the navigation bar at the bottom of my site.
-            If you want to read more about who I am and how I got interested in
-            these subjects, visit my Who Am I page. :)</p>
-          <p>Thank you for stopping by!<br>
-            {thallia}</p>
+          <p>The code for the binary watch project can be found on my <a href="https://github.com/thallia/BinaryWatch">github</a>!</p>
+          <p>I wrote it basically off of Gector's code, so a bit of copying
+            there, but it really helped me in understanding C/C++ code a little
+            more. I'd like to stick to the C side in general, but the Arduino
+            IDE only accepts C++ .</p>
+          <p>I had a goofy problem where the minute strip of LEDs were only
+            counting up until 28, when they were really supposed to go to 60.
+            Uhhhh. What?</p>
+          <p>Turns out the tick function in my code:</p>
+          <p><code>static unsigned long lastTick = 0;</code></p>
+          <p><code>if(millis() - lastTick &gt;= 1000){<br>
+              lastTick = millis();<br>
+              second++;<br>
+              }</code></p>
+          <p>was goofed. This was the original:</p>
+          <p><code>tick = millis();<br>
+              if(millis() - tick &gt;= 1000){<br>
+              second++;<br>
+              }</code></p>
+          <p>So, for one, tick was created much earlier in the file as a global
+            variable, rather than a local variable within the <code>loop()</code>
+            function.</p>
+          <p>If tick is consistently the same as the return value of the
+            function <code>millis()</code>, it will hypothetically always be a
+            random number that you'll get out. This erratically changed whether
+            <code>second</code> increased or not, or it constantly increased
+            depending on how long the program had been running.</p>
+          <p>Once I changed the code to the first example, everything was right
+            in the world again. Now that I have the base code working without
+            issues, I can start to research low power and deep sleep modes and
+            how to implement them with buttons.</p>
+          <p> {thallia}</p>
           <p>&nbsp;</p>
           <!-- end of content column: put your content above this line --> </div>
       </div>
       <div id="tswfooter" style="margin-left: 300px; width: 772px;">
         <!-- start of footer section: insert your copyright notice, etc, here -->
-        <div id="tswcsstabs" style="width: 644px; margin-left: 370px;">
+        <div id="tswcsstabs" style="width: 738px; margin-left: -1px;">
           <ul>
             <li><br>
             </li>

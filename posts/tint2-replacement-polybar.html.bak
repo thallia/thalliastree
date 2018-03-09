@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Code Part 2 | Binary Watch</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="A branch of knowledge - first post">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="width: 747px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[1.30.18]
+Code
+              Part 2 | Binary Watch<br>
+            </span></h2>
+          <p><img src="../images/code-2.jpg" alt=""></p>
+          <p>Woot woot! The code is virtually finished, for the simple
+            processing and buttons part at least. :)</p>
+          <p>I've been utilizing the Arduino Uno this whole time since it's easy
+            to program really fast, that way I could corner all the problems in
+            the code so when I switch to the plain ATmega itself I'll be able to
+            distinguish between what is a hardware issue and what's a software
+            issue.</p>
+          <p>Since last time, I've still been having issues with some of my
+            functions. The <code>tick</code> problem solved some of what was
+            going on, until I added the buttons into play.</p>
+          <p>I connected the buttons like I configured the input pins to work;
+            Pin 7 was the inHour button, Pin 8 was the inMinute button. I
+            connected one side of the buttons to the input pin and the other
+            side to the 3.3V power supply, enabled the functions, and reloaded
+            the code.</p>
+          <p>Ack.</p>
+          <p>The hours and minutes started cycling too fast, and the minutes all
+            of a sudden only counted to 13. What??</p>
+          <p>I fiddled around with the code for a while, commenting out one
+            function and seeing if it would work on its own, commenting out the
+            other function, you get the idea.</p>
+          <p>Eventually I caught a few syntax errors and got the functions
+            working by themselves, but enabling both <code>checkHour</code> and
+            <code>checkMin</code> at the same time resulted in much failure.</p>
+          <p>I talked to Gector about this, and he suggested pull-up resistors.</p>
+          <p>I learned that it is unwise to enable a pin as input without
+            resistors like such, and here's why.<br>
+            When you enable a pin as input in your code and leave it, it joins a
+            state of <em>high impedance</em>, otherwise known as a floating
+            pin. This pin picks up noise from around the circuit and can
+            interfere with pretty much everything.Pull-Up or pull-down
+            resistors, when used, filter out this noise, but are low enough
+            resistor values that the input pin can still detect when you press
+            the button (close the switch, etc).</p>
+          <p>I looked into how to set up these so called "pull-up resistors",
+            and lo and behold, the ATmega328P already has them built into it's
+            microcontroller! Super nice.</p>
+          <p>I went into my code, and instead of defining my pins like this:</p>
+          <p><code>pinMode(inHour, INPUT);</code><br>
+            <code>pinMode(inMinute, INPUT);</code>I defined them like this:</p>
+          <p><code>pinMode(inHour, INPUT_PULLUP);</code><br>
+            <code>pinMode(inMinute, INPUT_PULLUP);</code>Then, in my functions
+            where I had previously written the pins to expect a HIGH input, I
+            changed that to LOW.<br>
+            I did this because pull-up resistors "pull" the voltage of the input
+            pin up, so the pin is HIGH, and only triggers when it receives a LOW
+            signal. The inverse is true when talking about pull-down resistors.
+            Pull-down resistors enable the pin as LOW, and the pin waits for a
+            HIGH signal.</p>
+          <p>After reloading the code and making sure I had the correct circuit
+            setup with the buttons, I tested them out.</p>
+          <img src="../images/atmega-buttons.jpg" alt=""></div>
+        <div style="width: 747px;">
+          <p>AND THEY WORKED.</p>
+          <p>*drops the mic*</p>
+          <p></p>
+          <p> {thallia}</p>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 300px; width: 772px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 738px; margin-left: -1px;">
+          <ul>
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 64px; margin-left: -49px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp; <b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; margin-left: 5px; width: 619px;">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

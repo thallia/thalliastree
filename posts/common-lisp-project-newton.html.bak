@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Adventures in Common Lisp and Project Newton</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="A branch of knowledge - first post">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="width: 747px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[2.22.18]
+              Adventures in Common Lisp and Project Newton<br>
+            </span></h2>
+          <p>Goooood morning!</p>
+          <p>In the last few days I have taken on the challenge of learning
+            Python and Common Lisp at the same time. My experiences in
+            programming have been little, only writing some small programs in
+            Assembly or Forth here and there, so this has been a big jump for
+            me.</p>
+          <p>I'm learning Python because my friend and I wanted to write a
+            scratchpad bot for our discord server - a bot that will grab the
+            last message (or however many messages you specify) and put that
+            message in a JSON file for you to reference later. in <a href="https://thalliatree.wordpress.com/under_the_wire/">UTW</a>,&nbsp;
+            we share ideas, commands, programming techniques and more, so this
+            is a very helpful tool. I'll get a post up about him and the things
+            I learned while designing him soon.</p>
+          <p>As for Common Lisp, I <em>love</em> lisp. It's much less choppy
+            than Python feels, and very intuitive to me. It's similar to forth,
+            in a way, but obviously more documented and widely used.</p>
+          <p>Documentation of things I have learned about Lisp:</p>
+          <p>Parentheses. Everywhere. It's beautiful.</p>
+          <p>The function <code>values()</code> returns multiple values, not a
+            <em>list</em> of values. It'll return the actual values and won't
+            break your code if not all of them are used!</p>
+          <p><code>&amp;optional</code> is a keyword you can put into the
+            arguments part of a function to tell the function that these
+            arguments are optional. If no value is provided, you can set the
+            argument to a default value:</p>
+          <p><code>(defun foo ($optional (bar "Hello World")) (print bar))</code></p>
+          <p>This creates a function <code>foo</code> that'll take an optional
+            argument <code>bar</code>. If you pass <code>bar</code> to the
+            function, bar will become that value. If nothing is passed to <code>foo</code>,
+            <code>bar</code> will print "Hello World".</p>
+          <p>the function <code>clear-input</code>, as I understand it, cleans
+            away any stray or unprocessed input, making sure it's all inputted,
+            before it starts executing the next code.</p>
+          <p><code>finish-output</code> makes sure everything successfully
+            printed to the output-stream and returned.</p>
+          <p><code>write-string</code> is the same as <code>write-line</code>,
+            except for <code>write-line</code> adds a newline before it prints.</p>
+          <p><code>parse-integer</code> will take input and evaluate it as an
+            integer, then return the value. Or throw an error if the input isn't
+            an integer.</p>
+          <p>I also learned about <code>asdf systems</code>, which are <em>super</em>
+            useful! ASDF stands for Another System Definition Facility. It is
+            for programmers and hackers to build and load software in Common
+            Lisp. So all of your files that depend on each other (in a project,
+            for example), you can load them in specific order dependencies based
+            on a <code>project-name.asd</code> file and load it into SBCL to
+            test and run things, working similar to how you would load a
+            required package with quicklisp.</p>
+          <p><a href="https://common-lisp.net/project/asdf/">What is ASDF</a></p>
+          <p><a href="https://common-lisp.net/%7Emmommer/asdf-howto.shtml">Getting
+              Started with ASDF</a></p>
+          <p>And with that, I can sort of announce the Lisp project I'm working
+            on! It's called Newton, which I started to help teach me lisp.<br>
+            Newton is a Physics calculator, dictionary, concept-teacher,
+            reference, you name it. Like a mini teach-yourself-phyics program!
+            It's been lots of fun so far, you can see my ASDF System file for
+            Newton here:</p>
+          <p>https://github.com/thallia/newton/blob/master/newton.asd</p>
+          <p>The actual code is <em>far</em> from complete, I'm still
+            extensively experimenting with the little bits of lisp that I know.</p>
+          <p>Until next time!</p>
+        </div>
+        <div style="width: 747px;">
+          <p></p>
+          <p> {thallia}</p>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 300px; width: 772px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 738px; margin-left: -1px;">
+          <ul>
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 64px; margin-left: -49px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp; <b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; margin-left: 5px; width: 619px;">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

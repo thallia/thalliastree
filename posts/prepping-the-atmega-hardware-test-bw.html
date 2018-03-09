@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Prepping the ATmega328P: bootloader burn, fuse-byte programming, and
+      hardware test | binary watch</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="A branch of knowledge - first post">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="width: 747px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[2.2.18]
+              Prepping the ATmega328P<span style="font-family: &quot;FreeMono&quot;;">
+                | Binary Watch</span><br>
+            </span></h2>
+          <p>Now that the basis code is all ready, it was time to test it out
+            without help of the Arduino UNO, straight with the hardware of the
+            ATmega328P.</p>
+          <p>After doing research, if you have a completely empty ATMega328P,
+            you need to burn the bootloader, load the new code, and burn the
+            fuse bytes to be clocked by an external clock (not to mention find a
+            way <em>how</em> to burn the fuse bytes).</p>
+          <p>I didn't know how to do any of this at first, but with careful
+            research and reading of a lot of stackexchange forum posts and blog
+            posts, I was able to complete these seemingly tough tasks.</p>
+          <p>Burning the bootloader is important if you want to program the
+            ATMega328P through the ArduinoIDE, it allows the arduinoIDE to
+            communicate to the microcontroller and write the code accurately to
+            the memory.</p>
+          <p>There are multiple ways to go about burning the bootloader, but
+            many of the suggested ways on the Arduino website failed to succeed
+            with my ATMegas, so I resorted to a much easier setup, with <code>optiLoader</code>.</p>
+          <p>Following <a href="http://3g1l.com/blog-burn-bootloader-blank-atmega328atmega328p-arduino-uno"
+              target="_blank" rel="noopener">this</a> documentation, I got the
+            bootloader setup correctly.</p>
+          <p>You need an Arduino UNO, a 16MHz crystal, 2 22pF capacitors, and a
+            10K resistor. Some say you can do it with or without the 16MHz
+            crystal and the capacitors, but mine wouldn't work without them, so
+            it's a good idea to have some on hand in case you get the same
+            errors I did.</p>
+          <p>First, create a directory in your Arduino folder, where all the
+            sketches are usually kept. Name the directory <code>optiLoader</code>,
+            and in that directory, use git to clone the repo into that folder:</p>
+          <p><code>git clone https://github.com/WestfW/OptiLoader.git</code></p>
+          <p>after it clones, upload the <code>.ino</code> file to the UNO,
+            then setup your breadboard.</p>
+          <p>The breadboard setup looks like this, adding the capacitors and
+            16MHz crystal needed:</p>
+          <img src="../images/prep-atmega-1.jpg" style="width: 746px; height: 861px;"></div>
+        <div style="width: 747px;"><br>
+        </div>
+        <div style="width: 747px;">
+          <p>Once done, double check your wires, I goofed up on one and it threw
+            my circuit off. Double checking<em> always</em> pays off!</p>
+          <p>Plug the Arduino UNO into a power source, open the serial monitor
+            at baud (19200), and you should see the output of success or
+            failure!</p>
+          <img src="../images/prep-atmega-2.png" alt=""></div>
+        <div style="width: 747px;">
+          <p>Congrats, you just burned your bootloader.</p>
+          <p>Next step, burning the fuse bytes....but uh, what are those? How
+            does that all work?</p>
+          <p>There are usually two or three fuse bytes in a microcontroller, and
+            these fuse bytes are programmed to tell the microcontroller how to
+            work, for example: which clock to use (external, internal, how
+            fast/slow), how much memory to set aside for programs, the boot
+            sequence, watchdog timer setup, etc.</p>
+          <p>They're factory set when you buy them, so if you end up messing
+            around with the circuit and find you need an external crystal like I
+            did, you're gonna need to reprogram the fuse bytes.<br>
+            A counterintuitive part of this process is: <strong>a bit set to 0
+              means it is <em>programmed</em>, and a bit set to 1 is <em>unprogrammed.</em></strong></p>
+          <p><span style="text-decoration: underline;"><strong>WARNING:</strong></span>
+            if you do not do this correctly, you may end up with a
+            microcontroller that does not work!</p>
+          <p>Still with me? Didn't get scared? Great. Let's move on!</p>
+          <p>I recommend pulling up the ATmega328P datasheet to follow along in
+            this topic, you'll need to scan through it as I go over things.</p>
+          <p>There are two fuse bytes we'll be working with. The High fuse byte
+            and the Low fuse byte. There are 8 bits within each, and they all
+            stand for a different setting.</p>
+          <img src="../images/prep-atmega-3.jpg" alt="">
+          <p>This is the HIGH fuse byte, 0b11011001. As you can see, certain 1s
+            are unprogrammed and the 0s are programmed.</p>
+          <p>The fuse byte that we'll be toying with is the LOW fuse byte:</p>
+          <img src="../images/prep-atmega-4.jpg" alt=""></div>
+        <div style="width: 747px;">
+          <p>In a <a href="https://www.allaboutcircuits.com/projects/atmega328p-fuse-bits-and-an-external-crystal-oscillator/"
+              target="_blank" rel="noopener">very helpful article</a>, they
+            mentioned that you do <em>not</em> want CKDIV to be programmed if
+            you're adding a crystal, so I automatically know that's 1. We're
+            going to leave CKOUT, and move on to finding SUT1, SUT0, and
+            CKSEL3..0.</p>
+          <img src="../images/prep-atmega-5.jpg" alt=""></div>
+        <div style="width: 747px;">
+          <p>In the chart above, we see that there are multiple different clocks
+            you can program the ATmega328P to choose from. In our case, we want
+            the Low Power Crystal Oscillator, which, on the side, means that
+            based on how we configure it, the nybble of CKSEL could be anywhere
+            from 1111 to 1000. That gives us a good approximation, and helps us
+            move onto the next chart:</p>
+          <img src="../images/prep-atmega-6.png" alt="">
+          <p>Here, this chart tells us what CKSEL will be based on the MHz value
+            of our crystal. I'm using a 16MHz, so CKSEL[3:1] is going to be <code>111</code>.
+            That also means I'll use two 22pF capacitors.</p>
+          <p>Alright, so we have the first part of our LOW byte, now we need to
+            figure out what CKSEL0 and SUT[1:0] are.</p>
+          <img src="../images/prep-atmega-7.png" alt=""></div>
+        <div style="width: 747px;">
+          <p>Woot woot! Final chart!<br>
+            Go down and find Crystal Oscillator, which is what we're using, and
+            we're going to "select" <code>slowly rising power</code>. This will
+            help save battery life in the long run, even if it loses a bit of
+            accuracy. (it'll be accurate enough.)</p>
+          <p>Therefore, our whole byte looks like this:</p>
+          <p><strong>CKDIV8</strong>&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+            <strong>CKOUT &nbsp; &nbsp;</strong>&nbsp; 1<br>
+            <strong>SUT1</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            1<br>
+            <strong>SUT0</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            1<br>
+            <strong>CKSEL3</strong>&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+            <strong>CKSEL2</strong>&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+            <strong>CKSEL1</strong>&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+            <strong>CKSEL0</strong>&nbsp;&nbsp;&nbsp;&nbsp; 1</p>
+          <p>0b11111111, or 0xFF in hexadecimal. Now, we can officially set up
+            our hardware to burn these fuse bytes to the GND!</p>
+          <p>...ha. See what I did there?</p>
+          <p>Your circuit setup, if using the Arduino UNO as the ISP programmer,
+            should look something like this:</p>
+          <img src="../images/prep-atmega-8.jpg" alt=""></div>
+        <div style="width: 747px;">
+          <p><code>UNO pin 11 (MOSI) -- atmega pin 18</code><br>
+            <code>UNO pin 12 (MISO) -- atmega pin 17</code><br>
+            <code>UNO pin 13 (SCK) -- atmega pin 19</code><br>
+            <code>UNO pin 10 (SS) -- atmega pin 1</code></p>
+          <p>Connect all Vcc's and GNDs.<br>
+            Put the external 16MHz crystal and connect it to the crystal pins on
+            the ATmega, physical pins 9 and 10, then add the capacitors and
+            ground them, basically the same setup as when you burned the
+            bootloader.</p>
+          <p>.......And then, I derped.</p>
+          <p>Turns out when you burn the bootloader it already set the low fuse
+            byte to 0xFF, so I didn't have to burn the fuse bytes at all!<br>
+            Ah, oh well, it was a good learning experience to understand
+            datasheets more. :)</p>
+          <p>SO! I loaded my binary watch program, placed it back in the
+            circuit...and it <em>still</em> didn't work. Gah. Super
+            frustrating.</p>
+          <p>I decided to go back to basics and look up what's actually needed
+            for an ATMega328P to work individually on a breadboard, and this
+            Quora post saved my patookie:
+https://www.quora.com/Can-I-use-ATmega328P-without-Arduino-just-using-it-in-breadboard-for-projects</p><img
+            src="../images/prep-atmega-9.png" alt=""></div>
+        <div style="width: 747px;">
+          <p>This picture shows the basics of what you need for your ATmega:</p>
+          <p>10Kohm Resistor to RESET pin<br>
+            AGND to GND<br>
+            AREF and AVCC to Vcc<br>
+            the Clock on pins XTAL1 and XTAL2(PB6 and PB7) with capacitors tied
+            to GND</p>
+          <p>And of course the regular Vcc and GNDs. I realized my derpiness and
+            found that I hadn't connected a 10K resistor to RESET, nor had I
+            connected AREF and AVCC to Vcc. I fixed both of those, restarted the
+            microcontroller, and viola! My code was working!!</p>
+          <p>Recap:</p>
+          <p>Make sure you have not just the right pins, but ALL the pins needed
+            to make sure your microcontroller works.</p>
+          <p>Here's the CORRECT pinout for all the pins in my code and external
+            ones I wanted to remember:
+            https://github.com/thallia/BinaryWatch/atmegapinout.md</p>
+          <img src="../images/prep-atmega-10.png" alt="">
+          <p></p>
+          <p>Next steps: Schematic for documentation and PCB prep, mock-up on a
+            through-hole PCB to test with coin cell battery as power supply,
+            Deep sleep/low power module additions to code, PCB design</p>
+          <p></p>
+          <p> {thallia}</p>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 300px; width: 772px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 738px; margin-left: -1px;">
+          <ul>
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 64px; margin-left: -49px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp; <b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; margin-left: 5px; width: 619px;">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>
