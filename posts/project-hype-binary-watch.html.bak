@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Openbox/Ubuntu Macbook Sleep/Suspend Issues</title>
+    <title>a branch of knowledge</title>
     <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="tswtabs.css">
@@ -12,7 +12,7 @@
     <link type="text/css" rel="stylesheet" href="../tswtabs.css">
   </head>
   <body style="background-color: black;">
-    <div id="tswcontainer" style="width: 1531px;">
+    <div id="tswcontainer">
       <div id="tswheader">
         <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
           target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
@@ -22,75 +22,62 @@
         <div>
           <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
           </span></div>
-        <div style="width: 747px;">
-          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[1.9.18]
-              Openbox/Ubuntu Macbook Suspend Issues&nbsp;&nbsp;&nbsp; <br>
+        <div>
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[6.12.17]
+              a branch of knowledge<br>
             </span></h2>
-          <p>Using a macbook with Ubuntu has some really weird side effects that
-            are slightly different than using Ubuntu on a thinkpad or a
-            different PC.</p>
-          <p>One of these side effects is the lovely, "close the lid, computer
-            sleeps, computer wakes up over and over, computer overheats and
-            loses battery life", which is extremely fun to manage when you don't
-            understand why it's even going on. It's like managing a baby.</p>
-          <p>First things first. I used the keybindings fouric had in his <code>rc.xml</code>
-            file. Those didn't work out too great for me, first of all because <code>pm-suspend</code>
-            logged me completely out of my account and I had to search the <code>f1-f12</code>
-            to find the desktop again. Annoying. I didn't want to do that every
-            time I put my computer to sleep.</p>
-          <p>I searched around for other "sleep" functions on Ubuntu, and lo and
-            behold, my lifesaver xautolock appeared before my very eyes.</p>
-          <p>After a glance through the <a href="https://www.mankier.com/1/xautolock.1x#-version"
-              target="_blank" rel="noopener">man page</a>, I knew my mission had
-            begun.</p>
-          <p>A long time ago I cloned i3lock onto my computer but never finished
-            configuring it, so I decided to mash the two lock thingies together.
-            Because why not? Makes it look *way* cooler than the official
-            openbox lockscreen.</p>
-          <p>Fiddling around in the command line got me to this finished
-            command:</p>
-          <p><code>xautolock -time 5 -locker "i3lock -i
-              /home/thallia/Pictures/i3lock.png"</code></p>
-          <p>That will wait for 5 minutes of inactivity, then lock my screen
-            with a picture from my computer. I placed that in my <code>.config/openbox/autostart</code>
-            file to execute on boot.</p>
-          <p>But what about launching on command? What if I wanted a keybinding
-            that automatically started that without having to wait?</p>
-          <p>In <code>rc.xml</code>, I made a keybinding for <code>C-F8</code>
-            to execute:<br>
-            <code>xautolock -locknow</code></p>
-          <p>That command depends on an already running xautolock, which is why
-            I placed the timed one in my autostart, so that'll always be ready
-            and waiting for inactivity or a manual signal.</p>
-          <p>Now that that had been fixed, the last thing was the annoying
-            "close the lid, wake up, sleep, wake up, etc".</p>
-          <p>Turns out there's a weird USB signal in /proc/acpi/wakeup that
-            signals the computer to keep waking up after sleep is invoked. Fixed
-            that with a quick,</p>
-          <p><code>echo XHC1 &gt; /proc/acpi/wakeup</code></p>
-          <p>That command gets reset on reboot, though, so I'll put it in a file
-            somewhere to execute on startup.</p>
-          <p>(EDIT: 2-14-18&nbsp; I got <a href="https://github.com/PandorasFox/i3lock-color"
-              target="_blank" rel="noopener">i3lock-color</a>! It simply
-            replaces i3lock, and it's way more configurable. For documentation,
-            here is that command:</p>
-          <p><code>xautolock -time 10 -locker "i3lock -t -i
-              /home/thallia/Pictures/dragon3.png --clock --timecolor=000000FF
-              --datecolor=000000FF --datestr='%Y, %m %A' --insidecolor=a8b9d205
-              --ringvercolor=6dabff05 --insidevercolor=909cab50
-              --ringwrongcolor=ff000050 --insidewrongcolor=ff000040
-              --ringcolor=00000080 --keyhlcolor=ffffff50 --bshlcolor=ffffff50
-              --time-font=inconsolata --date-font=inconsolata --datesize=16
-              --radius=110 --veriftext='hack initiated' --wrongtext='t-rekt'"<br>
-            </code></p>
-          <p>{thallia}</p>
-          <p> {thallia}</p>
+          <span style="font-family: Ubuntu Mono;"></span>
+          <p style="width: 815px;">céad míle fáilte,&nbsp; a hundred thousand
+            welcomes!</p>
+          <p style="width: 746px;">I am thallia, a young and aspiring engineer.
+            Electrical engineering and computer engineering have been my focus
+            for almost a year now, alongside programming, mathematics, science,
+            and a little dabble of natural medicine.</p>
+          <p style="width: 747px;">Soon I will be shipped off to college to
+            pursue my career in electrical engineering--with that I want to
+            further the research and technology to aid in naturopathic and other
+            natural medical care.</p>
+          <p style="width: 747px;">The reason I chose to start a blog is due
+            partially from influence of my mentor. I am a part of a team called
+            <em>Under the Wire</em>, a small group of individuals with a passion
+            for learning and, hopefully someday, we want to reinvent technology.</p>
+          <p style="width: 746px;">One of the concepts provided to us by our
+            mentor is called <em>infinity learning</em>. A bit dramatic, I
+            know, that's what makes it fun. The concept of infinity learning is,
+            ideally, where you are able to train yourself to remember the
+            majority of anything you ever learn. A tool helpful to accomplish
+            this is a blog.</p>
+          <p style="width: 747px;">The blogging format gives you a place to,
+            "review, clarify, and document your experiences and learnings"
+            (fouric, 2017). As you learn concepts, run into problems, or
+            discover new things, a skilled way of making sure you understand it
+            completely and correctly is to teach it to someone else; in this
+            case, write it out and explain it to others reading the blog. When
+            you have a limited understanding of a concept, sharing it with
+            someone else requires you to have a fuller knowledge of whatever
+            you're trying to teach them, therefore pushing you to understand a
+            concept to its full potential.</p>
+          <p style="width: 745px;">Using a blog format also gives you a copy of
+            what you know, a frame of reference for if you forget a concept or
+            piece of knowledge in the future.</p>
+          <p style="width: 746px;">With that in mind, this blog is where I'll be
+            posting things that I learn, projects that I'm working on, or
+            problems I run into in the process of learning. I hope some of these
+            posts will teach you a thing or two, provide you with things to
+            think on, or serve as entertainment in general.</p>
+          <p style="width: 747px;">If you ever have any questions or comments,
+            feel free to contact me! My contact information is located in the
+            Contact page, found on the navigation bar at the bottom of my site.
+            If you want to read more about who I am and how I got interested in
+            these subjects, visit my Who Am I page. :)</p>
+          <p>Thank you for stopping by!<br>
+            {thallia}</p>
           <p>&nbsp;</p>
           <!-- end of content column: put your content above this line --> </div>
       </div>
       <div id="tswfooter" style="margin-left: 300px; width: 772px;">
         <!-- start of footer section: insert your copyright notice, etc, here -->
-        <div id="tswcsstabs" style="width: 736px; margin-left: 5px;">
+        <div id="tswcsstabs" style="width: 738px; margin-left: -1px;">
           <ul>
             <li><br>
             </li>
@@ -119,7 +106,7 @@
                     Me</span></b> </a></li>
           </ul>
         </div>
-        <p style="height: 22px; margin-left: 5px; width: 647px;">&nbsp;&nbsp;&nbsp;
+        <p style="height: 22px; margin-left: 5px; width: 619px;">&nbsp;&nbsp;&nbsp;
           | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
             <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
           </span></p>

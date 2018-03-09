@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Project Hype: Binary Watch</title>
+    <title>a branch of knowledge</title>
     <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="tswtabs.css">
@@ -12,7 +12,7 @@
     <link type="text/css" rel="stylesheet" href="../tswtabs.css">
   </head>
   <body style="background-color: black;">
-    <div id="tswcontainer" style="width: 1531px;">
+    <div id="tswcontainer">
       <div id="tswheader">
         <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
           target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
@@ -22,82 +22,68 @@
         <div>
           <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
           </span></div>
-        <div style="width: 747px;">
-          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[12.31.17]
-              Project Hype: Binary Wristwatch &nbsp;&nbsp; <br>
+        <div style="width: 746px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[1.12.18]
+              Evil Russian Pushup Program<br>
             </span></h2>
-          <p>Announcing....my newest project!</p>
-          <p>I've always loved binary since I learned it, it's so simple and
-            intuitive to me. I found this binary wristwatch on a German website:
-            https://www.getdigital.eu/Binary-Wrist-Watch.html</p>
-          <p>I wanted to buy it right away, but shipping was a chunk of money,
-            as was the watch itself. That was around a year ago.</p>
-          <p>I re-stumbled upon the link recently and was inspired to design and
-            build my own binary wristwatch.</p>
-          <p>I built my first mock-circuit based off of Gector's binary clock,
-            to make sure I had the theory right, then ran his code alongside it.<br>
-            <br>
-            <img src="../images/bw1.jpg" alt="" title="binary watch"></p>
-          <p>Left top LEDs: Hours ^<br>
-            Left bottom LEDs: Minutes ^</p>
-          <p>From the side:<br>
-            <img src="../images/bw2.jpg" alt="" title="binary watch"></p>
-          <p><a href="https://github.com/CaptainGector/arduinoBinaryClock/blob/master/binaryClock.ino">https://github.com/CaptainGector/arduinoBinaryClock/blob/master/binaryClock.ino</a></p>
-          <p>His code was slightly wonky with my setup. The Hours displayed
-            fine, but the Minutes were off. It took me a while to realize why.
-            When he set up his clock, he had a display like so:</p>
-          <p><a href="https://github.com/CaptainGector/arduinoBinaryClock/blob/master/binaryClock.ino"><img
-                class="detail__media__img-thumbnail  js-detail-img  js-detail-img-thumb"
-                src="https://images.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.b4B7zS1wa1pDwnQl-U6UuQHaER%26pid%3D15.1&amp;f=1"></a></p>
-          <p>Hours1: 10<br>
-            Hours2: 0<br>
-            Minutes1: 30<br>
-            Minutes2: 7<br>
-            Seconds1: 40<br>
-            Seconds2: 9<br>
-            Displayed Time: 10:37:49</p>
-          <p>Where he had two rows of minutes. In my setup, I'm going for
-            mimicking the wristwatch setup, where there's only one row of
-            minutes and one row of hours.</p>
-          <p><img src="https://www.getdigital.eu/web/getdigital/gfx/productsMore/__generated__resized/1100x1100/Binaere_Armbanduhr_2_Zifferblatt.jpg"
-              height="378"></p>
-          <p>Hours: 8 4 2 1<br>
-            Minutes: 32 16 8 4 2 1<br>
-            Displayed time: 12:06</p>
-          <p>Knowing this, I'm going to have to fiddle with his C code.</p>
-          <p>Because I'm using a full sized ESP32 for the mock circuit, I
-            ordered a baby ESP32 off of eBay: <a href="https://www.ebay.com/itm/TTGO-MINI-D1-Wemos-ESP-32S-ESP32-WIFI-Bluetooth-ESP8266-CP2104-Module/401447548021">https://www.ebay.com/itm/TTGO-MINI-D1-Wemos-ESP-32S-ESP32-WIFI-Bluetooth-ESP8266-CP2104-Module/401447548021</a></p>
-          <p>The ESP32-S is now out of stock, so I got mine just in time :)
-            Though I derped a little bit in the thinking-things-through process.</p>
-          <p>Because I only ordered the ESP32-S, I'm going to have to design my
-            own PCB to use it. This is slightly inconvenient because I've never
-            done such a thing, but it's also a really good opportunity to learn
-            how, so I figure it'll be alright to exchange a fast building
-            process for a learning experience.</p>
-          <p>List of internals:<br>
-            * Surface mount components (resistors, 74HC595 shift registers,
-            ESP32-S, tactile buttons)<br>
-            * Power (I'm thinking a coin cell battery? That should be an easy
-            and small thing to manage.)<br>
-            * Flat top 3mm LEDs</p>
-          <p>I'm also going to need to design and 3D print a case for this
-            thing, which means learning fusion360 or SolidWorks.</p>
-          <p>I'm brainstorming the following for the design of the outside
-            container/attachments:</p>
-          <p>* comfortable, maybe slightly arched on the wrist<br>
-            * engraved with a circuit design on top<br>
-            * slim, not bulky. Just big enough to fit the PCB and slip right
-            over the LEDs.<br>
-            * woven leather or woven wires to attach to the wrist</p>
-          <p>I'll update as I continue work on this project, learning
-            EagleCAD/KiCAD, fusion360, and much more. :)</p>
-          <p></p>
+          <p>Two weeks ago, I challenged myself to complete what is called the "<a
+              href="https://www.royalmarines.uk/threads/the-evil-russian-pushup-program.3968/">Evil
+              Russian Pushup Program</a>".</p>
+          <p>This is a bodily intensive, fun workout to keep you moving during
+            the day and strengthening your muscles at the same time. I recently
+            acquired a dress that shows off the shoulders and arms, so I figured
+            it would be a good idea to tone myself up before I wear it to the
+            next folk or swing dance.</p>
+          <p>This program can be time intensive on certain days, and hardly so
+            on others. Even if you have a packed schedule, I highly recommend
+            trying it out.</p>
+          <p>Here's the layout:</p>
+          <p><strong>WEEK 1</strong></p>
+          <p>Mon: 100% test, relative intensity (RI) 30% Set frequency (SF) 60
+            min<br>
+            Tues: RI 50% SF 60 min<br>
+            Wed: RI 60% SF 45 min<br>
+            Thurs: RI 25% SF 60 min<br>
+            Fri: RI 45% SF 30 min<br>
+            Sat: RI 40% SF 60 min<br>
+            Sun: RI 20% SF 90 min</p>
+          <p><strong>WEEK 2</strong></p>
+          <p>Mon: 100% test RI 35% SF 45min<br>
+            Tues: RI 55% SF 20 min<br>
+            Wed: RI 30% SF 15 min<br>
+            Thurs: RI 65% SF 60min<br>
+            Fri: RI 35% SF 45 min<br>
+            Sat: RI 45% SF 60 min<br>
+            Sun: RI 25% SF120 min</p>
+          <p><strong>WEEK 3</strong></p>
+          <p>Mon: 100% test</p>
+          <p>On Mondays, or whichever day you choose to start, test yourself to
+            your max. Do as many push-ups as you can before muscle give-out.
+            Count how many you have, and that will be your base number of
+            push-ups. Every day, take the percentage and apply it to your base
+            number. This percentage will be the number of push-ups you do every
+            time chunk, so for Monday, if my base push-up number was 45, the
+            percentage is 30%. Take 30% of 45 (which is 14), and perform 14
+            push-ups every 60 minutes.</p>
+          <p>It may not seem like a lot of work at first, but trust me, each rep
+            gets more exhausting on the more frequent days, and you really do
+            build muscle. Over the two weeks, I increased my base number of 40
+            push-ups to being able to do 55 push-ups before fail after the
+            entire program (I got sick a few days into week two and wasn't able
+            to complete three of the days, but my max during week two jumped up
+            to 80). I lost a few inches on each arm, and generally feel
+            stronger.</p>
+          <p>After a three day rest, I'm going for it again. I challenge you to
+            do the same!</p>
+          <p>source:
+            https://www.royalmarines.uk/threads/the-evil-russian-pushup-program.3968/</p>
           <p> {thallia}</p>
+          <p>&nbsp;</p>
           <!-- end of content column: put your content above this line --> </div>
       </div>
       <div id="tswfooter" style="margin-left: 300px; width: 772px;">
         <!-- start of footer section: insert your copyright notice, etc, here -->
-        <div id="tswcsstabs" style="width: 736px; margin-left: 5px;">
+        <div id="tswcsstabs" style="width: 738px; margin-left: -1px;">
           <ul>
             <li><br>
             </li>
@@ -126,7 +112,7 @@
                     Me</span></b> </a></li>
           </ul>
         </div>
-        <p style="height: 22px; margin-left: 5px; width: 647px;">&nbsp;&nbsp;&nbsp;
+        <p style="height: 22px; margin-left: 5px; width: 619px;">&nbsp;&nbsp;&nbsp;
           | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
             <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
           </span></p>

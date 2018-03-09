@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Fish Shell | Install &amp; Prompt Customization</title>
+    <title>Openbox on Macbook Pro and Ubuntu</title>
     <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="tswtabs.css">
@@ -12,7 +12,7 @@
     <link type="text/css" rel="stylesheet" href="../tswtabs.css">
   </head>
   <body style="background-color: black;">
-    <div id="tswcontainer" style="width: 1531px;">
+    <div id="tswcontainer">
       <div id="tswheader">
         <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
           target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
@@ -22,38 +22,51 @@
         <div>
           <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
           </span></div>
-        <div style="width: 747px;">
+        <div style="width: 748px;">
           <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[12.30.17]
-              Fish Shell | Install and Prompt Customization<br>
+Openbox
+              on Macbook Pro and Ubuntu<br>
             </span></h2>
-          <p>Instead of the generic bash shell that comes with Ubuntu Linux, I
-            installed the fish shell a while ago.</p>
-          <p>Fish is awesome because it guesses your tab completion, provides
-            paths that you visit frequently, and is much more lightweight than
-            bash.</p>
-          <p><b><a href="http://fishshell.com/">http://fishshell.com/</a></b></p>
-          <p><code>sudo apt-get update</code><br>
-            <code>sudo apt-get install fish</code></p>
-          <p>To make fish your default shell:<br>
-            <code>chsh -s `which fish'</code><br>
-            Then logging out and logging back in should put it into effect.</p>
-          <p>Because I don't like the generic bash/fish prompts, I changed the
-            prompt myself in the <code>.config/fish/functions/fish_prompt.fish</code>.</p>
-          <p>Here is my config file: <a href="https://github.com/thallia/dotconfig/tree/master/fish/functions/fish_prompt.fish">https://github.com/thallia/dotconfig/tree/master/fish/functions/fish_prompt.fish</a></p>
-          <p>shiverwind:<br>
-            <img src="../images/fish-1.png" alt="" title="fish prompt"><br>
-            <br>
-            rainbow:<br>
-            <img src="../images/fish-2.png" alt="" title="fish prompt"></p>
-          <p>fire:<br>
-            <img src="../images/fish-3.png" alt="" title="fish prompt"></p>
+          <span style="font-family: Ubuntu Mono;"></span><br>
+          <p style="width: 746px;">Openbox is a really cool window manager that
+            is useful for us hackers who wish to configure <em>everything</em>
+            about how our desktop looks.</p>
+          <p>Openbox allows you to change keybindings really easily, configure
+            the taskbar, how you manage windows, and much more that I haven't
+            discovered yet.</p>
+          <p>To install, you just have to run <code>sudo apt-get install
+              openbox obconf tint2</code></p>
+          <p>After that, restart your laptop, then in the little gear icon,
+            click on the OpenBox option.</p>
+          <p>Due to my HiDPI macbook screen, the scaling was way off. We were
+            able to fix that with:</p>
+          <p><code>xrandr --output eDP-1 --scale 0.6x0.6</code></p>
+          <p>eDP-1 was the output of <code>arandr</code>, a window size editor.</p>
+          <p>When I converted to openbox, my brightness keys stopped working. I
+            went into my <code>.config/openbox/rc.xml</code> file, commented
+            out the setup for the brightness keys already in there, and posted
+            the brightness keybind settings from my friends' config file.<br>
+            https://github.com/fouric/dotfiles/blob/master/openbox/rc.xml</p>
+          <p>Because he used sudo in those, I had to:<br>
+            <code>sudo visudo</code></p>
+          <p>Below the <code>%sudo ALL=(ALL:ALL) ALL</code>, I put the line:</p>
+          <p><code>thallia ALL=(ALL) NOPASSWD: /usr/bin/tee
+              /sys/class/backlight/intel_backlight/brightness</code></p>
+          <p>After that, saving the file got the buttons to work :D</p>
+          <p>My background wallpaper was goofed due to the nerds and I
+            attempting to fix the scaling on my HiDPI screen. In the terminal, I
+            ran:</p>
+          <p><code>feh --bg-fill /path/to/background/image</code></p>
+          <p>I've attached hotkeys to rofi, terminal, and tons of other things,
+            and hopefully more things to come. I'm going to mess around more
+            later, for now I gotta get started on my next big project. :)</p>
           <p> {thallia}</p>
           <p>&nbsp;</p>
           <!-- end of content column: put your content above this line --> </div>
       </div>
       <div id="tswfooter" style="margin-left: 300px; width: 772px;">
         <!-- start of footer section: insert your copyright notice, etc, here -->
-        <div id="tswcsstabs" style="width: 736px; margin-left: 5px;">
+        <div id="tswcsstabs" style="width: 738px; margin-left: -1px;">
           <ul>
             <li><br>
             </li>
@@ -82,7 +95,7 @@
                     Me</span></b> </a></li>
           </ul>
         </div>
-        <p style="height: 22px; margin-left: 5px; width: 647px;">&nbsp;&nbsp;&nbsp;
+        <p style="height: 22px; margin-left: 5px; width: 619px;">&nbsp;&nbsp;&nbsp;
           | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
             <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
           </span></p>

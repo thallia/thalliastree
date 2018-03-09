@@ -23,61 +23,38 @@
           <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
           </span></div>
         <div>
-          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[6.12.17]
-              a branch of knowledge<br>
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[12.30.17]
+              Fish Shell | Install and Prompt Customization<br>
             </span></h2>
-          <span style="font-family: Ubuntu Mono;"></span>
-          <p style="width: 815px;">céad míle fáilte,&nbsp; a hundred thousand
-            welcomes!</p>
-          <p style="width: 746px;">I am thallia, a young and aspiring engineer.
-            Electrical engineering and computer engineering have been my focus
-            for almost a year now, alongside programming, mathematics, science,
-            and a little dabble of natural medicine.</p>
-          <p style="width: 747px;">Soon I will be shipped off to college to
-            pursue my career in electrical engineering--with that I want to
-            further the research and technology to aid in naturopathic and other
-            natural medical care.</p>
-          <p style="width: 747px;">The reason I chose to start a blog is due
-            partially from influence of my mentor. I am a part of a team called
-            <em>Under the Wire</em>, a small group of individuals with a passion
-            for learning and, hopefully someday, we want to reinvent technology.</p>
-          <p style="width: 746px;">One of the concepts provided to us by our
-            mentor is called <em>infinity learning</em>. A bit dramatic, I
-            know, that's what makes it fun. The concept of infinity learning is,
-            ideally, where you are able to train yourself to remember the
-            majority of anything you ever learn. A tool helpful to accomplish
-            this is a blog.</p>
-          <p style="width: 747px;">The blogging format gives you a place to,
-            "review, clarify, and document your experiences and learnings"
-            (fouric, 2017). As you learn concepts, run into problems, or
-            discover new things, a skilled way of making sure you understand it
-            completely and correctly is to teach it to someone else; in this
-            case, write it out and explain it to others reading the blog. When
-            you have a limited understanding of a concept, sharing it with
-            someone else requires you to have a fuller knowledge of whatever
-            you're trying to teach them, therefore pushing you to understand a
-            concept to its full potential.</p>
-          <p style="width: 745px;">Using a blog format also gives you a copy of
-            what you know, a frame of reference for if you forget a concept or
-            piece of knowledge in the future.</p>
-          <p style="width: 746px;">With that in mind, this blog is where I'll be
-            posting things that I learn, projects that I'm working on, or
-            problems I run into in the process of learning. I hope some of these
-            posts will teach you a thing or two, provide you with things to
-            think on, or serve as entertainment in general.</p>
-          <p style="width: 747px;">If you ever have any questions or comments,
-            feel free to contact me! My contact information is located in the
-            Contact page, found on the navigation bar at the bottom of my site.
-            If you want to read more about who I am and how I got interested in
-            these subjects, visit my Who Am I page. :)</p>
-          <p>Thank you for stopping by!<br>
-            {thallia}</p>
+          <span style="font-family: Ubuntu Mono;"></span><br>
+          <p style="width: 747px;">Instead of the generic bash shell that comes
+            with Ubuntu Linux, I installed the fish shell a while ago.</p>
+          <p style="width: 748px;">Fish is awesome because it guesses your tab
+            completion, provides paths that you visit frequently, and is much
+            more lightweight than bash.</p>
+          <p><b><a href="http://fishshell.com/">http://fishshell.com/</a></b></p>
+          <p><code>sudo apt-get update</code><br>
+            <code>sudo apt-get install fish</code></p>
+          <p>To make fish your default shell:<br>
+            <code>chsh -s `which fish'</code><br>
+            Then logging out and logging back in should put it into effect.</p>
+          <p style="width: 747px;">Because I don't like the generic bash/fish
+            prompts, I changed the prompt myself in the <code>.config/fish/functions/fish_prompt.fish</code>.</p>
+          <p style="width: 746px;">Here is my config file: <a href="https://github.com/thallia/dotconfig/tree/master/fish/functions/fish_prompt.fish">https://github.com/thallia/dotconfig/tree/master/fish/functions/fish_prompt.fish</a></p>
+          <p>shiverwind:<br>
+            <img src="https://www.thalliatree.net/images/fish-1.png" alt="" title="fish prompt"><br>
+            <br>
+            rainbow:<br>
+            <img src="https://www.thalliatree.net/images/fish-2.png" alt="" title="fish prompt"></p>
+          <p>fire:<br>
+            <img src="https://www.thalliatree.net/images/fish-3.png" alt="" title="fish prompt"></p>
+          <p> {thallia}</p>
           <p>&nbsp;</p>
           <!-- end of content column: put your content above this line --> </div>
       </div>
       <div id="tswfooter" style="margin-left: 300px; width: 772px;">
         <!-- start of footer section: insert your copyright notice, etc, here -->
-        <div id="tswcsstabs" style="width: 644px; margin-left: 370px;">
+        <div id="tswcsstabs" style="width: 738px; margin-left: -1px;">
           <ul>
             <li><br>
             </li>
