@@ -44,21 +44,23 @@
           <span style="font-family: Ubuntu Mono;"> </span>
           <h2 style=" margin-left: 7px; width: 826px;"><span style="font-family: Ubuntu Mono;">Recent
               Posts:</span></h2>
+          <p><b>* <span style="font-family: Ubuntu Mono;">Connecting a Web
+                Server to A Domain | here</span></b></p>
           <span style="font-family: Ubuntu Mono;"> </span>
           <p><span style="font-family: Ubuntu Mono;"><b>* Setting Up A Web
-                Server on FreeBSD 12.0-CURRENT | here<br>
+                Server on FreeBSD 12.0-CURRENT | <a href="posts/web-server-freebsd-12-current.html">here</a><br>
               </b></span></p>
           <span style="font-family: Ubuntu Mono;"> </span>
           <p><span style="font-family: Ubuntu Mono;"><b>* i3wm Setting Up
-                Backlight + Sound keybindings | here<br>
+                Backlight + Sound keybindings | <a href="posts/i3-wm-backlight-sound.html">here</a><br>
               </b></span></p>
           <span style="font-family: Ubuntu Mono;"> </span>
           <p><span style="font-family: Ubuntu Mono;"><b>* Difference Between a
-                Dictionary, an Array, a Record, and a Map | here<br>
+                Dictionary, an Array, a Record, and a Map | <a href="posts/difference-between-dict-array-record-map.html">here</a><br>
               </b></span></p>
           <span style="font-family: Ubuntu Mono;"> </span>
           <p><b><span style="font-family: Ubuntu Mono;">* Programming Paradigms
-                | What Are They and How Do They Work? | here</span><br>
+                | What Are They and How Do They Work? | <a href="posts/programming-paradigms.html">here</a></span><br>
             </b> </p>
           <p>&nbsp;</p>
           <!-- end of content column: put your content above this line --> </div>
