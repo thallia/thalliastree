@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>a branch of knowledge</title>
+    <title>Connecting the Web Server to A Domain</title>
     <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="tswtabs.css">
@@ -22,56 +22,77 @@
         <div>
           <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
           </span></div>
-        <div>
-          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[6.12.17]
-              a branch of knowledge<br>
+        <div style="width: 748px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[3.9.18]
+              Connecting the Web Server to a Domain<br>
             </span></h2>
-          <span style="font-family: Ubuntu Mono;"></span>
-          <p style="width: 815px;">céad míle fáilte,&nbsp; a hundred thousand
-            welcomes!</p>
-          <p style="width: 746px;">I am thallia, a young and aspiring engineer.
-            Electrical engineering and computer engineering have been my focus
-            for almost a year now, alongside programming, mathematics, science,
-            and a little dabble of natural medicine.</p>
-          <p style="width: 747px;">Soon I will be shipped off to college to
-            pursue my career in electrical engineering--with that I want to
-            further the research and technology to aid in naturopathic and other
-            natural medical care.</p>
-          <p style="width: 747px;">The reason I chose to start a blog is due
-            partially from influence of my mentor. I am a part of a team called
-            <em>Under the Wire</em>, a small group of individuals with a passion
-            for learning and, hopefully someday, we want to reinvent technology.</p>
-          <p style="width: 746px;">One of the concepts provided to us by our
-            mentor is called <em>infinity learning</em>. A bit dramatic, I
-            know, that's what makes it fun. The concept of infinity learning is,
-            ideally, where you are able to train yourself to remember the
-            majority of anything you ever learn. A tool helpful to accomplish
-            this is a blog.</p>
-          <p style="width: 747px;">The blogging format gives you a place to,
-            "review, clarify, and document your experiences and learnings"
-            (fouric, 2017). As you learn concepts, run into problems, or
-            discover new things, a skilled way of making sure you understand it
-            completely and correctly is to teach it to someone else; in this
-            case, write it out and explain it to others reading the blog. When
-            you have a limited understanding of a concept, sharing it with
-            someone else requires you to have a fuller knowledge of whatever
-            you're trying to teach them, therefore pushing you to understand a
-            concept to its full potential.</p>
-          <p style="width: 745px;">Using a blog format also gives you a copy of
-            what you know, a frame of reference for if you forget a concept or
-            piece of knowledge in the future.</p>
-          <p style="width: 746px;">With that in mind, this blog is where I'll be
-            posting things that I learn, projects that I'm working on, or
-            problems I run into in the process of learning. I hope some of these
-            posts will teach you a thing or two, provide you with things to
-            think on, or serve as entertainment in general.</p>
-          <p style="width: 747px;">If you ever have any questions or comments,
-            feel free to contact me! My contact information is located in the
-            Contact page, found on the navigation bar at the bottom of my site.
-            If you want to read more about who I am and how I got interested in
-            these subjects, visit my Who Am I page. :)</p>
-          <p>Thank you for stopping by!<br>
-            {thallia}</p>
+          <span style="font-family: Ubuntu Mono;"></span><br>
+          <p>Over the past week I have dedicated an insane amount of hours to
+            getting this wordpress blog ported to my other domain. To do this, I
+            had to set up a web server and redesign the website in HTML/CSS
+            format.</p>
+          <p>To do this, I didn't want to have to learn HTML, so I use a
+            "wysiwyg" What You See Is What You Get HTML site generator, where
+            you do all the design and it generates HTML code for you. I used <a
+              href="http://bluegriffon.org/" target="_blank" rel="noopener">BlueGriffon</a>,
+            and by far a great tool than some of the other wysiwyg things I
+            found out there. BlueGriffon has a fairly smooth user interface, and
+            an easy way of configuring things to the way you want them.</p>
+          <p>I used <a href="https://www.thesitewizard.com/bluegriffon/bluegriffon-2-tutorial-1.shtml"
+              target="_blank" rel="noopener">the Site Wizard's</a> tutorials on
+            how to use BlueGriffon to generate a fully functioning website. His
+            stuff is super thorough, so if you have absolutely no technical
+            knowledge at all you'd be able to follow his stuff very easily.</p>
+          <p>I figured the best way to share files between my server and
+            computer for now would be a <a href="https://github.com/thallia/thalliastree">GitHub
+              repository</a>. This repo stores all my sites files, so I can edit
+            them on my computer, push to the repo, and pull on the server to put
+            the changes in effect. Supes ezpz.</p>
+          <p>Now, to actually get the domain working with my server:</p>
+          <p>I didn't have git or tmux installed, so that was the first pit
+            stop. Since I'm using FreeBSD 12.0-CURRENT, there are no packages
+            that are updated for the OS (since it's a developers version, you
+            have to install <em>everything</em> by hand. Even the package
+            manager.</p>
+          <p>Anyway, to install git, <code>cd /usr/ports/devel/git</code><br>
+            Then:<br>
+            <code>sudo make</code><br>
+            <code>sudo make install</code><br>
+            <code>sudo make clean</code></p>
+          <p>The next step was to fix the <code>DocumentRoot</code> in two
+            files, so my domain knows where to access the site files.</p>
+          <p>First, change <code>DocumentRoot</code> in <code>/usr/local/etc/apache24/httpd.conf</code>,</p>
+          <p>I git cloned <code>thalliastree</code> into apache's data repo, so
+            the path I put in <code>DocumentRoot</code> was:</p>
+          <p><code>DocumentRoot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              /usr/local/www/apache24/data/thalliastree/</code></p>
+          <p>Also update the <code>&lt;Directory "path/here"&gt;</code> thing
+            to have the same path as DocumentRoot.</p>
+          <p>Inside the <code>&lt;Directory
+              "/usr/local/www/apache24/data/thalliastree/"&gt;</code> code
+            block, you need to specify the initial index file that will pop up
+            on your screen when someone accesses your site, which looks like
+            this:<br>
+            <code>DirectoryIndex index.html</code></p>
+          <p>Where index.html is the homepage file for your site.</p>
+          <p>We need to update the path of one more file:</p>
+          <p><code>sudo vim
+              /usr/local/etc/apache24/sites-available/bsd.lan-ssl.conf</code></p>
+          <p>Find the <code>DocumentRoot</code> line, then update the path to
+            be the same as the one you updated earlier.</p>
+          <p>After that, everything should be ready to go, if you followed my
+            other blog post: <a href="https://www.thalliatree.net/posts/web-server-freebsd-12-current.html"
+              target="_blank" rel="noopener">Setting up A Web Server on FreeBSD
+              12.0-CURRENT</a></p>
+          <p>Run <code>sudo service apache24 restart</code> on your webserver,
+            direct a browser to your domain, and viola! Your newly designed
+            website should appear :)</p>
+          <p>I had a problem where I couldn't access my website from inside my
+            network, which was partly fixed by adding an entry in <code>/etc/hosts</code>.</p>
+          <p style="width: 746px;">Now that this is all over, I can debut my new
+            site, stay tuned for a blog post about moving to my newly hosted
+            site :)</p>
+          <p> {thallia}</p>
           <p>&nbsp;</p>
           <!-- end of content column: put your content above this line --> </div>
       </div>
