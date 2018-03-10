@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>sitemap</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="all" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="archive of my posts">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="margin-left: -16px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">A
+              branch of knowledge.</span></h2>
+          <span style="font-family: Ubuntu Mono;"></span><span style="font-family: Ubuntu Mono;"></span>
+          Find your way through my content here!</div>
+        <div style="margin-left: -16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </div>
+        <div style="margin-left: -16px;"><u><b>Servers:</b></u></div>
+        <div style="margin-left: -16px;"><br>
+        </div>
+        <div style="margin-left: -16px;">* Raspberry Pi IRC Server | <a href="posts/rpi-irc-server.html">here</a></div>
+        <div style="margin-left: -16px;">* Edimax EW-7811Un WiFi Adapter on
+          FreeBSD Server | <a href="posts/freebsd-server-edimax-ew7811un-wifi-adapter.html">here</a><br>
+          * ZNC - IRC Bouncer on FreeBSD 12.0_CURRENT | <a href="posts/znc-irc-bouncer-freebsd-12-current.html">here</a><br>
+          * Setting Up An Apache Web Server on FreeBSD 12.0_CURRENT | <a href="posts/web-server-freebsd-12-current.html">here</a><br>
+          <p style="width: 746px;"><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+          <p style="width: 746px;"><u><b>Computer Customization:</b></u><br>
+            <br>
+            * Fish Shell - Install and Prompt Customization | <a href="posts/fish-shell-install-and-custom.html">here</a><br>
+            * OpenBox on Macbook Pro + Ubuntu | <a href="posts/openbox-mac-and-ubuntu.html">here</a><br>
+            * Openbox rc.xml resets on laptop reboot | <a href="posts/openbox-rc-xml-reset.html">here</a><br>
+            * Openbox/Ubuntu Macbook Suspend/Sleep Functionality Issues | here<br>
+            * tint2 replacement # polybar | <a href="posts/tint2-replacement-polybar.html">here</a><br>
+            * i3 Window Manager + Notification Daemon Dunst | <a href="posts/i3-wm-notification-dunst.html">here</a><br>
+            * i3 Window Manager Backlight + Sound | <a href="posts/i3-wm-backlight-sound.html">here</a><br>
+            <br>
+            <u><b>Projects:</b></u><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br>
+            <br>
+            * Project Hype: Binary Wristwatch | <a href="posts/project-hype-binary-watch.html">here</a><br>
+            * ATmega328P Microcontroller + 74HC595 Shift Register Setup and test
+            | binary watch | <a href="posts/atmega328p-microcontroller-74hc595-shift-reg-setup-bw.html">here</a><br>
+            * Code - part 1 | binary watch | <a href="posts/code-p1-bw.html">here</a><br>
+            * Code - part 2 | binary watch | <a href="posts/code-p2-bw.html">here</a><br>
+            * Prepping the ATmega328P: bootloader burn, fuse-byte programming,
+            and hardware test | binary watch | <a href="posts/prepping-the-atmega-hardware-test-bw.html">here</a><br>
+            * Mock up PCB | binary watch | <a href="posts/mock-up-pcb-bw.html">here</a><br>
+            <br>
+            * Project Hype: RPi Terminal | <a href="posts/project-hype-rpi-terminal.html">here</a><br>
+            * ArkenPi - Update 1 | <a href="posts/rpi-mini-laptop-update.html">here</a><br>
+            * ArkenPi - Install &amp; config | <a href="posts/arkenpi-install-and-config.html">here</a><br>
+            * ArkenPi - The Redo | <a href="posts/arkenpi-tft.html">here</a><br>
+            * ArkenPi - 3D Printed Case | <a href="posts/arkenpi-3d-case.html">here</a><br>
+            * ArkenPi - Origins (hardware) | <a href="posts/arkenpi-origins.html">here</a>
+            &nbsp;&nbsp;&nbsp;&nbsp; <br>
+            <br>
+            * 4x4x4 Rainbow LED Cube - Hardware | <a href="posts/4x4x4-led-cube.html">here</a><br>
+            * 4x4x4 Rainbow LED Cube - Final Product! | <a href="posts/4x4x4-led-cube-final.html">here</a><br>
+            <br>
+            * Lightshow Pi ~ Early Tech Behind the Laminar Fountain | <a href="posts/lightshowpi-early-tech-behind-laminar-fountain.html">here</a><br>
+            * The RGB LEDs are IN | <a href="posts/the-rgb-leds-are-in.html">here</a><br>
+            * Building the Fountain | <a href="posts/building-the-fountain.html">here</a><br>
+            * Laminar Pi + Airplay | <a href="posts/laminar-airplay.html">here</a><br>
+            <br>
+            <u><b>Programming:</b></u></p>
+          <p style="width: 808px;">* QEMU Debugging and TIL | <a href="posts/qemu-debugging-and-til.html">here</a><br>
+            * Adventures in Common Lisp and Project Newton | <a href="posts/common-lisp-project-newton.html">here</a><br>
+            * Programming Paradigms | What Are They and How Do They Work? | <a
+              href="posts/programming-paradigms.html">here</a><br>
+            * Difference Between A Dictionary, an Array, a Record, and a Map | <a
+              href="posts/difference-between-dict-array-record-map.html">here</a></p>
+          <p style="width: 746px;"><u><b>Microcontrollers:</b></u><br>
+            <br>
+            * ESP32 with Blynk - Lighting an LED over Wifi | <a href="posts/esp32-blynk.html">here</a><br>
+            * 74HC595 Texas Instruments Shift Registers with ESP32 | <a href="posts/74dc595-texas-instruments-shift-reg-esp32.html">here</a><br>
+            * Introducing: Nucleo&nbsp; | <a href="posts/introducing-nucleo.html">here</a><br>
+            <br>
+            <u><b>Misc:</b></u><br>
+            <br>
+            * thallia's tree; a branch of knowledge | first post! | <a href="posts/thalliastree-a-branch-of-knowledge.html">here</a><br>
+            * Spaced Repetition Learning Systems | <a href="posts/srls.html">here</a><br>
+            * Improv: The Art of Spontaneous Theater | <a href="posts/improv-the-art-of-spontaneous-theater.html">here</a><br>
+            * Dakboard, Physics, and Music | <a href="posts/dakboard-physics-music.html">here</a><br>
+            * iPod Touch 3rd Generation Jailbreak | <a href="posts/ipod-touch-3rd-gen-jailbreak.html">here</a><br>
+            * Not "soldiering", saw-der-ing | <a href="posts/not-soldiering-saw-der-ing.html">here</a><br>
+            * Evil Russian Pushup Program | <a href="posts/evil-russian-pushup-program.html">here</a><br>
+            * Genetically Modified Organisms - An Overview | <a href="posts/genetically-modified-organisms.html">here</a><br>
+            * The Art of Debugging: A Kind of Book Review | <a href="posts/debugging-a-kind-of-book-review.html">here</a></p>
+          <p style="width: 746px;"><br>
+          </p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 251px; width: 941px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 644px;">
+          <ul id="tabbar">
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 65px; margin-left: -49px;"><b><span
+                          style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; width: 583px; margin-left: 15px;" id="footer">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>

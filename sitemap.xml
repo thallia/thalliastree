@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- home page -->
+  <url><loc>https://thalliatree.net/</loc></url>
+  <url><loc>https://thalliatree.net/index.html</loc></url>
+  <url><loc>https://thalliatree.net/sitemap.html</loc></url>
+  <url><loc>https://thalliatree.net/who-am-i.html</loc></url>
+  <url><loc>https://thalliatree.net/contact-me.html</loc></url>
+  <url><loc>https://thalliatree.net/follow-me.html</loc></url>
+  <url><loc>https://thalliatree.net/under-the-wire.html</loc></url>
+
+  <!-- posts -->
+  <url><loc>https://thalliatree.net/posts/4x4x4-led-cube-final.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/4x4x4-led-cube.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/74dc595-texas-instruments-shift-reg-esp32.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/arkenpi-3d-case.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/arkenpi-install-and-config.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/arkenpi-origins.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/arkenpi-tft.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/atmega328p-microcontroller-74hc595-shift-reg-setup-bw.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/building-the-fountain.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/code-p1-bw.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/code-p2-bw.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/common-lisp-project-newton.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/dakboard-physics-music.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/debugging-a-kind-of-book-review.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/difference-between-dict-array-record-map.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/esp32-blynk.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/evil-russian-pushup-program.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/fish-shell-install-and-custom.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/freebsd-server-edimax-ew7811un-wifi-adapter.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/genetically-modified-organisms.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/i3-wm-backlight-sound.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/i3-wm-notification-dunst.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/improv-the-art-of-spontaneous-theater.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/introducing-nucleo.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/ipod-touch-3rd-gen-jailbreak.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/laminar-airplay.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/lightshowpi-early-tech-behind-laminar-fountain.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/mock-up-pcb-bw.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/not-soldiering-saw-der-ing.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/openbox-mac-and-ubuntu.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/openbox-rc-xml-reset.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/openbox-ubuntu-mac-sleep-issues.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/prepping-the-atmega-hardware-test-bw.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/programming-paradigms.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/project-hype-binary-watch.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/project-hype-rpi-terminal.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/projects-packages-progress-ohmy.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/qemu-debugging-and-til.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/rpi-irc-server.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/rpi-mini-laptop-update.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/srls.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/thalliastree-a-branch-of-knowledge.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/the-rgb-leds-are-in.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/tint2-replacement-polybar.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/web-server-freebsd-12-current.html</loc></url>
+  <url><loc>https://thalliatree.net/posts/znc-irc-bouncer-freebsd-12-current.html</loc></url>
+
+</urlset>
