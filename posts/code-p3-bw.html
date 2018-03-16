@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Code - Part 3 | Binary Watch</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="A branch of knowledge - first post">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="width: 748px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[3.15.18]
+              Code - Part 3 | Binary Watch<br>
+            </span></h2>
+          <span style="font-family: Ubuntu Mono;"></span><br>
+          <p>Last we talked about the Binary watch I was busy finishing up the
+            second rendition of the working code and getting ready to complete
+            the schematic.</p>
+          <p>As the date I head off to college comes nearer and nearer, the
+            urgency of finishing my projects is heightening! And so I take to
+            Spacemacs to venture through the depths of ATmega328P's sleep modes,
+            RTC modes, and more...</p>
+          <p>I roughly sketched out a nice schematic on EagleCAD that will soon
+            be posted in my GitHub, but I gotta finish some hardware testing
+            before that happens.</p>
+          <p>As for the code side of things, the next steps were to research
+            sleep modules and see which ones work with my project set-up the
+            best.</p>
+          <p>Reading through the datasheet is rather monotonous, it gave me a
+            vague idea of what the sleep modules were, but I still had a hazy
+            view of what I needed to do, so I headed over to the <a href="https://arduino.stackexchange.com/questions/50733/is-there-a-way-to-disable-modules-like-adc-without-a-sleep-mode">Arduino
+              Stack Exchange</a>.</p>
+          <p>My initial (albeit naive) idea was to keep the CPU, flash, and
+            Clock running while putting all other modules to sleep. I started to
+            test this, but disabling the modules had hardly no effect on the
+            current pull of the ATmega328p, which was another reason I asked on
+            Stack Exchange. One person said,</p>
+          <p>"<span class="comment-copy">You do <b>not</b> want to keep the CPU
+              running on a battery-powered project! You should use a timer for
+              keeping the time, and let the CPU sleep. Ideally, you would
+              connect a 32,768 Hz crystal to TOSC1/TOSC2 and have Timer 2 work
+              in RTC mode. I have <a href="https://www.logre.eu/wiki/Horloge_analogique_24h/en"
+                rel="nofollow noreferrer">a clock</a> running since June 2012 on
+              the same pair of AA cells using this low-power technique.</span>"</p>
+          <p>This piqued my interest, so I went to research heavily on what RTC
+            mode was, and how this stuff works alongside a sleep mode.</p>
+          <p>RTC stands for Real Time Clock, which is typically a 32.768kHz
+            crystal externally connected to TOSC1/TOSC2 or XTAL1/XTAL2 pins.
+            This RTC mode allows the entire microcontroller to sleep, while
+            still ticking the external clock outside the sleep mode. With
+            SLEEP_MODE_PWR_SAVE, the second-to-lowest power saving mode, you can
+            wake it up through either a timer interrupt or a signal on the
+            INT0/INT1 pin.</p>
+          <p>This seemed like the best solution, but how to implement it?<br>
+            I have found *tons* of different code and libraries for this, so
+            much so that I just got confused.</p>
+          <p>After much research and questioning, I came to two conclusions, of
+            which I will try both:</p>
+          <p>1) Write code to work with an RTC/IC, like the <a href="https://learn.adafruit.com/ds1307-real-time-clock-breakout-board-kit/what-is-an-rtc"
+              target="_blank" rel="noopener">DS1307</a> and code from <a href="https://github.com/MajicDesigns/MD_DS1307"
+              target="_blank" rel="noopener">this arduino library</a>, that way
+            I don't have to mess around with setting all the hardware bits and
+            bytes and confusing myself to no end. (more documentation on the
+            arduino library <a href="https://majicdesigns.github.io/MD_DS1307/index.html">here</a>)
+            It seems as though the DS1307 is a plug'n'play device, as long as
+            you get the code right.</p>
+          <p>2) [as of 3-15-17 at <a href="https://youtu.be/cUFJ1yVhJ6g">23:19</a>]
+            Test out <a href="https://arduino.stackexchange.com/questions/50733/is-there-a-way-to-disable-modules-like-adc-without-a-sleep-mode?noredirect=1#comment103133_50733"
+              target="_blank" rel="noopener">Nick Gammon's response</a> on my
+            Stack Exchange question. The code he gave me was very insightful
+            with accomplishing all the bits and bytes and changing the hardware
+            registers.</p>
+          <p>I have ordered some 32.768kHz crystals and the DS1307 board, both
+            of which should come this Monday. In the meantime, I <a href="https://github.com/thallia/BinaryWatch/blob/master/src/bwatch3-0.cpp"
+              target="_blank" rel="noopener">typed up some quick code</a> to go
+            with the DS1307, and <a href="https://github.com/thallia/BinaryWatch/blob/master/src/bwatch-clk.cpp"
+              target="_blank" rel="noopener">adjusted the code</a> from stack
+            exchange. Both compile normally, so we'll have to see how it works
+            out when the actual hardware arrives. I'm sure mass debugging will
+            entail...</p>
+          <p>Depending on which one works best for my purposes, I'll adapt the
+            schematic to the design and then start work on the PCB.</p>
+          <p></p>
+          <p> {thallia}</p>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 300px; width: 772px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 738px; margin-left: -1px;">
+          <ul>
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 64px; margin-left: -49px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp; <b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; margin-left: 5px; width: 619px;">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>
