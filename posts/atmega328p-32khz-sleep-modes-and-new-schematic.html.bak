@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Code - Part 3 | Binary Watch</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="A branch of knowledge - first post">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="width: 748px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[3.25.18]
+              ATmega328P 32.768kHz, sleep modes, and new schematic&nbsp; |
+              Binary Watch<br>
+            </span></h2>
+          <span style="font-family: Ubuntu Mono;"></span><br>
+          <p>For the past week I’ve been debugging hardware and software to get
+            my barebones ATmega328P to work with a 32.768kHz oscillator as Timer
+            2, which will tick <em>outside</em> of the sleeping
+            microcontroller. This way I can keep track of time even as the
+            microcontroller is off and saving power.</p>
+          <p>To get the 32.kHz clock to work was challenging, because I forgot
+            some minor aspects of how to set the circuit up.</p>
+          <p>I ended up asking some questions on the <a href="https://arduino.stackexchange.com/questions/50733/is-there-a-way-to-disable-modules-like-adc-without-a-sleep-mode"
+              target="_blank" rel="noopener">Arduino Stack Exchange</a> to
+            really understand what I was doing and should do.</p>
+          <p>I wanted to test out Nick Gammon’s code, so I set up his example
+            circuit:</p>
+          <img src="../images/nickgammon-32khz.jpg" alt="" title="32kHz testing">
+          <p>But it was still dorking out. The LED wasn’t turning on and off
+            like I programmed it to do when waking up from sleep, and
+            sporadically it would turn on really brightly, then off. Reaaaally
+            weird behavior.</p>
+          <p>I took to UTW to ask about my problem, and as silly as it sounds,
+            it turns out I forgot to program the microcontroller to use the 8MHz
+            internal oscillator for the programmer!</p>
+          <p>Originally, the arduino bootloader has the fuse byte settings to
+            use an external 16MHz clock. I needed to use the 8MHz internal clock
+            for the processor. derp.</p>
+          <p>So, back to the drawing board of setting up fuse bytes by
+            reprogramming the bootloader.</p>
+          <p>The circuit can be found in my previous posts: <a href="https://thalliatree.net/posts/prepping-the-atmega-hardware-test-bw.html"
+              target="_blank" rel="noopener">ATMega328P Burning the Bootloader </a></p>
+          <p>I ran into <em>so many errors.</em> All the following comes from
+            my <a href="https://github.com/thallia/BinaryWatch/blob/master/hardware/englog.txt"
+              target="_blank" rel="noopener">engineering log on GitHub</a>:</p>
+          <p>I’m using the Arduino UNO to serially program the fuse bytes.</p>
+          <p>I ran:</p>
+          <p><code>avrdude -c arduino -p m328p -P /dev/ttyACM0 -v -U lfuse:r:h</code></p>
+          <p>which outputted this:</p>
+          <blockquote>
+            <p><code>Using Port : /dev/ttyACM0<br>
+                Using Programmer : arduino<br>
+                AVR Part : ATmega328P<br>
+                Chip Erase delay : 9000 us<br>
+                PAGEL : PD7<br>
+                BS2 : PC<br>
+                RESET disposition : dedicate<br>
+                RETRY pulse : SCK<br>
+                serial program mode : yes<br>
+                parallel program mode : yes<br>
+                Timeout : 200<br>
+                StabDelay : 100<br>
+                CmdexeDelay : 25<br>
+                SyncLoops : 32<br>
+                ByteDelay : 0<br>
+                PollIndex : 3<br>
+                PollValue : 0x53<br>
+                Memory Detail :</code></p>
+            <p><code>Programmer Type : Arduino<br>
+                Description : Arduino<br>
+                Hardware Version: 3<br>
+                Firmware Version: 4.4<br>
+                Vtarget : 0.3 V<br>
+                Varef : 0.3 V<br>
+                Oscillator : 28.800 kHz<br>
+                SCK period : 3.3 us</code></p>
+            <p><code>avrdude: AVR device initialized and ready to accept
+                instructions</code></p>
+            <p><code>Reading |
+                ################################################## | 100% 0.00s</code></p>
+            <p><code>avrdude: Device signature = 0x1e950f<br>
+                avrdude: Expected signature for ATmega328P is 1E 95 14<br>
+                Double check chip, or use -F to override this check.</code></p>
+            <p><code>avrdude done. Thank you.</code></p>
+          </blockquote>
+          <p>Alright, so looks like 0x0f vs 0x14 is messing up the reading of
+            the device…<br>
+            which is strange.</p>
+          <p>One answer from researching suggested to changed the baud rate.</p>
+          <blockquote>
+            <p>“The thing that determines which you “talk to” is the baud rate.
+              I believe that when you attempt to use ArduinoISP you need “-b
+              19200″ in your avrdude command so it won’t interact with the
+              bootloader (Optiboot uses 115200 I think).”</p>
+          </blockquote>
+          <p>I added “-b 19200” into my avrdude command, which produced the
+            error:</p>
+          <p><code>avrdude: ser_open(): can't set attributes for device
+              "/dev/ttyS0": Inappropriate ioctl for device</code></p>
+          <p>Looking further in that same forum, it appears the person having
+            problems stated<br>
+            that you can’t power the chip you’re programming with the same
+            Arduino that is<br>
+            programming it. Going to try an external power source for the chip
+            before<br>
+            exploring the “inappropriate ioctl” error.</p>
+          <p>With externally powering the chip, I made some progress! In which
+            this was:</p>
+          <blockquote>
+            <p><code>avrdude: stk500_recv(): programmer is not responding<br>
+                avrdude: stk500_getsync() attempt 1 of 10: not in sync:
+                resp=0x00<br>
+                avrdude: stk500_recv(): programmer is not responding<br>
+                avrdude: stk500_getsync() attempt 2 of 10: not in sync:
+                resp=0x00<br>
+                avrdude: stk500_recv(): programmer is not responding<br>
+                avrdude: stk500_getsync() attempt 3 of 10: not in sync:
+                resp=0x00<br>
+                avrdude: stk500_recv(): programmer is not responding<br>
+                avrdude: stk500_getsync() attempt 4 of 10: not in sync:
+                resp=0x00<br>
+                avrdude: stk500_recv(): programmer is not responding<br>
+                avrdude: stk500_getsync() attempt 5 of 10: not in sync:
+                resp=0x00<br>
+                avrdude: stk500_recv(): programmer is not responding<br>
+                avrdude: stk500_getsync() attempt 6 of 10: not in sync:
+                resp=0x00<br>
+                avrdude: stk500_recv(): programmer is not responding<br>
+                avrdude: stk500_getsync() attempt 7 of 10: not in sync:
+                resp=0x00<br>
+                avrdude: stk500_recv(): programmer is not responding<br>
+                avrdude: stk500_getsync() attempt 8 of 10: not in sync:
+                resp=0x00<br>
+                avrdude: stk500_recv(): programmer is not responding<br>
+                avrdude: stk500_getsync() attempt 9 of 10: not in sync:
+                resp=0x00<br>
+                avrdude: stk500_recv(): programmer is not responding<br>
+                avrdude: stk500_getsync() attempt 10 of 10: not in sync:
+                resp=0x00</code></p>
+          </blockquote>
+          <p>This person linked to another post which covered that through USB,
+            the<br>
+            arduino UNO doesn’t get enough power to read fuse bytes (very weird
+            bug in the<br>
+            hardware apparently), so I’m going to try feeding the external GND
+            and VCC into<br>
+            the arduino UNO as well.</p>
+          <p>That didn’t do anything, same error received.</p>
+          <p>Doing some more research, this problem could be a multitude of
+            things:</p>
+          <p>* No communication between the PC and arduino<br>
+            * ATMega328p UART/bootloader<br>
+            * something is connected to RX/0 pin<br>
+            * The AVR has been fused to need a very slow clock<br>
+            * the AVR has its reset-disable fuse activated in its high fuse
+            byte,<br>
+            * the AVR has been fused to require an external clock or an external
+            crystal.</p>
+          <p>I know the cord isn’t faulty, I can program other boot-loaded
+            ATmegas with it.<br>
+            Nothing is connected to the RXD0 pin, so I can rule that out as
+            well.</p>
+          <p>I know I never fuse-byte programmed it, so the only remaining
+            option could<br>
+            be the bootloader.</p>
+          <p>I went about using OptiBoot to burn the bootloader on the
+            ATmega328p, this<br>
+            could potentially be the problem. I have some empty ATMegas, so I’m
+            going to<br>
+            attempt burning the regular bootloader on those to see if I can get
+            any different<br>
+            response.</p>
+          <p>While getting it set up, I ran into the error of ‘missing
+            ‘bootloader.tool’ configuration parameter.<br>
+            I found the solution here:<br>
+            <a href="https://github.com/arduino/Arduino/wiki/Arduino-Hardware-Cores-migration-guide-from-1.0-to-1.6"
+              rel="nofollow">https://github.com/arduino/Arduino/wiki/Arduino-Hardware-Cores-migration-guide-from-1.0-to-1.6</a></p>
+          <p>So I need to add the lines:</p>
+          <p><code>arduino328bb.bootloader.tool=arduino:avrdude</code></p>
+          <p>to boards.txt. After that, Things *started* to run! Almost.<br>
+            I got the error of an incorrect file path, so it couldn’t read the
+            hex file. *hunts down file*<br>
+            incorrect file path:
+~/Downloads/arduino-1.8.5-linux64/arduino-1.8.5/hardware/arduino/avr/bootloaders/ATmegaBOOT_168_atmega328_pro_8MHz.hex</p>
+          <p>correct file path:
+~/Downloads/arduino-1.8.5-linux64/arduino-1.8.5/hardware/arduino/avr/bootloaders/atmega/ATmegaBOOT_168_atmega328_pro_8MHz.hex</p>
+          <p>Instead of changing the path, I just moved the file to the
+            directory it wanted.</p>
+          <p>Believe it or not, IT WORKED. WOOO.</p>
+          <p>Alright, this is <em>great</em>. One step closer to figuring this
+            thing out.</p>
+          <p>With the newly bootloaded ATMega328p, I ran the command again:</p>
+          <p><code>avrdude -c arduino -p m328p -P /dev/ttyACM0 -b 19200 -U
+              lfuse:r:-:h</code></p>
+          <p>which produced this error:</p>
+          <blockquote>
+            <p><code>avrdude: stk500_getparm(): (a) protocol error, expect=0x14,
+                resp=0x14</code></p>
+            <p><code>avrdude: stk500_getparm(): (a) protocol error, expect=0x14,
+                resp=0x01<br>
+                avrdude: stk500_initialize(): (a) protocol error, expect=0x14,
+                resp=0x10<br>
+                avrdude: initialization failed, rc=-1<br>
+                Double check connections and try again, or use -F to override<br>
+                this check.</code></p>
+            <p><code>avrdude: stk500_disable(): unknown response=0x12</code></p>
+          </blockquote>
+          <p>I took out the “-b 19200” flag/value, and ran the command again,
+            which returned:</p>
+          <blockquote>
+            <p><code>avrdude: AVR device initialized and ready to accept
+                instructions</code></p>
+            <p><code>Reading |
+                ################################################## | 100% 0.00s</code></p>
+            <p><code>avrdude: Device signature = 0x1e950f<br>
+                avrdude: Expected signature for ATmega328P is 1E 95 14<br>
+                Double check chip, or use -F to override this check.</code></p>
+          </blockquote>
+          <p>Apparently, people just suggested in this forum post to change the
+            avrdude<br>
+            configuration to recognize my ATmega’s signature XD Seems legit.
+            Lets try it.<br>
+            (<a href="https://www.avrfreaks.net/forum/difference-between-atmega328-328p-and-328pu"
+              rel="nofollow">https://www.avrfreaks.net/forum/difference-between-atmega328-328p-and-328pu</a>?</p>
+          <p><code>whereis avrdude</code> told me that my avrdude configuration
+            file was in <code>/etc/avrdude.conf</code></p>
+          <p>So I sudo vimmed into it, and found the ATmega328P entry on line
+            8681. I changed the signature to be: <code>0x1e 0x95 0x0f</code></p>
+          <p>And that sort of worked!<br>
+            This was the output of that.</p>
+          <blockquote>
+            <p><code>avrdude: AVR device initialized and ready to accept
+                instructions</code></p>
+            <p><code>Reading |
+                ################################################## | 100% 0.00s</code></p>
+            <p><code>avrdude: Device signature = 0x1e950f (probably m328p)<br>
+                avrdude: reading lfuse memory:</code></p>
+            <p><code>Reading |
+                ################################################## | 100% 0.00s</code></p>
+            <p><code>avrdude: writing output file “”<br>
+                0x0</code></p>
+            <p><code>avrdude: safemode: Fuses OK (E:00, H:00, L:00)</code></p>
+          </blockquote>
+          <p>…I’m not entirely sure that the fuses should be ’00’. In one forum
+            post, they said part of the issue is avrdude using “safe mode”. To
+            disable safe mode, I added a -u to the command:</p>
+          <p><code>avrdude -c arduino -p m328p -P /dev/ttyACM0 -v -u -U
+              lfuse:r:-:h</code></p>
+          <p>Humm, that didn’t seem to do anything. The output file still reads
+            “0x0”.<br>
+            I am not entirely sure this is a huge issue, though.</p>
+          <p>So I did some research and found this great site: <a href="http://www.martyncurrey.com/arduino-atmega-328p-fuse-settings/"
+              rel="nofollow">http://www.martyncurrey.com/arduino-atmega-328p-fuse-settings/</a></p>
+          <p>And it makes burning the fuses look really easy….so I’ma try it.</p>
+          <p>The fuses I need look like this:<br>
+            <code>L: 0x62<br>
+              H: 0xD9<br>
+              E: 0xFF</code></p>
+          <p>And he just adds an entry in “boards.txt” to take care of it.
+            *genius*. Lets try this out…</p>
+          <blockquote>
+            <p><code>#####################################################################</code></p>
+            <p><code>atmega328pbb.name=ATmega328P breadboard w/ internal 8MHz<br>
+                atmega328pbb.upload.protocol=stk500<br>
+                atmega328pbb.upload.maximum_size=32768<br>
+                atmega328pbb.upload.speed=57600<br>
+                atmega328pbb.upload.using=arduino:avrdude<br>
+                atmega328pbb.bootloader.low_fuses=0x62<br>
+                atmega328pbb.bootloader.high_fuses=0xd9<br>
+                atmega328pbb.bootloader.extended_fuses=0xFF<br>
+                atmega328pbb.bootloader.path=arduino:atmega<br>
+atmega328pbb.bootloader.file=ATmgeaBOOT_168_atmega328_pro_8MHz.hex<br>
+                atmega328pbb.bootloader.unlock_bits=0x3F<br>
+                atmega328pbb.bootloader.lock_bits=0x0F<br>
+                atmega328pbb.build.mcu=atmega328p<br>
+                atmega328pbb.build.f_cpu=8000000L<br>
+                atmega328pbb.build.core=arduino:arduino<br>
+                atmega.build.variant/arduino:standard</code></p>
+          </blockquote>
+          <p>There’s my custom entry. Lets run it and see how that does.</p>
+          <p>The arduino UNO is still connected to my circuit, and still has the
+            bootloader code on it. I got the same error as I did earlier:</p>
+          <p>Error while burning bootloader: missing ‘bootloader.tool’
+            configuration parameter</p>
+          <p>So I went back into boards.txt and changed this line:</p>
+          <p><code>atmega328pbb.upload.using=arduino:avrdude</code></p>
+          <p>to:<br>
+            <code>atmega328pbb.bootloader.tool=arduino:avrdude<br>
+            </code><br>
+            restarted the ArduinoIDE, burned, and got this error:</p>
+          <blockquote>
+            <p><code>avrdude: can’t open input file
+                /home/thallia/Downloads/arduino-1.8.5-linux64/arduino-1.8.5/hardware/arduino/avr/bootloaders/ATmgeaBOOT_168_atmega328_pro_8MHz.hex:
+                No such file or directory</code></p>
+          </blockquote>
+          <p>..which I should’ve fixed that…oh derp. “atmega” not “atmgea”.
+            *facepalm*.</p>
+          <p>:oooo no errors!! woohoo! Okay, so the fuse bytes *should* have
+            been changed with that. Let’s see what avrdude did:</p>
+          <blockquote>
+            <p><code>avrdude: verifying …<br>
+                avrdude: 1 bytes of lock verified<br>
+                avrdude: reading input file “0xFF”<br>
+                avrdude: writing efuse (1 bytes):</code></p>
+            <p><code>Writing | ##############################################$<br>
+                ### | 100% 0.01s</code></p>
+            <p><code>avrdude: 1 bytes of efuse written<br>
+                avrdude: verifying efuse memory against 0xFF:<br>
+                avrdude: load data efuse data from input file 0xFF:<br>
+                avrdude: input file 0xFF contains 1 bytes<br>
+                avrdude: reading on-chip efuse data:</code></p>
+            <p><code>Reading | ##############################################$<br>
+                ### | 100% 0.01s<br>
+                User configuration file is “/home/thallia/.avrd$<br>
+                derc”</code></p>
+            <p><code>avrdude: verifying …<br>
+                avrdude: 1 bytes of efuse verified<br>
+                avrdude: reading input file “0xd9”<br>
+                avrdude: writing hfuse (1 bytes):</code></p>
+            <p><code>Writing | ##############################################$<br>
+                ### | 100% 0.01s</code></p>
+            <p><code>avrdude: 1 bytes of hfuse written<br>
+                avrdude: verifying hfuse memory against 0xd9:<br>
+                avrdude: load data hfuse data from input file 0xd9:<br>
+                avrdude: input file 0xd9 contains 1 bytes<br>
+                avrdude: reading on-chip hfuse data:</code></p>
+            <p><code>Reading | ##############################################$<br>
+                ### | 100% 0.01s</code></p>
+            <p><code>avrdude: verifying …<br>
+                avrdude: 1 bytes of hfuse verified<br>
+                avrdude: reading input file “0x62”<br>
+                avrdude: writing lfuse (1 bytes):</code></p>
+            <p><code>Writing | ##############################################$<br>
+                ### | 100% 0.01s</code></p>
+            <p><code>avrdude: 1 bytes of lfuse written<br>
+                avrdude: verifying lfuse memory against 0x62:<br>
+                avrdude: load data lfuse data from input file 0x62:<br>
+                avrdude: input file 0x62 contains 1 bytes<br>
+                avrdude: reading on-chip lfuse data:</code></p>
+            <p><code>Reading | ###############################################<br>
+                ### | 100% 0.01s</code></p>
+            <p><code>avrdude: verifying …<br>
+                avrdude: 1 bytes of lfuse verified</code></p>
+            <p><code>avrdude done. Thank you.</code></p>
+          </blockquote>
+          <p>duuuuuude.<br>
+            how come I didn’t know it was this easy before?</p>
+          <p>lets test out the microcontroller now!</p>
+          <p>okay so looks like you actually have to have an “upload.tool” line
+            in boards.txt or else it won’t let you upload a thing.<br>
+            After that, it still wouldn’t upload, giving me that annoying
+            “programmer is not responding/not in sync” error.</p>
+          <p>After looking around on Nick Gammon’s site, if the “divide by 8”
+            fuse bit is set, you can’t upload programs…so now I gotta fix that.</p>
+          <p>I went and changed the fuse byte from 0xD9 to 0xE2, which changes
+            the CKDIV8 bit. When burning the bootloader though, it has an error.</p>
+          <p><code>avrdude: verification error, first mismatch at byte 0x0000<br>
+              0xc2 != 0xe2<br>
+              avrdude: verification error; content mismatch</code></p>
+          <p>I wonder why it’s writing c and not e. Lets try programming it and
+            see what happens.</p>
+          <p>oh crud. I changed the high fuse not the low fuse. Back to the
+            boards.txt…..</p>
+          <p>okay, that fixed it. Phew, I thought I may have bricked it there
+            for a sec. <em>Now</em> lets try programming it again…</p>
+          <p>Oops, it looks like it’s not actually using the bootloader, so it
+            can’t upload the program. That would make sense.</p>
+          <p>This time I need to change the High Fuse byte to 0xD8 instead of
+            0xD9.<br>
+            Testing program uploading again…..<br>
+            and boom. It worked. 😀</p>
+          <p>turns out none of those were actually the errors lol, the UNO just
+            needed its own atmega328p in it. *derp*</p>
+          <p>The test circuit worked, and it drew the expected amount of
+            current. WOOOHOOOO.<br>
+            major progress!</p>
+          <p>Now I have a working microcontroller, <a href="https://github.com/thallia/BinaryWatch/blob/master/src/bwatch-clk.cpp"
+              target="_blank" rel="noopener">working code</a> (aside from the
+            buttons), and a full on new schematic!</p>
+        </div>
+        <div style="width: 748px;"><img src="../images/binarywatchrev4.png" alt=""
+            title="binary watch schematic rev4">
+          <p>With this schematic (yes I know it’s ugly for now) I’ll generate
+            the PCB, route the PCB, order some new parts, and then this project
+            will be nearing its end.</p>
+          <p>Woo, that was a ton of work, but it <em>totally</em> paid off.</p>
+          <p>Happy hacking y’all!</p>
+          <p></p>
+          <p> {thallia}</p>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 300px; width: 772px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 738px; margin-left: -1px;">
+          <ul>
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 64px; margin-left: -49px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp; <b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; margin-left: 5px; width: 619px;">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>
