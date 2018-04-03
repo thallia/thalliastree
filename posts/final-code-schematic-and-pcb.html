@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Final Code, Schematic, and PCB | Binary watch</title>
+    <meta name="generator" content="thesitewizard.com's Layout Wizard 1.1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="tswtabs.css">
+    <meta name="author" content="thallia">
+    <meta name="description" content="A branch of knowledge - first post">
+    <link type="text/css" rel="stylesheet" href="../styles.css">
+    <link type="text/css" rel="stylesheet" href="../tswtabs.css">
+  </head>
+  <body style="background-color: black;">
+    <div id="tswcontainer">
+      <div id="tswheader">
+        <!-- start of header section: insert your logo, etc, here --> <a href="https://www.thalliatree.net/"
+          target="_top"><img src="../images/cropped-thalliastree.jpg" alt="home logo"
+            title="home logo" id="thalliastreelogo"></a>
+        <!-- end of header section: insert your logo, etc, above this line --> </div>
+      <div id="tswcontent">
+        <div>
+          <!-- start of content column: insert your content here --><span style="font-family: FreeMono;"><br>
+          </span></div>
+        <div style="width: 748px;">
+          <h2 style="margin-left: 7px; width: 820px;"><span style="font-family: Ubuntu Mono;">[4.2.18]
+              Final Code, Schematic, and PCB | Binary Watch<br>
+            </span></h2>
+          <span style="font-family: Ubuntu Mono;"></span><br>
+          <p>Last we saw, I got the binary watch code working with the 32.768kHz
+            clock and fuse bytes (aside from the buttons!</p>
+          <p>The final code is out, I made the decision to keep the buttons
+            simple and have them work <em>only</em> when the ATmega is awake.
+            It’s much easier to let it happen that way than to use interrupts
+            when the microcontroller is sleeping/waking up every second.</p>
+          <p>You can see my final code here:</p>
+          <blockquote>
+            <p><a href="https://github.com/thallia/BinaryWatch/blob/master/src/bwatch-clk.cpp">https://github.com/thallia/BinaryWatch/blob/master/src/bwatch-clk.cpp</a></p>
+          </blockquote>
+          <p>The display button is checked every time the ATmega wakes up, and
+            if it’s pressed, it’ll display the time as long as the display
+            button is held down.</p>
+          <p>Figuring out a way to stop the sleeping for 10 seconds would take a
+            lot of workarounds and a lot of errors that I don’t have time to
+            figure out right now, and I’m actually kind of liking the blinking
+            display, too. Makes it feel more like a clock 🙂</p>
+          <p>As for the schematic, the final one looks like this!</p>
+          <img src="../images/bw-schematic.png" title="binary watch final schematic">
+          <p>I moved some of the GPIO pins around for the buttons, added VCC and
+            GND to everything, and added a JST connector. I decided it would be
+            best to power this thing through a bigger power supply with easier
+            access, so I bought a LiPo and added the JST connector to the
+            schematic.</p>
+          <p>Routing the PCB was super easy with eagleCAD:</p>
+          <img src="../images/bw-pcb.png" alt=""></div>
+        <div style="width: 748px;"><br>
+        </div>
+        <div style="width: 748px;">
+          <p>And that’s the final board design! It’s super compact, so it should
+            be able to fit on my wrist. The final dimensions were 37.0 mm x 43.4
+            mm. (I have a tiny wrist.)</p>
+          <p>I ordered the PCB through <a href="https://oshpark.com/" target="_blank"
+              rel="noopener">OshPark</a>, I <em>super highly</em> recommend
+            their services. They accept EagleCAD board files directly, so you
+            don’t have to generate a bunch of gerber files, and keep you up to
+            date on where your PCB is at at all times. I’ve gotten emails that
+            my PCB has been through paneling and fabrication so far, and they
+            should receive it back by mid-April.</p>
+          <p>The prices for the PCBs weren’t bad either. For 3 copies of mine it
+            turned out to be a decent $12.75.</p>
+          <p>The parts (LEDs, caps, SMD parts, etc) should be here in a couple
+            days…and I can’t wait.</p>
+          <p>Since I added a LiPo battery to the design, I now need to make a 3D
+            printed case for the watch to hold it all. I’ll be using Fusion360
+            for that, so stay tuned!</p>
+          <p></p>
+        </div>
+        <div style="width: 748px;">
+          <p></p>
+          <p> {thallia}</p>
+          <p>&nbsp;</p>
+          <!-- end of content column: put your content above this line --> </div>
+      </div>
+      <div id="tswfooter" style="margin-left: 300px; width: 772px;">
+        <!-- start of footer section: insert your copyright notice, etc, here -->
+        <div id="tswcsstabs" style="width: 738px; margin-left: -1px;">
+          <ul>
+            <li><br>
+            </li>
+            <ul>
+              <ul>
+                <ul>
+                  <ul>
+                    <li id="navbar" style="width: 64px; margin-left: -49px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp; <b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/">Home</a></span></b></li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/who-am-i.html">Who
+                    Am I</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/under-the-wire.html">UTW</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/contact-me.html">Contact</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><b><span style="font-family: FreeMono;"><a href="https://www.thalliatree.net/sitemap.html">Post
+                    Archive</a></span></b></li>
+            <b><span style="font-family: FreeMono;"> </span></b>
+            <li><a href="https://www.thalliatree.net/follow-me.html"><b><span style="font-family: FreeMono;">Follow
+                    Me</span></b> </a></li>
+          </ul>
+        </div>
+        <p style="height: 22px; margin-left: 5px; width: 619px;">&nbsp;&nbsp;&nbsp;
+          | ©<span style="font-family: FreeMono;"> 2017 by thallia | powered by
+            <a href="https://www.thesitewizard.com/">thesitewizard</a> |<br>
+          </span></p>
+        <p style="height: 22px;"><br>
+        </p>
+        <!-- end of footer section: insert your copyright notice, etc, above this line -->
+      </div>
+    </div>
+  </body>
+</html>
